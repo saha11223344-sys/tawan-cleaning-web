@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ตะวันคลีนนิ่ง | บริการ Big Cleaning บ้าน อาคาร ออฟฟิศ ร้านอาหาร คาเฟ่</title>
+<meta name="description" content="ตะวันคลีนนิ่ง ผู้เชี่ยวชาญบริการ Big Cleaning บ้าน อาคาร ออฟฟิศ ร้านอาหาร คาเฟ่ หลังงานก่อสร้าง รีโนเวท บิ้วอิน และต่อเติม โดยทีมงานผ่านการอบรมและตรวจประวัติ พร้อมภาพผลงานจริงทุกงาน">
+<meta property="og:title" content="ตะวันคลีนนิ่ง — ผู้เชี่ยวชาญ Big Cleaning สะอาดจนแดดส่องถึง">
+<meta property="og:description" content="บริการ Big Cleaning บ้าน อาคาร ออฟฟิศ ร้านอาหาร คาเฟ่ และพื้นที่หลังก่อสร้าง มืออาชีพ ไว้ใจได้ พร้อมภาพผลงานจริงทุกงาน">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/cover/cover.jpg">
+<link rel="icon" href="images/logo/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EC;
+    --cream-alt:#F3ECDC;
+    --teal:#123A3B;
+    --teal-dark:#0A2726;
+    --teal-light:#1F5C58;
+    --gold:#F2A93B;
+    --gold-light:#FBD897;
+    --aqua:#D8ECE8;
+    --text:#1B2624;
+    --text-soft:#4C5A55;
+    --white:#FFFFFF;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --radius-sm:12px;
+    --shadow-soft:0 24px 50px -24px rgba(10,39,38,.35);
+    --container:1200px;
+    --ease:cubic-bezier(.16,.84,.44,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+  body{
+    margin:0;
+    font-family:'Prompt',sans-serif;
+    background:var(--cream);
+    color:var(--text);
+    font-weight:400;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{margin:0; padding:0; list-style:none;}
+  h1,h2,h3,h4{margin:0; font-weight:700;}
+  p{margin:0;}
+  button{font-family:inherit; cursor:pointer;}
+  .container{max-width:var(--container); margin:0 auto; padding:0 24px;}
+  section{position:relative;}
+
+  .skip-link{
+    position:absolute; left:-999px; top:0; background:var(--teal); color:#fff;
+    padding:12px 20px; z-index:999; border-radius:0 0 8px 0;
+  }
+  .skip-link:focus{left:0;}
+
+  :focus-visible{outline:3px solid var(--gold); outline-offset:3px;}
+
+  /* ===== Eyebrow / tags ===== */
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:.82rem; font-weight:600; letter-spacing:.06em;
+    color:var(--teal-light); background:var(--aqua);
+    padding:7px 16px; border-radius:999px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:''; width:6px; height:6px; border-radius:50%; background:var(--gold);}
+
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head h2{font-size:clamp(1.7rem,3.6vw,2.6rem); line-height:1.25;}
+  .section-head p{margin-top:16px; color:var(--text-soft); font-size:1.05rem;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+
+  /* ===== Buttons ===== */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:15px 30px; border-radius:999px; font-weight:600; font-size:1rem;
+    border:2px solid transparent; transition:transform .35s var(--ease), background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--teal); color:var(--cream);}
+  .btn-primary:hover{background:var(--gold); color:var(--teal-dark); transform:translateY(-3px); box-shadow:0 16px 30px -12px rgba(242,169,59,.6);}
+  .btn-ghost{background:transparent; color:var(--teal); border-color:var(--teal);}
+  .btn-ghost:hover{background:var(--teal); color:var(--cream); transform:translateY(-3px);}
+  .btn-gold{background:var(--gold); color:var(--teal-dark);}
+  .btn-gold:hover{background:var(--teal-dark); color:var(--gold-light); transform:translateY(-3px); box-shadow:0 16px 30px -12px rgba(10,39,38,.5);}
+  .btn-sm{padding:10px 20px; font-size:.9rem;}
+
+  /* ===== Header ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:18px 0;
+    transition:background .4s var(--ease), padding .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  header.scrolled{
+    background:rgba(251,246,236,.9); backdrop-filter:blur(10px);
+    padding:12px 0; box-shadow:0 8px 24px -16px rgba(10,39,38,.3);
+  }
+  .nav-wrap{display:flex; align-items:center; justify-content:space-between; gap:20px;}
+  .logo{display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.25rem; color:var(--teal);}
+  .logo-mark{width:44px; height:44px; flex-shrink:0; border-radius:50%; object-fit:cover;}
+  .logo span{color:var(--gold);}
+  nav.main-nav{display:flex; align-items:center; gap:36px;}
+  nav.main-nav a{font-size:.96rem; font-weight:500; color:var(--text); position:relative; padding:4px 0;}
+  nav.main-nav a::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px; background:var(--gold);
+    transition:width .3s var(--ease);
+  }
+  nav.main-nav a:hover::after, nav.main-nav a:focus-visible::after{width:100%;}
+  .nav-actions{display:flex; align-items:center; gap:14px;}
+  .nav-actions .tel{display:flex; align-items:center; gap:8px; font-weight:600; color:var(--teal);}
+  .burger{display:none; width:44px; height:44px; align-items:center; justify-content:center; background:var(--teal); border-radius:50%; border:none; flex-shrink:0;}
+  .burger span, .burger span::before, .burger span::after{
+    content:''; display:block; width:18px; height:2px; background:var(--cream); position:relative; transition:.3s;
+  }
+  .burger span::before{position:absolute; top:-6px;}
+  .burger span::after{position:absolute; top:6px;}
+  .burger.open span{background:transparent;}
+  .burger.open span::before{transform:rotate(45deg); top:0;}
+  .burger.open span::after{transform:rotate(-45deg); top:0;}
+
+  .mobile-nav{
+    display:none; position:fixed; inset:0; z-index:99; background:var(--teal);
+    color:var(--cream); flex-direction:column; justify-content:center; align-items:center; gap:28px;
+    transform:translateY(-100%); transition:transform .5s var(--ease);
+  }
+  .mobile-nav.open{transform:translateY(0);}
+  .mobile-nav a{font-size:1.4rem; font-weight:600;}
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:170px 0 100px;
+    background:
+      radial-gradient(ellipse at 85% 10%, rgba(242,169,59,.35), transparent 55%),
+      linear-gradient(180deg, var(--cream) 0%, var(--cream-alt) 100%);
+    overflow:hidden;
+  }
+  .hero .container{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;}
+  .hero h1{font-size:clamp(2.3rem,4.6vw,3.6rem); line-height:1.2; letter-spacing:-.01em;}
+  .hero h1 em{font-style:normal; color:var(--teal); background:linear-gradient(180deg, transparent 62%, var(--gold-light) 62%);}
+  .hero p.lede{margin-top:22px; font-size:1.12rem; color:var(--text-soft); max-width:520px;}
+  .hero-cta{display:flex; flex-wrap:wrap; gap:16px; margin-top:34px;}
+  .hero-meta{display:flex; gap:28px; margin-top:44px; flex-wrap:wrap;}
+  .hero-meta div{display:flex; flex-direction:column;}
+  .hero-meta strong{font-size:1.5rem; color:var(--teal);}
+  .hero-meta span{font-size:.85rem; color:var(--text-soft);}
+
+  .hero-art{position:relative; aspect-ratio:1/1; max-width:480px; margin:0 auto;}
+  .sun-ray{
+    position:absolute; inset:-10%; border-radius:50%;
+    background:conic-gradient(from 0deg, transparent 0 92%, rgba(242,169,59,.9) 96%, transparent 100%);
+    animation:spin 9s linear infinite; opacity:.6; filter:blur(1px);
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .hero-art .dust{position:absolute; border-radius:50%; background:var(--gold-light); opacity:0; }
+  .hero-art .dust:nth-child(2){width:10px;height:10px; top:20%; left:15%; animation:dustFade 4s ease-in-out infinite; animation-delay:.2s;}
+  .hero-art .dust:nth-child(3){width:6px;height:6px; top:65%; left:75%; animation:dustFade 5s ease-in-out infinite; animation-delay:1.4s;}
+  .hero-art .dust:nth-child(4){width:8px;height:8px; top:78%; left:30%; animation:dustFade 4.5s ease-in-out infinite; animation-delay:2.3s;}
+  .hero-art .dust:nth-child(5){width:5px;height:5px; top:12%; left:70%; animation:dustFade 6s ease-in-out infinite; animation-delay:.8s;}
+  @keyframes dustFade{
+    0%{opacity:0; transform:translateY(0) scale(1);}
+    30%{opacity:.9;}
+    100%{opacity:0; transform:translateY(-70px) scale(.4);}
+  }
+  .hero-card{
+    position:relative; z-index:2; background:var(--white); border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-soft); padding:20px; height:100%;
+  }
+  .hero-card img{width:100%; height:100%; object-fit:cover; border-radius:16px; display:block;}
+  .hero-badge{
+    position:absolute; z-index:3; background:rgba(255,255,255,.92); backdrop-filter:blur(6px);
+    border-radius:16px; padding:12px 18px; box-shadow:0 16px 30px -14px rgba(10,39,38,.35);
+    border:1px solid rgba(18,58,59,.08); animation:floatY 5s ease-in-out infinite; max-width:190px;
+  }
+  .hero-badge strong{display:block; font-size:.88rem; color:var(--teal); font-weight:700;}
+  .hero-badge span{font-size:.76rem; color:var(--text-soft);}
+  .hero-badge.b1{top:2%; right:-6%;}
+  .hero-badge.b2{top:46%; right:-12%; animation-delay:1.1s;}
+  .hero-badge.b3{bottom:4%; left:-8%; animation-delay:2.1s;}
+  @keyframes floatY{0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);}}
+  .hero-scroll{display:flex; align-items:center; gap:12px; margin-top:56px; font-size:.8rem; color:var(--text-soft); letter-spacing:.15em;}
+  .hero-scroll .line{width:34px; height:1px; background:var(--teal); opacity:.4; position:relative; overflow:hidden;}
+  .hero-scroll .line::after{
+    content:''; position:absolute; inset:0; background:var(--gold); animation:scrollLine 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollLine{0%{transform:translateX(-100%);} 50%{transform:translateX(0);} 100%{transform:translateX(100%);}}
+
+  /* ===== Trust band ===== */
+  .trust{background:var(--teal); color:var(--cream); padding:44px 0;}
+  .trust .container{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center;}
+  .trust strong{display:block; font-size:clamp(1.5rem,2.6vw,2.1rem); color:var(--gold-light);}
+  .trust span{font-size:.88rem; color:rgba(251,246,236,.75); margin-top:6px; display:block;}
+  .trust .div{border-left:1px solid rgba(251,246,236,.15);}
+
+  /* ===== Philosophy ===== */
+  .philosophy{padding:110px 0; background:var(--cream-alt);}
+  .philosophy-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:10px;}
+  .philosophy-item h3{font-size:1.15rem; margin-bottom:10px;}
+  .philosophy-item p{color:var(--text-soft); font-size:.95rem;}
+  .philosophy-quote{
+    margin-top:64px; text-align:center; padding:48px; background:var(--white); border-radius:var(--radius-lg);
+    box-shadow:0 20px 40px -30px rgba(10,39,38,.2);
+  }
+  .philosophy-quote p.big{font-size:clamp(1.3rem,2.6vw,1.9rem); color:var(--teal); font-weight:700; font-style:italic;}
+  .philosophy-quote span{display:block; margin-top:14px; color:var(--text-soft); font-size:.92rem;}
+
+  /* ===== Services (bento) ===== */
+  .services{padding:110px 0; background:var(--cream);}
+  .bento{display:grid; grid-template-columns:repeat(6,1fr); gap:22px;}
+  .bento .card{
+    background:var(--white); border-radius:var(--radius-md); padding:32px;
+    box-shadow:0 20px 40px -30px rgba(10,39,38,.25); border:1px solid rgba(18,58,59,.06);
+    transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  .bento .card:hover{transform:translateY(-6px); box-shadow:0 26px 46px -24px rgba(10,39,38,.3);}
+  .bento .card.big{grid-column:span 3; grid-row:span 2; background:var(--teal); color:var(--cream); display:flex; flex-direction:column; justify-content:space-between;}
+  .bento .card.big .icon{background:rgba(251,246,236,.12);}
+  .bento .card.big h3{color:var(--gold-light);}
+  .bento .card.big p{color:rgba(251,246,236,.8);}
+  .bento .card:not(.big){grid-column:span 3;}
+  @media(min-width:900px){
+    .bento .card:not(.big){grid-column:span 3;}
+  }
+  .icon{
+    width:52px; height:52px; border-radius:14px; background:var(--aqua); display:flex; align-items:center; justify-content:center;
+    margin-bottom:20px;
+  }
+  .icon svg{width:26px; height:26px; stroke:var(--teal); fill:none; stroke-width:1.8;}
+  .bento .card.big .icon svg{stroke:var(--gold-light);}
+  .card h3{font-size:1.2rem; margin-bottom:10px;}
+  .card p{color:var(--text-soft); font-size:.96rem;}
+  .card .tag{display:inline-block; margin-top:16px; font-size:.82rem; font-weight:600; color:var(--teal-light);}
+  .bento .card.big .tag{color:var(--gold-light);}
+
+  /* ===== Before / After wipe ===== */
+  .wipe-section{background:var(--teal-dark); color:var(--cream); padding:120px 0;}
+  .wipe-top{display:grid; grid-template-columns:.9fr 1.1fr; gap:60px; align-items:center;}
+  .wipe-section .section-head h2, .wipe-section .section-head p{color:var(--cream);}
+  .wipe-section .section-head p{color:rgba(251,246,236,.7);}
+  .wipe-caption{margin-top:28px; display:flex; gap:10px;}
+  .wipe-caption span{
+    padding:8px 16px; border-radius:999px; font-size:.85rem; border:1px solid rgba(251,246,236,.25);
+    color:rgba(251,246,236,.55); transition:.35s;
+  }
+  .wipe-caption span.active{background:var(--gold); color:var(--teal-dark); border-color:var(--gold); font-weight:600;}
+  .wipe-stats{margin-top:32px; display:flex; flex-direction:column; gap:16px;}
+  .wipe-stats li{display:flex; gap:12px; align-items:flex-start; font-size:.92rem; color:rgba(251,246,236,.8);}
+  .wipe-stats li strong{color:var(--gold-light); display:block; font-size:1rem; margin-bottom:2px;}
+  .wipe-stats .dot{width:8px; height:8px; border-radius:50%; background:var(--gold); margin-top:7px; flex-shrink:0;}
+
+  .wipe-stage{
+    position:relative; aspect-ratio:4/3; border-radius:var(--radius-lg); overflow:hidden;
+    box-shadow:0 40px 80px -30px rgba(0,0,0,.55); cursor:none;
+  }
+  .wipe-stage svg, .wipe-stage img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .wipe-stage .after-layer{clip-path:inset(0 0 0 100%);}
+  .wipe-handle{
+    position:absolute; top:0; bottom:0; width:3px; background:var(--gold);
+    box-shadow:0 0 0 6px rgba(242,169,59,.18); pointer-events:none;
+  }
+  .wipe-handle::after{
+    content:'✦'; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:44px; height:44px; border-radius:50%; background:var(--gold); color:var(--teal-dark);
+    display:flex; align-items:center; justify-content:center; font-size:1rem; box-shadow:0 8px 20px rgba(0,0,0,.35);
+  }
+
+  /* ===== Portfolio gallery (real job photos, updated every job) ===== */
+  .portfolio-head{margin-top:90px; max-width:640px;}
+  .portfolio-head p{color:rgba(251,246,236,.7); margin-top:14px;}
+  .portfolio-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:40px;}
+  .portfolio-item{
+    background:rgba(251,246,236,.05); border-radius:var(--radius-md); overflow:hidden;
+    border:1px solid rgba(251,246,236,.12); transition:transform .4s var(--ease), border-color .4s var(--ease);
+  }
+  .portfolio-item:hover{transform:translateY(-6px); border-color:rgba(242,169,59,.5);}
+  .portfolio-item .thumb{
+    aspect-ratio:4/3; background:rgba(251,246,236,.08); display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+  }
+  .portfolio-item .thumb svg{width:52%; stroke:var(--gold-light);}
+  .portfolio-item .thumb img{width:100%; height:100%; object-fit:cover; transition:transform .5s var(--ease);}
+  .portfolio-item:hover .thumb img{transform:scale(1.06);}
+  .portfolio-item .thumb .badge{
+    position:absolute; top:12px; left:12px; background:var(--gold); color:var(--teal-dark);
+    font-size:.75rem; font-weight:700; padding:5px 12px; border-radius:999px;
+  }
+  .portfolio-item .cap{padding:18px 20px;}
+  .portfolio-item .cap h4{font-size:.98rem; margin-bottom:4px; color:var(--cream);}
+  .portfolio-item .cap span{font-size:.82rem; color:rgba(251,246,236,.6);}
+  @media(max-width:1024px){.portfolio-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.portfolio-grid{grid-template-columns:1fr;}}
+
+  /* ===== Process ===== */
+  .process{padding:110px 0; background:var(--cream-alt);}
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative;}
+  .steps::before{
+    content:''; position:absolute; top:34px; left:8%; right:8%; height:2px;
+    background:repeating-linear-gradient(90deg, var(--teal) 0 10px, transparent 10px 20px);
+    z-index:0;
+  }
+  .step{position:relative; z-index:1; padding:0 18px; text-align:left;}
+  .step .num{
+    width:68px; height:68px; border-radius:50%; background:var(--teal); color:var(--gold-light);
+    display:flex; align-items:center; justify-content:center; font-size:1.5rem; font-weight:700; margin-bottom:22px;
+    border:6px solid var(--cream-alt);
+  }
+  .step h3{font-size:1.08rem; margin-bottom:10px;}
+  .step p{color:var(--text-soft); font-size:.94rem;}
+
+  /* ===== Why us (zigzag) ===== */
+  .why{padding:110px 0; background:var(--cream);}
+  .feature-row{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; padding:48px 0; border-bottom:1px solid rgba(18,58,59,.1);}
+  .feature-row:first-of-type{padding-top:0;}
+  .feature-row:last-of-type{border-bottom:none;}
+  .feature-row:nth-of-type(even){direction:rtl;}
+  .feature-row:nth-of-type(even) > *{direction:ltr;}
+  .feature-visual{
+    aspect-ratio:16/11; border-radius:var(--radius-md); background:var(--aqua);
+    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+  }
+  .feature-visual svg{width:46%; stroke:var(--teal);}
+  .feature-visual::before{
+    content:''; position:absolute; width:220%; height:220%; background:radial-gradient(circle, rgba(242,169,59,.25), transparent 60%);
+    top:-60%; left:-60%;
+  }
+  .feature-num{font-size:.85rem; font-weight:700; color:var(--gold); letter-spacing:.1em;}
+  .feature-copy h3{font-size:1.5rem; margin:10px 0 14px;}
+  .feature-copy p{color:var(--text-soft);}
+
+  /* ===== Team ===== */
+  .team{padding:110px 0; background:var(--cream);}
+  .team-photo-banner{
+    border-radius:var(--radius-lg); overflow:hidden; margin-bottom:56px;
+    box-shadow:var(--shadow-soft); position:relative;
+  }
+  .team-photo-banner img{width:100%; max-height:420px; object-fit:cover; display:block;}
+  .team-photo-banner .cap{
+    position:absolute; left:0; right:0; bottom:0; padding:24px 28px;
+    background:linear-gradient(0deg, rgba(10,39,38,.82), transparent);
+    color:var(--cream); font-weight:600; font-size:.98rem;
+  }
+  .team-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:32px;}
+  .team-card{
+    background:var(--white); border-radius:var(--radius-md); overflow:hidden; text-align:center; padding-bottom:28px;
+    box-shadow:0 20px 40px -30px rgba(10,39,38,.25); border:1px solid rgba(18,58,59,.06);
+  }
+  .team-card .avatar-photo{aspect-ratio:1/1; background:var(--aqua); display:flex; align-items:center; justify-content:center; margin-bottom:22px;}
+  .team-card .avatar-photo svg{width:38%; stroke:var(--teal);}
+  .team-card h3{font-size:1.1rem;}
+  .team-card .role{color:var(--teal-light); font-weight:600; font-size:.9rem; margin-top:4px;}
+  .team-card .exp{color:var(--text-soft); font-size:.85rem; margin-top:12px; padding:0 24px;}
+
+  /* ===== Pricing ===== */
+  .pricing{padding:110px 0; background:var(--teal); color:var(--cream);}
+  .pricing .section-head h2, .pricing .section-head p{color:var(--cream);}
+  .pricing .section-head p{color:rgba(251,246,236,.7);}
+  .pricing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px; align-items:stretch;}
+  .price-card{
+    background:rgba(251,246,236,.05); border:1px solid rgba(251,246,236,.14); border-radius:var(--radius-lg);
+    padding:36px 32px; display:flex; flex-direction:column;
+  }
+  .price-card.featured{
+    background:var(--gold); border-color:var(--gold); box-shadow:0 30px 60px -20px rgba(0,0,0,.4);
+  }
+  .price-card .badge-pop{
+    align-self:flex-start; background:var(--teal-dark); color:var(--gold-light); font-size:.75rem; font-weight:700;
+    padding:5px 14px; border-radius:999px; margin-bottom:16px;
+  }
+  .price-card h3{font-size:1.3rem; color:var(--cream);}
+  .price-card.featured h3{color:var(--teal-dark);}
+  .price-card .sub{font-size:.88rem; color:rgba(251,246,236,.65); margin-top:6px;}
+  .price-card.featured .sub{color:rgba(10,39,38,.7);}
+  .price-card .amount{font-size:1.7rem; font-weight:700; margin-top:20px; color:var(--gold-light);}
+  .price-card.featured .amount{color:var(--teal-dark);}
+  .price-card .amount small{font-size:.75rem; font-weight:400; color:rgba(251,246,236,.6);}
+  .price-card.featured .amount small{color:rgba(10,39,38,.6);}
+  .price-card ul{margin-top:24px; display:flex; flex-direction:column; gap:12px; flex:1;}
+  .price-card ul li{display:flex; gap:10px; font-size:.9rem; color:rgba(251,246,236,.85);}
+  .price-card.featured ul li{color:rgba(10,39,38,.85);}
+  .price-card ul li .check-ico{color:var(--gold-light); flex-shrink:0;}
+  .price-card.featured ul li .check-ico{color:var(--teal-dark);}
+  .price-card .btn{margin-top:28px; width:100%;}
+  .price-note{margin-top:32px; font-size:.88rem; color:rgba(251,246,236,.6); text-align:center;}
+
+  /* ===== Testimonials ===== */
+  .testi{padding:110px 0 130px; background:var(--cream);}
+  .testi-track{display:flex; gap:24px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:20px; margin:0 -24px; padding-left:24px; padding-right:24px;}
+  .testi-track::-webkit-scrollbar{height:6px;}
+  .testi-track::-webkit-scrollbar-thumb{background:var(--teal); border-radius:6px;}
+  .testi-card{
+    flex:0 0 340px; scroll-snap-align:start; background:var(--white); border-radius:var(--radius-md);
+    padding:34px; box-shadow:0 20px 40px -30px rgba(10,39,38,.25); border:1px solid rgba(18,58,59,.06);
+  }
+  .testi-card .quote-mark{font-size:2.6rem; color:var(--gold); line-height:1; font-family:Georgia,serif;}
+  .testi-card p.quote{margin-top:10px; color:var(--text); font-size:.98rem;}
+  .testi-card .who{display:flex; align-items:center; gap:12px; margin-top:24px;}
+  .avatar{width:46px; height:46px; border-radius:50%; background:var(--teal); color:var(--gold-light); display:flex; align-items:center; justify-content:center; font-weight:700;}
+  .who strong{display:block; font-size:.95rem;}
+  .who span{font-size:.82rem; color:var(--text-soft);}
+  .stars{color:var(--gold); letter-spacing:2px; margin-top:6px; font-size:.9rem;}
+
+  /* ===== FAQ ===== */
+  .faq{padding:110px 0; background:var(--cream-alt);}
+  .faq-list{max-width:800px; margin:0 auto;}
+  .faq-item{border-bottom:1px solid rgba(18,58,59,.15);}
+  .faq-q{
+    width:100%; background:none; border:none; text-align:left; padding:24px 0; display:flex;
+    justify-content:space-between; align-items:center; gap:20px; font-size:1.05rem; font-weight:600; color:var(--teal);
+  }
+  .faq-q .plus{width:26px; height:26px; flex-shrink:0; position:relative;}
+  .faq-q .plus::before, .faq-q .plus::after{content:''; position:absolute; background:var(--teal); top:50%; left:50%; transform:translate(-50%,-50%);}
+  .faq-q .plus::before{width:16px; height:2px;}
+  .faq-q .plus::after{width:2px; height:16px; transition:transform .3s var(--ease);}
+  .faq-item.open .plus::after{transform:translate(-50%,-50%) rotate(90deg) scaleY(0);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .4s var(--ease);}
+  .faq-a p{padding-bottom:24px; color:var(--text-soft); max-width:680px;}
+
+  /* ===== Contact & booking form ===== */
+  .contact{background:var(--teal); color:var(--cream); padding:110px 0;}
+  .contact .section-head h2, .contact .section-head p{color:var(--cream);}
+  .contact .section-head p{color:rgba(251,246,236,.7);}
+  .contact-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:56px;}
+  .contact-info h3{font-size:1.3rem; color:var(--gold-light); margin-bottom:24px;}
+  .info-block{margin-bottom:22px;}
+  .info-block .label{
+    display:block; font-size:.78rem; color:rgba(251,246,236,.55); text-transform:uppercase;
+    letter-spacing:.08em; margin-bottom:6px;
+  }
+  .info-block p{color:rgba(251,246,236,.9); font-size:.98rem;}
+  .info-block a{color:var(--gold-light); font-weight:600;}
+  .contact-form{
+    background:rgba(251,246,236,.06); border:1px solid rgba(251,246,236,.14); border-radius:var(--radius-lg); padding:36px;
+  }
+  .contact-form h3{color:var(--gold-light); font-size:1.15rem; margin-bottom:6px;}
+  .contact-form label{display:block; font-size:.85rem; color:rgba(251,246,236,.7); margin:18px 0 8px;}
+  .contact-form input, .contact-form select{
+    width:100%; padding:13px 16px; border-radius:10px; border:1px solid rgba(251,246,236,.22);
+    background:rgba(251,246,236,.08); color:var(--cream); font-family:inherit; font-size:.95rem;
+  }
+  .contact-form input::placeholder{color:rgba(251,246,236,.4);}
+  .contact-form select option{color:var(--text);}
+  .contact-form button{width:100%; margin-top:26px;}
+  .form-status{margin-top:14px; font-size:.9rem; color:var(--gold-light); min-height:1.4em;}
+  .form-note{margin-top:10px; font-size:.78rem; color:rgba(251,246,236,.45);}
+
+  /* ===== Footer ===== */
+  footer{background:var(--teal-dark); color:rgba(251,246,236,.8); padding:80px 0 30px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px;}
+  .foot-logo{display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.2rem; color:var(--cream); margin-bottom:16px;}
+  .foot-logo span{color:var(--gold);}
+  footer h4{color:var(--cream); font-size:1rem; margin-bottom:18px;}
+  footer li{margin-bottom:10px; font-size:.92rem;}
+  footer a:hover{color:var(--gold-light);}
+  .foot-bottom{margin-top:60px; padding-top:24px; border-top:1px solid rgba(251,246,236,.12); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:.85rem; color:rgba(251,246,236,.5);}
+  .social{display:flex; gap:12px; margin-top:18px;}
+  .social a{width:38px; height:38px; border-radius:50%; background:rgba(251,246,236,.08); display:flex; align-items:center; justify-content:center;}
+  .social a svg{width:16px; height:16px; stroke:var(--cream); fill:none; stroke-width:1.8;}
+  .social a:hover{background:var(--gold); }
+  .social a:hover svg{stroke:var(--teal-dark);}
+
+  /* ===== Reveal on scroll ===== */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.in{opacity:1; transform:none;}
+
+  /* ===== Sticky mini CTA (mobile) ===== */
+  .mobile-cta{
+    position:fixed; bottom:0; left:0; right:0; z-index:90; background:var(--teal); padding:14px 18px;
+    display:none; gap:12px; box-shadow:0 -10px 30px rgba(0,0,0,.2);
+  }
+  .mobile-cta a{flex:1; text-align:center;}
+
+  /* ===== Responsive ===== */
+  @media(max-width:1024px){
+    .hero .container{grid-template-columns:1fr; text-align:center;}
+    .hero p.lede{margin-left:auto; margin-right:auto;}
+    .hero-cta, .hero-meta{justify-content:center;}
+    .hero-art{margin-top:20px;}
+    .hero-badge.b1{right:0;}
+    .hero-badge.b2{right:-2%;}
+    .hero-badge.b3{left:0;}
+    .hero-scroll{justify-content:center;}
+    .wipe-top{grid-template-columns:1fr;}
+    .portfolio-grid{grid-template-columns:1fr 1fr;}
+    .feature-row, .feature-row:nth-of-type(even){grid-template-columns:1fr; direction:ltr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .pricing-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:860px){
+    nav.main-nav{display:none;}
+    .burger{display:flex;}
+    .mobile-nav{display:flex;}
+    .trust .container{grid-template-columns:1fr 1fr;}
+    .trust .container .div:nth-child(3){border-left:none;}
+    .philosophy-grid{grid-template-columns:1fr;}
+    .bento{grid-template-columns:1fr;}
+    .bento .card.big, .bento .card{grid-column:span 1;}
+    .steps{grid-template-columns:1fr; gap:36px;}
+    .steps::before{display:none;}
+    .team-grid{grid-template-columns:1fr;}
+    .mobile-cta{display:flex;}
+    body{padding-bottom:74px;}
+  }
+  @media(max-width:600px){
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .hero{padding:150px 0 70px;}
+    .hero-badge{display:none;}
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">ข้ามไปยังเนื้อหาหลัก</a>
+
+<header id="siteHeader">
+  <div class="container nav-wrap">
+    <a href="#top" class="logo" aria-label="ตะวันคลีนนิ่ง หน้าแรก">
+      <img class="logo-mark" src="images/logo/logo.jpg" alt="โลโก้ตะวันคลีนนิ่ง">
+      ตะวัน<span>คลีนนิ่ง</span>
+    </a>
+    <nav class="main-nav" aria-label="เมนูหลัก">
+      <a href="#services">บริการ</a>
+      <a href="#showcase">ผลงาน</a>
+      <a href="#process">ขั้นตอน</a>
+      <a href="#team">ทีมงาน</a>
+      <a href="#pricing">ราคา</a>
+      <a href="#testimonials">รีวิว</a>
+      <a href="#faq">คำถาม</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="tel" href="tel:0902236654" aria-label="โทร 090-223-6654">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.36 1.78.7 2.61a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.47-1.27a2 2 0 0 1 2.11-.45c.83.34 1.71.58 2.61.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="hide-mobile">090-223-6654</span>
+      </a>
+      <a class="btn btn-primary btn-sm" href="#booking">จองบริการ</a>
+      <button class="burger" id="burgerBtn" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="mobileNav"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services">บริการ</a>
+  <a href="#showcase">ผลงาน</a>
+  <a href="#process">ขั้นตอน</a>
+  <a href="#team">ทีมงาน</a>
+  <a href="#pricing">ราคา</a>
+  <a href="#testimonials">รีวิว</a>
+  <a href="#faq">คำถาม</a>
+  <a class="btn btn-gold" href="#booking">จองบริการเลย</a>
+</div>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="container">
+      <div class="hero-copy reveal in">
+        <span class="eyebrow">ผู้เชี่ยวชาญ Big Cleaning บ้าน · อาคาร · ออฟฟิศ · ร้านอาหาร · คาเฟ่</span>
+        <h1>Big Cleaning ครบทุกพื้นที่<br>สะอาดเหมือน<em>แสงแดดยามเช้า</em></h1>
+        <p class="lede">ตะวันคลีนนิ่งเชี่ยวชาญด้านทำความสะอาดใหญ่ (Big Cleaning) โดยเฉพาะ ครอบคลุมบ้าน อาคาร ออฟฟิศ ร้านอาหาร คาเฟ่ และพื้นที่ที่เพิ่งจบงานก่อสร้าง รีโนเวท บิ้วอิน หรือต่อเติม ทีมงานผ่านการอบรมและตรวจประวัติทุกคน พร้อมถ่ายภาพผลงานให้ดูทุกครั้งหลังงานเสร็จ</p>
+        <div class="hero-cta">
+          <a href="#booking" class="btn btn-primary">จองประเมินหน้างานฟรี</a>
+          <a href="https://lin.ee/iuLQ4Lbg" class="btn btn-ghost" target="_blank" rel="noopener">แชทผ่าน LINE</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>8 ปี</strong><span>ผู้เชี่ยวชาญ Big Cleaning</span></div>
+          <div><strong>12,000+</strong><span>งาน Big Cleaning ที่เสร็จสมบูรณ์</span></div>
+          <div><strong>100%</strong><span>ทีมงานตรวจประวัติแล้ว</span></div>
+        </div>
+        <div class="hero-scroll"><span>เลื่อนลง</span><span class="line"></span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun-ray"></div>
+        <span class="dust"></span><span class="dust"></span><span class="dust"></span><span class="dust"></span>
+        <div class="hero-badge b1"><strong>Big Cleaning หลังก่อสร้าง</strong><span>ฝุ่นปูน คราบสี กาว</span></div>
+        <div class="hero-badge b2"><strong>ทีมงานตรวจประวัติ 100%</strong><span>ปลอดภัย ไว้ใจได้</span></div>
+        <div class="hero-badge b3"><strong>ถ่ายภาพผลงานทุกงาน</strong><span>ก่อน-หลังชัดเจน</span></div>
+        <div class="hero-card">
+          <img src="images/job/job-06.jpg" alt="ห้องนอนหลังทำ Big Cleaning ของตะวันคลีนนิ่ง สว่างสะอาด แสงแดดส่องเต็มห้อง" loading="eager">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAND -->
+  <section class="trust reveal">
+    <div class="container">
+      <div><strong>8 ปี</strong><span>ประสบการณ์ในธุรกิจทำความสะอาด</span></div>
+      <div class="div"><strong>12,000+</strong><span>ครั้งของงานที่ส่งมอบสำเร็จ</span></div>
+      <div class="div"><strong>50,000 ฿</strong><span>วงเงินประกันความเสียหายต่อครั้ง</span></div>
+      <div class="div"><strong>4.9/5</strong><span>คะแนนความพึงพอใจเฉลี่ย</span></div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy" id="philosophy">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">ปรัชญาการทำงานของเรา</span>
+        <h2>งานที่ดีที่สุด คือความสะอาดที่มองเห็นได้จริง</h2>
+      </div>
+      <div class="philosophy-grid">
+        <div class="philosophy-item reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <h3>ประเมินหน้างานก่อนเสมอ</h3>
+          <p>ไม่มีการเดาราคาลอย ๆ ทีมงานสำรวจพื้นที่จริงก่อนเสนอราคาทุกครั้ง เพื่อวางแผนงานให้ตรงกับสภาพหน้างานจริง</p>
+        </div>
+        <div class="philosophy-item reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>ทีมงานเฉพาะทาง Big Cleaning</h3>
+          <p>ไม่ใช่แม่บ้านทั่วไป แต่ผ่านการฝึกอบรมงานทำความสะอาดใหญ่โดยเฉพาะ พร้อมอุปกรณ์และน้ำยาระดับมืออาชีพ</p>
+        </div>
+        <div class="philosophy-item reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h3>ไม่เสนองานเกินความจำเป็น</h3>
+          <p>ประเมินตรงไปตรงมาว่าจุดไหนต้องทำ จุดไหนยังไม่จำเป็น ไม่ยัดเยียดบริการเสริมที่ไม่ตอบโจทย์หน้างาน</p>
+        </div>
+      </div>
+      <div class="philosophy-quote reveal">
+        <p class="big">"สะอาดหมดจด ไม่ทำเกินจำเป็น"</p>
+        <span>แนวทางที่ตะวันคลีนนิ่งยึดถือกับทุกหน้างาน ไม่ว่าจะเป็นบ้าน อาคาร ออฟฟิศ ร้านอาหาร คาเฟ่ หรือพื้นที่หลังก่อสร้าง</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">บริการ Big Cleaning โดยเฉพาะ</span>
+        <h2>เชี่ยวชาญ Big Cleaning ครบทุกประเภทพื้นที่</h2>
+        <p>เราโฟกัสเฉพาะงานทำความสะอาดใหญ่ (Big Cleaning) ไม่รับงานรายครั้งทั่วไปหรือแม่บ้านประจำ เพื่อให้ทีมงานทุ่มเทเวลาและอุปกรณ์เฉพาะทางให้กับแต่ละงานอย่างเต็มที่</p>
+      </div>
+      <div class="bento">
+        <article class="card big reveal">
+          <div>
+            <div class="icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21l6-6M15 3l6 6-9 9-6-6 9-9z"/><path stroke-linecap="round" d="M13 5l6 6"/></svg></div>
+            <h3>Big Cleaning หลังก่อสร้าง รีโนเวท บิ้วอิน ต่อเติม</h3>
+            <p>งานถนัดของเรา เก็บฝุ่นปูน คราบสี กาว และเศษวัสดุหลังการก่อสร้าง รีโนเวท บิ้วอิน หรือต่อเติม ให้พื้นที่พร้อมใช้งานจริงได้ในวันเดียว</p>
+          </div>
+          <span class="tag">ประเมินหน้างาน เริ่มต้น 3,500 บาท →</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
+          <h3>Big Cleaning บ้านและอาคารพักอาศัย</h3>
+          <p>ทำความสะอาดใหญ่ทั้งหลัง ตั้งแต่ห้องนอน ห้องครัว ห้องน้ำ ไปจนถึงระเบียงและพื้นที่จอดรถ</p>
+          <span class="tag">เริ่มต้น 2,900 บาท/ครั้ง</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 4v16"/></svg></div>
+          <h3>Big Cleaning อาคารสำนักงาน/ออฟฟิศ</h3>
+          <p>ทำความสะอาดใหญ่ทั้งชั้นหรือทั้งอาคาร รวมพื้นที่ต้อนรับ ห้องประชุม และจุดที่งานทำความสะอาดประจำวันเข้าไม่ถึง</p>
+          <span class="tag">ประเมินราคาตามพื้นที่</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-1.5z"/></svg></div>
+          <h3>Big Cleaning ร้านอาหารและคาเฟ่</h3>
+          <p>ขัดลึกครัว ไอน้ำมัน ท่อระบายอากาศ และพื้นที่ให้บริการลูกค้า ให้พร้อมมาตรฐานสุขอนามัยและต้อนรับลูกค้าใหม่</p>
+          <span class="tag">ประเมินราคาตามพื้นที่</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/><rect x="8" y="8" width="8" height="8" rx="1"/></svg></div>
+          <h3>Deep Clean จุดอับในทุกงาน</h3>
+          <p>ทุกงาน Big Cleaning ของเรารวมการขัดคราบฝังแน่นในครัว ห้องน้ำ และกระจกไว้เป็นมาตรฐาน ไม่มีค่าใช้จ่ายเพิ่มสำหรับจุดอับที่มองไม่เห็น</p>
+          <span class="tag">รวมอยู่ในทุกบริการ</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE/AFTER WIPE (signature) -->
+  <section class="wipe-section" id="showcase">
+    <div class="container">
+      <div class="wipe-top">
+      <div class="reveal">
+        <span class="eyebrow" style="background:rgba(242,169,59,.15); color:var(--gold-light);">ผลลัพธ์ที่มองเห็นได้จริง</span>
+        <h2 class="section-head">ลากเพื่อดูความเปลี่ยนแปลง<br>จาก “ก่อน” สู่ “หลังตะวันคลีนนิ่ง”</h2>
+        <p style="max-width:460px;">เลื่อนแถบเพื่อเปรียบเทียบพื้นที่ก่อนและหลังการทำความสะอาด ทุกจุดที่มือเราไปถึง ฝุ่นและคราบสกปรกจะหายไป เหลือไว้แค่ความสว่างสะอาดตา</p>
+        <div class="wipe-caption">
+          <span data-p="0" class="active">ก่อนทำความสะอาด</span>
+          <span data-p="50">ระหว่างทำงาน</span>
+          <span data-p="100">หลังตะวันคลีนนิ่ง</span>
+        </div>
+        <ul class="wipe-stats">
+          <li><span class="dot"></span><div><strong>ฝุ่นและคราบสกปรกหมดไป 100%</strong>วัดผลด้วยภาพถ่ายก่อน-หลังทุกงาน</div></li>
+          <li><span class="dot"></span><div><strong>ใช้งานพื้นที่ต่อได้ทันที</strong>ไม่ต้องปิดพื้นที่พักหลังทำความสะอาด</div></li>
+          <li><span class="dot"></span><div><strong>หัวหน้าทีมตรวจรับงานทุกครั้ง</strong>เช็กความเรียบร้อยร่วมกับลูกค้าก่อนจบงาน</div></li>
+        </ul>
+      </div>
+
+      <div class="wipe-stage" id="wipeStage" role="img" aria-label="ภาพเปรียบเทียบห้องน้ำก่อนและหลังทำความสะอาด สามารถลากแถบสีทองเพื่อเลื่อนดูความแตกต่างได้">
+        <img class="before-layer" src="images/showcase/ba-before.jpg" alt="ห้องน้ำก่อนทำความสะอาด มีคราบสกปรกและของใช้วางเกะกะ">
+        <img class="after-layer" src="images/showcase/ba-after.jpg" alt="ห้องน้ำหลังตะวันคลีนนิ่งทำความสะอาด สะอาดเงางามทุกจุด">
+        <div class="wipe-handle" id="wipeHandle" style="left:0%"></div>
+      </div>
+      </div>
+
+      <div class="portfolio-head reveal">
+        <span class="eyebrow" style="background:rgba(242,169,59,.15); color:var(--gold-light);">ผลงานจริงจากหน้างาน</span>
+        <h2 class="section-head">ทุกงานที่เราทำ มีภาพถ่ายยืนยันผลลัพธ์</h2>
+        <p>เราถ่ายภาพหน้างานก่อน-หลังทุกครั้งที่เข้าทำ Big Cleaning ไม่ว่าจะเป็นบ้าน อาคาร ออฟฟิศ ร้านอาหาร คาเฟ่ หรือพื้นที่หลังก่อสร้าง เพื่อให้ลูกค้าเห็นผลลัพธ์จริงและตรวจสอบย้อนหลังได้ทุกงาน</p>
+      </div>
+
+      <div class="portfolio-grid reveal">
+        <article class="portfolio-item">
+          <div class="thumb"><span class="badge">บ้านพักอาศัย</span>
+            <img src="images/job/job-01.jpg" alt="ห้องนอนพร้อมตู้บิ้วอินและวิวเมือง หลังทำ Big Cleaning" loading="lazy">
+          </div>
+          <div class="cap"><h4>ห้องนอนวิวเมือง ขัดกระจกจนใส</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
+        </article>
+        <article class="portfolio-item">
+          <div class="thumb"><span class="badge">ดีพคลีนห้องน้ำ</span>
+            <img src="images/job/job-07.jpg" alt="ห้องน้ำหรูกระเบื้องเขียว ขัดเงาก๊อกทองเหลืองหลังทำความสะอาด" loading="lazy">
+          </div>
+          <div class="cap"><h4>ห้องน้ำสไตล์หรู ขัดเงาทุกพื้นผิว</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
+        </article>
+        <article class="portfolio-item">
+          <div class="thumb"><span class="badge">หลังก่อสร้าง/รีโนเวท</span>
+            <img src="images/job/job-04.jpg" alt="ห้องนอนหลังก่อสร้างเสร็จใหม่ เก็บฝุ่นปูนจนสะอาดหมดจด" loading="lazy">
+          </div>
+          <div class="cap"><h4>ห้องหลังก่อสร้างเสร็จใหม่</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
+        </article>
+        <article class="portfolio-item">
+          <div class="thumb"><span class="badge">บ้านพักอาศัย</span>
+            <img src="images/job/job-05.jpg" alt="โถงบันไดบ้านสองชั้น เก็บฝุ่นละเอียดทุกซอกมุม" loading="lazy">
+          </div>
+          <div class="cap"><h4>โถงบันไดบ้าน 2 ชั้น</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
+        </article>
+        <article class="portfolio-item">
+          <div class="thumb"><span class="badge">ดีพคลีนห้องน้ำ</span>
+            <img src="images/job/job-03.jpg" alt="ห้องน้ำโทนฟ้า ขัดคราบสบู่และหินปูนออกจนเงางาม" loading="lazy">
+          </div>
+          <div class="cap"><h4>ขัดคราบสบู่-หินปูนจนเงางาม</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
+        </article>
+        <article class="portfolio-item">
+          <div class="thumb"><span class="badge">หลังบิ้วอิน/ต่อเติม</span>
+            <img src="images/job/job-08.jpg" alt="ตู้บิ้วอินติดตั้งใหม่ เช็ดฝุ่นก่อสร้างออกจนหมดจด" loading="lazy">
+          </div>
+          <div class="cap"><h4>ตู้บิ้วอินติดตั้งใหม่ เช็ดฝุ่นหมดจด</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+        <span class="eyebrow">ขั้นตอนการใช้บริการ</span>
+        <h2>จองง่าย ใช้เวลาไม่ถึง 2 นาที</h2>
+        <p>ไม่ต้องโทรวนหลายรอบ ไม่ต้องรอใบเสนอราคานาน ทุกขั้นตอนออกแบบให้เร็วและโปร่งใส</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="num">1</div>
+          <h3>แจ้งความต้องการ</h3>
+          <p>เลือกวันเวลา ประเภทงาน และพื้นที่ ผ่านเว็บไซต์หรือแชท LINE</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">2</div>
+          <h3>ยืนยันและเสนอราคา</h3>
+          <p>ทีมงานติดต่อกลับภายใน 15 นาที พร้อมราคาที่ชัดเจน ไม่มีค่าใช้จ่ายแอบแฝง</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">3</div>
+          <h3>ทีมงานเข้าปฏิบัติงาน</h3>
+          <p>ทีมงานมืออาชีพมาตรงเวลานัด พร้อมอุปกรณ์และน้ำยาครบชุด</p>
+        </div>
+        <div class="step reveal">
+          <div class="num">4</div>
+          <h3>ตรวจรับงาน</h3>
+          <p>เช็กความเรียบร้อยร่วมกันก่อนชำระเงิน มั่นใจได้ทุกจุด 100%</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">ทำไมต้องตะวันคลีนนิ่ง</span>
+        <h2>ความไว้ใจ สร้างจากรายละเอียดเล็ก ๆ ที่เราไม่มองข้าม</h2>
+      </div>
+
+      <div class="feature-row reveal">
+        <div class="feature-visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke-width="3"><path d="M50 8l10 20 22 3-16 15 4 22-20-11-20 11 4-22-16-15 22-3z"/></svg>
+        </div>
+        <div class="feature-copy">
+          <span class="feature-num">01</span>
+          <h3>ทีมงานผ่านการอบรมและตรวจประวัติทุกคน</h3>
+          <p>ทีมงานทุกคนผ่านการอบรมมาตรฐานตะวันคลีนนิ่ง และตรวจสอบประวัติอาชญากรรมก่อนเริ่มงาน พร้อมสวมเครื่องแบบและพกบัตรประจำตัวที่ตรวจสอบได้ทุกครั้ง</p>
+        </div>
+      </div>
+
+      <div class="feature-row reveal">
+        <div class="feature-visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke-width="3"><path d="M50 15c-15 0-27 12-27 27 0 20 27 40 27 40s27-20 27-40c0-15-12-27-27-27z"/><circle cx="50" cy="42" r="9"/></svg>
+        </div>
+        <div class="feature-copy">
+          <span class="feature-num">02</span>
+          <h3>น้ำยาปลอดภัย ไม่ระคายผิว ไว้ใจได้แม้มีเด็กและสัตว์เลี้ยง</h3>
+          <p>เราคัดสรรน้ำยาทำความสะอาดที่ผ่านมาตรฐานความปลอดภัย ไม่ทิ้งกลิ่นฉุนรุนแรง เหมาะกับบ้านที่มีเด็กเล็กหรือสัตว์เลี้ยง</p>
+        </div>
+      </div>
+
+      <div class="feature-row reveal">
+        <div class="feature-visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke-width="3"><rect x="20" y="15" width="60" height="70" rx="8"/><path d="M35 45l10 10 20-20"/></svg>
+        </div>
+        <div class="feature-copy">
+          <span class="feature-num">03</span>
+          <h3>ประกันความเสียหายทุกงาน อุ่นใจหายห่วง</h3>
+          <p>ทุกการจองมีประกันความเสียหายสูงสุด 50,000 บาทต่อครั้ง หากเกิดข้อผิดพลาดระหว่างทำงาน เรารับผิดชอบเต็มจำนวนตามเงื่อนไข</p>
+        </div>
+      </div>
+
+      <div class="feature-row reveal">
+        <div class="feature-visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke-width="3"><circle cx="50" cy="50" r="32"/><path d="M50 32v18l12 12"/></svg>
+        </div>
+        <div class="feature-copy">
+          <span class="feature-num">04</span>
+          <h3>ตรงเวลา จองผ่านระบบออนไลน์และ LINE ยืนยันไว</h3>
+          <p>ระบบจองของเราแจ้งเตือนทีมงานล่วงหน้า พร้อมยืนยันนัดหมายผ่าน LINE ภายใน 15 นาที ลดปัญหาการรอคอยแบบไม่มีกำหนด</p>
+        </div>
+      </div>
+
+      <div class="feature-row reveal">
+        <div class="feature-visual">
+          <svg viewBox="0 0 100 100" fill="none" stroke-width="3"><rect x="18" y="28" width="64" height="48" rx="6"/><circle cx="50" cy="52" r="14"/><rect x="34" y="20" width="14" height="10" rx="2"/></svg>
+        </div>
+        <div class="feature-copy">
+          <span class="feature-num">05</span>
+          <h3>ถ่ายภาพผลงานก่อน-หลังส่งให้ลูกค้าทุกงาน</h3>
+          <p>ทีมงานถ่ายภาพหน้างานก่อนและหลังทำความสะอาดทุกครั้ง ไม่ว่าจะเป็นบ้าน อาคาร ออฟฟิศ ร้านอาหาร คาเฟ่ หรือพื้นที่หลังก่อสร้าง เพื่อให้ลูกค้าเห็นผลลัพธ์จริงและตรวจสอบย้อนหลังได้เสมอ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team" id="team">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">ทีมงานตะวันคลีนนิ่ง</span>
+        <h2>คนที่จะจำหน้างานของคุณได้ ไม่ใช่แค่เลขที่ใบเสร็จ</h2>
+      </div>
+      <div class="team-photo-banner reveal">
+        <img src="images/cover/cover.jpg" alt="ทีมงานตะวันคลีนนิ่งตัวจริง พร้อมชุดฟอร์มและอุปกรณ์ทำความสะอาดครบมือ" loading="lazy">
+        <div class="cap">ทีมงานตะวันคลีนนิ่งตัวจริง ผ่านการอบรมและตรวจประวัติทุกคน</div>
+      </div>
+      <div class="team-grid">
+        <article class="team-card reveal">
+          <div class="avatar-photo"><svg viewBox="0 0 100 100" fill="none" stroke-width="3"><circle cx="50" cy="36" r="18"/><path d="M18 86c0-18 14-30 32-30s32 12 32 30"/></svg></div>
+          <h3>คุณตะวัน รุ่งเรือง</h3>
+          <div class="role">ผู้ก่อตั้ง · หัวหน้าทีม Big Cleaning</div>
+          <p class="exp">ประสบการณ์ 8 ปี ชำนาญด้าน Big Cleaning หลังก่อสร้างและรีโนเวทโดยเฉพาะ</p>
+        </article>
+        <article class="team-card reveal">
+          <div class="avatar-photo"><svg viewBox="0 0 100 100" fill="none" stroke-width="3"><circle cx="50" cy="36" r="18"/><path d="M18 86c0-18 14-30 32-30s32 12 32 30"/></svg></div>
+          <h3>คุณสมชาย ใจดี</h3>
+          <div class="role">หัวหน้าทีมภาคสนาม</div>
+          <p class="exp">ประสบการณ์ 6 ปี ควบคุมคุณภาพงานหน้างานและถ่ายภาพผลงานทุกจุดก่อนส่งมอบ</p>
+        </article>
+        <article class="team-card reveal">
+          <div class="avatar-photo"><svg viewBox="0 0 100 100" fill="none" stroke-width="3"><circle cx="50" cy="36" r="18"/><path d="M18 86c0-18 14-30 32-30s32 12 32 30"/></svg></div>
+          <h3>คุณวิภาวรรณ ศรีสุข</h3>
+          <div class="role">ผู้เชี่ยวชาญด้านน้ำยาและความปลอดภัย</div>
+          <p class="exp">คัดสรรน้ำยาทำความสะอาดที่ปลอดภัยต่อเด็กและสัตว์เลี้ยงทุกสูตรที่ทีมงานใช้หน้างาน</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow" style="background:rgba(242,169,59,.15); color:var(--gold-light);">ราคา Big Cleaning</span>
+        <h2>เลือกระดับงานที่ตรงกับหน้างานของคุณ</h2>
+        <p>เราให้บริการเฉพาะ Big Cleaning เท่านั้น ไม่มีบริการรายครั้งทั่วไปหรือแม่บ้านประจำ ราคาด้านล่างเป็นราคาเริ่มต้น ทีมงานจะประเมินหน้างานจริงและแจ้งราคาที่ชัดเจนก่อนเริ่มงานทุกครั้ง</p>
+      </div>
+      <div class="pricing-grid reveal">
+        <article class="price-card">
+          <h3>Big Clean มาตรฐาน</h3>
+          <p class="sub">เหมาะกับบ้าน คอนโด และอาคารพักอาศัยทั่วไป</p>
+          <div class="amount">2,900฿ <small>/ครั้ง เริ่มต้น</small></div>
+          <ul>
+            <li><span class="check-ico">✓</span>ขัดพื้นและทำความสะอาดทุกห้อง</li>
+            <li><span class="check-ico">✓</span>เช็ดกระจกและผนังทั่วพื้นที่</li>
+            <li><span class="check-ico">✓</span>ขัดลึกครัวและห้องน้ำ</li>
+            <li><span class="check-ico">✓</span>ถ่ายภาพผลงานส่งให้ลูกค้า</li>
+          </ul>
+          <a href="#booking" class="btn btn-ghost" style="color:var(--cream);border-color:rgba(251,246,236,.4);">เริ่มต้นที่นี่</a>
+        </article>
+
+        <article class="price-card featured">
+          <span class="badge-pop">ยอดนิยมที่สุด</span>
+          <h3>Big Clean ครบวงจร</h3>
+          <p class="sub">เหมาะกับอาคารสำนักงาน ร้านอาหาร และคาเฟ่</p>
+          <div class="amount">ประเมินหน้างาน <small>ตามพื้นที่</small></div>
+          <ul>
+            <li><span class="check-ico">✓</span>ทุกอย่างในระดับมาตรฐาน</li>
+            <li><span class="check-ico">✓</span>ขัดท่อระบายอากาศและไอน้ำมันในครัว</li>
+            <li><span class="check-ico">✓</span>ทำความสะอาดจุดที่งานประจำวันเข้าไม่ถึง</li>
+            <li><span class="check-ico">✓</span>ประกันความเสียหายสูงสุด 50,000฿</li>
+            <li><span class="check-ico">✓</span>รายงานผลพร้อมภาพถ่ายก่อน-หลัง</li>
+          </ul>
+          <a href="#booking" class="btn btn-primary" style="background:var(--teal-dark);color:var(--gold-light);">จองประเมินหน้างาน</a>
+        </article>
+
+        <article class="price-card">
+          <h3>Big Clean ระดับก่อสร้าง</h3>
+          <p class="sub">เหมาะกับพื้นที่หลังก่อสร้าง รีโนเวท บิ้วอิน หรือต่อเติม</p>
+          <div class="amount">3,500฿ <small>/ครั้ง เริ่มต้น</small></div>
+          <ul>
+            <li><span class="check-ico">✓</span>เก็บฝุ่นปูน คราบสี กาว และเศษวัสดุ</li>
+            <li><span class="check-ico">✓</span>ขัดลึกทุกซอกมุมให้พร้อมใช้งานในวันเดียว</li>
+            <li><span class="check-ico">✓</span>ทีมงานพร้อมอุปกรณ์เฉพาะทาง</li>
+            <li><span class="check-ico">✓</span>ถ่ายภาพผลงานก่อน-หลังส่งลูกค้า</li>
+          </ul>
+          <a href="#booking" class="btn btn-ghost" style="color:var(--cream);border-color:rgba(251,246,236,.4);">นัดคุยกับทีมงาน</a>
+        </article>
+      </div>
+      <p class="price-note reveal">* ราคาข้างต้นเป็นราคาเริ่มต้น ทีมงานจะประเมินหน้างานจริงก่อนยืนยันราคาสุดท้ายทุกครั้ง ไม่มีค่าใช้จ่ายแอบแฝง</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi" id="testimonials">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">เสียงจากลูกค้า</span>
+        <h2>ลูกค้าของเราพูดถึงตะวันคลีนนิ่งว่าอย่างไร</h2>
+      </div>
+    </div>
+    <div class="container">
+      <div class="testi-track reveal" tabindex="0" aria-label="เลื่อนดูรีวิวลูกค้า">
+        <article class="testi-card">
+          <div class="quote-mark">"</div>
+          <p class="quote">จองผ่าน LINE ง่ายมาก ทีมงานมาตรงเวลา ทำ Big Cleaning ทั้งคอนโดได้ละเอียดกว่าที่คิดไว้เยอะ มีรูปผลงานส่งมาให้ดูหลังงานเสร็จด้วย ประทับใจมากค่ะ</p>
+          <div class="stars">★★★★★</div>
+          <div class="who">
+            <div class="avatar">น</div>
+            <div><strong>คุณนภัสสร ว.</strong><span>คอนโดย่านสุขุมวิท</span></div>
+          </div>
+        </article>
+        <article class="testi-card">
+          <div class="quote-mark">"</div>
+          <p class="quote">ให้ตะวันคลีนนิ่งเข้ามาทำ Big Cleaning ออฟฟิศทุกไตรมาส ทีมงานเป็นมิตร ดูแลรายละเอียดดี พื้นที่ต้อนรับลูกค้าดูดีขึ้นมากทุกครั้งครับ</p>
+          <div class="stars">★★★★★</div>
+          <div class="who">
+            <div class="avatar">ธ</div>
+            <div><strong>คุณธีรพงษ์ ก.</strong><span>เจ้าของออฟฟิศ ย่านลาดพร้าว</span></div>
+          </div>
+        </article>
+        <article class="testi-card">
+          <div class="quote-mark">"</div>
+          <p class="quote">เพิ่งต่อเติมบ้านเสร็จ ฝุ่นปูนเต็มไปหมด ทีมตะวันคลีนนิ่งช่วยเก็บงานจนบ้านพร้อมเข้าอยู่ได้ภายในวันเดียว คุ้มค่ามากค่ะ</p>
+          <div class="stars">★★★★★</div>
+          <div class="who">
+            <div class="avatar">อ</div>
+            <div><strong>คุณอรวรรณ พ.</strong><span>บ้านเดี่ยว ย่านบางนา</span></div>
+          </div>
+        </article>
+        <article class="testi-card">
+          <div class="quote-mark">"</div>
+          <p class="quote">ชอบที่มีประกันความเสียหายให้ ทำให้กล้าให้ทีมงานเข้ามาทำ Big Cleaning ตอนที่เราไม่อยู่บ้าน ไว้ใจได้จริง</p>
+          <div class="stars">★★★★★</div>
+          <div class="who">
+            <div class="avatar">ก</div>
+            <div><strong>คุณกิตติ ส.</strong><span>คอนโดย่านอโศก</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">คำถามที่พบบ่อย</span>
+        <h2>ยังมีข้อสงสัย? เราตอบให้ที่นี่</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">มีบริการทำความสะอาดรายครั้งทั่วไปหรือแม่บ้านประจำไหม?<span class="plus"></span></button>
+          <div class="faq-a"><p>ตะวันคลีนนิ่งให้บริการเฉพาะ Big Cleaning เท่านั้น ไม่รับงานทำความสะอาดทั่วไปแบบรายครั้งหรือแม่บ้านประจำรายเดือน เพื่อให้ทีมงานทุ่มเทเวลาและอุปกรณ์เฉพาะทางให้กับงานทำความสะอาดใหญ่แต่ละงานได้อย่างเต็มที่</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">ต้องเตรียมอะไรก่อนทีมงานมาถึงหน้างานบ้าง?<span class="plus"></span></button>
+          <div class="faq-a"><p>ไม่ต้องเตรียมอะไรเป็นพิเศษ เพียงแจ้งจุดที่ต้องการเน้นเป็นพิเศษหรือของมีค่าที่ต้องการเก็บไว้ล่วงหน้า ทีมงานของเราจะดูแลส่วนที่เหลือให้ทั้งหมด</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">มีอุปกรณ์และน้ำยาให้ครบไหม หรือต้องเตรียมเอง?<span class="plus"></span></button>
+          <div class="faq-a"><p>ทีมงานของเรานำอุปกรณ์ทำความสะอาดและน้ำยามาตรฐานมาเองครบชุด หากลูกค้าต้องการให้ใช้น้ำยาสูตรเฉพาะของบ้าน สามารถแจ้งล่วงหน้าได้เช่นกัน</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">หากไม่พอใจในงาน สามารถแจ้งแก้ไขได้หรือไม่?<span class="plus"></span></button>
+          <div class="faq-a"><p>ได้แน่นอน กรุณาแจ้งภายใน 24 ชั่วโมงหลังงานเสร็จ ทีมงานจะกลับไปแก้ไขจุดที่ไม่พอใจให้โดยไม่มีค่าใช้จ่ายเพิ่มเติม</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">พื้นที่ให้บริการครอบคลุมเขตไหนบ้าง?<span class="plus"></span></button>
+          <div class="faq-a"><p>ปัจจุบันให้บริการครอบคลุมกรุงเทพฯ ชั้นในและปริมณฑล เช่น นนทบุรี ปทุมธานี และสมุทรปราการ หากอยู่นอกเขตดังกล่าว สามารถสอบถามผ่าน LINE เพื่อเช็กความเป็นไปได้ได้เช่นกัน</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">ยกเลิกหรือเลื่อนนัดได้หรือไม่ มีค่าใช้จ่ายเพิ่มไหม?<span class="plus"></span></button>
+          <div class="faq-a"><p>สามารถเลื่อนหรือยกเลิกนัดได้ฟรีหากแจ้งล่วงหน้าอย่างน้อย 12 ชั่วโมงก่อนเวลานัด หากแจ้งกระชั้นชิดกว่านั้นอาจมีค่าธรรมเนียมตามเงื่อนไขที่แจ้งไว้ตอนจอง</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & BOOKING FORM -->
+  <section class="contact" id="booking">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow" style="background:rgba(242,169,59,.15); color:var(--gold-light);">ติดต่อ & จองบริการ</span>
+        <h2>ก้าวแรกของพื้นที่ที่สะอาดหมดจด เริ่มจากบทสนทนาเดียว</h2>
+      </div>
+      <div class="contact-grid reveal">
+        <div class="contact-info">
+          <h3>ตะวันคลีนนิ่ง</h3>
+          <div class="info-block">
+            <span class="label">พื้นที่ให้บริการ</span>
+            <p>กรุงเทพฯ ชั้นในและปริมณฑล เช่น นนทบุรี ปทุมธานี และสมุทรปราการ</p>
+          </div>
+          <div class="info-block">
+            <span class="label">โทรศัพท์</span>
+            <p><a href="tel:0902236654">090-223-6654</a></p>
+          </div>
+          <div class="info-block">
+            <span class="label">LINE Official</span>
+            <p><a href="https://lin.ee/iuLQ4Lbg" target="_blank" rel="noopener">แชทไลน์ตะวันคลีนนิ่ง</a> — ตอบกลับภายใน 15 นาทีในเวลาทำการ</p>
+          </div>
+          <div class="info-block">
+            <span class="label">เวลาทำการ</span>
+            <p>ทุกวัน 08:00–20:00 น.</p>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <h3>ขอใบเสนอราคา — ไม่มีค่าใช้จ่าย</h3>
+          <label for="cf-name">ชื่อของคุณ</label>
+          <input id="cf-name" type="text" placeholder="เช่น คุณวราภรณ์" required>
+          <label for="cf-tel">เบอร์โทรศัพท์</label>
+          <input id="cf-tel" type="tel" placeholder="08x-xxx-xxxx" required>
+          <label for="cf-type">ประเภทพื้นที่ที่ต้องการ Big Cleaning</label>
+          <select id="cf-type">
+            <option>บ้าน/คอนโด/อาคารพักอาศัย</option>
+            <option>อาคารสำนักงาน/ออฟฟิศ</option>
+            <option>ร้านอาหาร/คาเฟ่</option>
+            <option>หลังก่อสร้าง/รีโนเวท/บิ้วอิน/ต่อเติม</option>
+            <option>ยังไม่แน่ใจ — อยากให้ทีมงานช่วยประเมิน</option>
+          </select>
+          <button type="submit" class="btn btn-gold">ส่งคำขอใบเสนอราคา</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          <p class="form-note">ข้อมูลของคุณเป็นความลับตามนโยบาย PDPA · หน้านี้เป็นเว็บไซต์ตัวอย่าง แบบฟอร์มไม่ได้ส่งข้อมูลจริง</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><img src="images/logo/logo.jpg" alt="โลโก้ตะวันคลีนนิ่ง" style="width:44px;height:44px;border-radius:50%;object-fit:cover;">ตะวัน<span>คลีนนิ่ง</span></div>
+        <p>ผู้เชี่ยวชาญบริการ Big Cleaning บ้าน อาคาร ออฟฟิศ ร้านอาหาร และคาเฟ่ โดยทีมงานมืออาชีพที่ผ่านการอบรมและตรวจประวัติ ให้บริการในเขตกรุงเทพฯ และปริมณฑล</p>
+        <div class="social">
+          <a href="https://www.facebook.com/TawanCleaning" target="_blank" rel="noopener" aria-label="Facebook ตะวันคลีนนิ่ง"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://lin.ee/iuLQ4Lbg" target="_blank" rel="noopener" aria-label="LINE ตะวันคลีนนิ่ง"><svg viewBox="0 0 24 24"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.4 7.1 8 7.8v2.7s0 .5.4.7c.4.2.7-.1.7-.1s3.3-2.2 4.9-3.4c4-1 6.9-4 6.9-7.7C22.9 6.6 17.5 3 12 3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>บริการ</h4>
+        <ul>
+          <li><a href="#services">Big Cleaning บ้าน/อาคารพักอาศัย</a></li>
+          <li><a href="#services">Big Cleaning อาคารสำนักงาน/ออฟฟิศ</a></li>
+          <li><a href="#services">Big Cleaning ร้านอาหาร/คาเฟ่</a></li>
+          <li><a href="#services">หลังก่อสร้าง/รีโนเวท/บิ้วอิน/ต่อเติม</a></li>
+          <li><a href="#services">Deep Clean จุดอับ (รวมทุกงาน)</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>เกี่ยวกับเรา</h4>
+        <ul>
+          <li><a href="#why">ทำไมต้องเรา</a></li>
+          <li><a href="#process">ขั้นตอนการจอง</a></li>
+          <li><a href="#pricing">ราคา Big Cleaning</a></li>
+          <li><a href="#testimonials">รีวิวลูกค้า</a></li>
+          <li><a href="#faq">คำถามที่พบบ่อย</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>ติดต่อเรา</h4>
+        <ul>
+          <li>โทร: 090-223-6654</li>
+          <li>LINE: <a href="https://lin.ee/iuLQ4Lbg" target="_blank" rel="noopener" style="color:inherit;">แชทไลน์ตะวันคลีนนิ่ง</a></li>
+          <li>Facebook: <a href="https://www.facebook.com/TawanCleaning" target="_blank" rel="noopener" style="color:inherit;">ตะวัน คลีนนิ่ง แอนด์ เซอร์วิส</a></li>
+          <li>พื้นที่ให้บริการ: กรุงเทพฯ และปริมณฑล</li>
+          <li>เวลาทำการ: ทุกวัน 08:00–20:00 น.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2569 ตะวันคลีนนิ่ง (Tawan Cleaning). สงวนลิขสิทธิ์ทุกประการ</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-cta">
+  <a href="tel:0902236654" class="btn btn-ghost btn-sm" style="color:var(--cream);border-color:rgba(251,246,236,.5);">โทรเลย</a>
+  <a href="#booking" class="btn btn-gold btn-sm">จองบริการ</a>
+</div>
+
+<script>
+(function(){
+  // Header scroll state
+  var header = document.getElementById('siteHeader');
+  function onScroll(){
+    if(window.scrollY > 40){ header.classList.add('scrolled'); } else { header.classList.remove('scrolled'); }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Mobile nav
+  var burger = document.getElementById('burgerBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  burger.addEventListener('click', function(){
+    var open = mobileNav.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      mobileNav.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.15, rootMargin:'0px 0px -60px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var btn = item.querySelector('.faq-q');
+    var panel = item.querySelector('.faq-a');
+    btn.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(other){
+        if(other !== item){
+          other.classList.remove('open');
+          other.querySelector('.faq-q').setAttribute('aria-expanded','false');
+          other.querySelector('.faq-a').style.maxHeight = null;
+        }
+      });
+      if(isOpen){
+        item.classList.remove('open');
+        btn.setAttribute('aria-expanded','false');
+        panel.style.maxHeight = null;
+      } else {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Before/After wipe interaction (signature technique)
+  var stage = document.getElementById('wipeStage');
+  var handle = document.getElementById('wipeHandle');
+  var afterLayer = stage.querySelector('.after-layer');
+  var captions = document.querySelectorAll('.wipe-caption span');
+  var dragging = false;
+
+  function setWipe(percent){
+    percent = Math.max(0, Math.min(100, percent));
+    afterLayer.style.clipPath = 'inset(0 0 0 ' + (100 - percent) + '%)';
+    handle.style.left = percent + '%';
+    captions.forEach(function(c){
+      var p = parseInt(c.getAttribute('data-p'), 10);
+      c.classList.toggle('active', Math.abs(p - percent) < 26);
+    });
+  }
+
+  function percentFromEvent(clientX){
+    var rect = stage.getBoundingClientRect();
+    return ((clientX - rect.left) / rect.width) * 100;
+  }
+
+  stage.addEventListener('pointerdown', function(e){
+    dragging = true;
+    setWipe(percentFromEvent(e.clientX));
+  });
+  window.addEventListener('pointermove', function(e){
+    if(!dragging) return;
+    setWipe(percentFromEvent(e.clientX));
+  });
+  window.addEventListener('pointerup', function(){ dragging = false; });
+
+  // Auto reveal wipe as section scrolls into view (ties technique to scroll, not just drag)
+  var wiped = false;
+  var wipeObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting && !wiped){
+        wiped = true;
+        var start = null;
+        function animateWipe(ts){
+          if(!start) start = ts;
+          var progress = Math.min((ts - start) / 1400, 1);
+          setWipe(progress * 68);
+          if(progress < 1) requestAnimationFrame(animateWipe);
+        }
+        requestAnimationFrame(animateWipe);
+      }
+    });
+  }, {threshold:.5});
+  wipeObserver.observe(stage);
+
+  // Keyboard support for wipe handle
+  stage.setAttribute('tabindex', '0');
+  stage.addEventListener('keydown', function(e){
+    var current = parseFloat(handle.style.left) || 0;
+    if(e.key === 'ArrowRight'){ setWipe(current + 5); }
+    if(e.key === 'ArrowLeft'){ setWipe(current - 5); }
+  });
+
+  // Contact form (demo only — no real submission)
+  var contactForm = document.getElementById('contactForm');
+  var formStatus = document.getElementById('formStatus');
+  contactForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    formStatus.textContent = 'ได้รับคำขอของคุณแล้ว ทีมงานจะติดต่อกลับภายใน 15 นาทีในเวลาทำการ ขอบคุณที่ไว้วางใจตะวันคลีนนิ่งค่ะ';
+    contactForm.reset();
+  });
+})();
+</script>
+</body>
+</html>
