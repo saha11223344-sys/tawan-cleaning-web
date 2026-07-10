@@ -310,7 +310,7 @@
     display:flex; flex-direction:column; cursor:pointer;
   }
   .fb-card:hover{transform:translateY(-6px); box-shadow:0 12px 30px rgba(15,27,43,.12);}
-  .fb-card-cover{position:relative; aspect-ratio:4/3; overflow:hidden;}
+  .fb-card-cover{position:relative; aspect-ratio:9/16; overflow:hidden;}
   .fb-card-cover img{width:100%; height:100%; object-fit:cover; transition:transform .5s var(--ease);}
   .fb-card:hover .fb-card-cover img{transform:scale(1.05);}
   .fb-img-count{
@@ -1491,7 +1491,7 @@
         return;
       }
       grid.innerHTML = '';
-      posts.forEach(function(post, postIndex){
+      posts.slice(0, 9).forEach(function(post, postIndex){
         var allImgs = post.images || [];
         // ตัดรูปแรก (มักเป็น QR code) ออก เฉพาะโพสต์ที่มีมากกว่า 1 รูป
         var imgs = allImgs.length > 1 ? allImgs.slice(1) : allImgs;
