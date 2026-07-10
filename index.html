@@ -449,6 +449,32 @@
   .contact-form input::placeholder{color:rgba(251,246,236,.4);}
   .contact-form select option{color:var(--text);}
   .contact-form button{width:100%; margin-top:26px;}
+  .form-hint{font-size:.78rem; color:rgba(251,246,236,.5); margin-top:6px;}
+
+  .job-type-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .job-type-grid input{position:absolute; opacity:0; width:0; height:0;}
+  .job-type-btn{
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    padding:13px 10px; border-radius:10px; border:1px solid rgba(251,246,236,.22);
+    background:rgba(251,246,236,.08); color:var(--cream); font-size:.9rem; font-weight:500;
+    cursor:pointer; transition:background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+  }
+  .job-type-grid input:checked + .job-type-btn{
+    background:var(--gold); border-color:var(--gold); color:var(--teal-dark); font-weight:600;
+  }
+  .job-type-grid input:focus-visible + .job-type-btn{outline:3px solid var(--gold-light); outline-offset:2px;}
+
+  .photo-upload{
+    border:2px dashed rgba(251,246,236,.3); border-radius:14px; padding:22px; text-align:center;
+    cursor:pointer; transition:border-color .25s var(--ease), background .25s var(--ease);
+  }
+  .photo-upload:hover, .photo-upload.drag{background:rgba(251,246,236,.06); border-color:var(--gold);}
+  .photo-upload input{display:none;}
+  .photo-upload .icon{font-size:1.4rem; margin-bottom:6px;}
+  .photo-upload .main{font-weight:600; font-size:.92rem;}
+  .photo-upload .sub{font-size:.78rem; color:rgba(251,246,236,.55); margin-top:4px;}
+  .photo-preview{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;}
+  .photo-preview img{width:64px; height:64px; object-fit:cover; border-radius:8px; border:1px solid rgba(251,246,236,.25);}
   .form-status{margin-top:14px; font-size:.9rem; color:var(--gold-light); min-height:1.4em;}
   .form-note{margin-top:10px; font-size:.78rem; color:rgba(251,246,236,.45);}
 
@@ -1064,21 +1090,53 @@
         </div>
         <form class="contact-form" id="contactForm">
           <h3>ขอใบเสนอราคา — ไม่มีค่าใช้จ่าย</h3>
-          <label for="cf-name">ชื่อของคุณ</label>
-          <input id="cf-name" type="text" placeholder="เช่น คุณวราภรณ์" required>
-          <label for="cf-tel">เบอร์โทรศัพท์</label>
-          <input id="cf-tel" type="tel" placeholder="08x-xxx-xxxx" required>
-          <label for="cf-type">ประเภทพื้นที่ที่ต้องการ Big Cleaning</label>
-          <select id="cf-type">
-            <option>บ้าน/คอนโด/อาคารพักอาศัย</option>
-            <option>อาคารสำนักงาน/ออฟฟิศ</option>
-            <option>ร้านอาหาร/คาเฟ่</option>
-            <option>หลังก่อสร้าง/รีโนเวท/บิ้วอิน/ต่อเติม</option>
-            <option>ยังไม่แน่ใจ — อยากให้ทีมงานช่วยประเมิน</option>
-          </select>
+          <label for="cf-name">ชื่อ–นามสกุล</label>
+          <input id="cf-name" name="name" type="text" placeholder="เช่น สมชาย ใจดี" required>
+
+          <label for="cf-tel">เบอร์โทร</label>
+          <input id="cf-tel" name="tel" type="tel" placeholder="08X-XXX-XXXX" required>
+
+          <label>ประเภทงาน</label>
+          <div class="job-type-grid" role="radiogroup" aria-label="ประเภทงาน">
+            <input type="radio" id="type-home" name="jobType" value="บ้านพักอาศัย/คอนโด" checked>
+            <label for="type-home" class="job-type-btn">บ้านพักอาศัย/คอนโด</label>
+
+            <input type="radio" id="type-office" name="jobType" value="อาคารสำนักงาน/ออฟฟิศ">
+            <label for="type-office" class="job-type-btn">ออฟฟิศ</label>
+
+            <input type="radio" id="type-reno" name="jobType" value="หลังก่อสร้าง/รีโนเวท/บิ้วอิน">
+            <label for="type-reno" class="job-type-btn">หลังรีโนเวท</label>
+
+            <input type="radio" id="type-restaurant" name="jobType" value="ร้านอาหาร/คาเฟ่">
+            <label for="type-restaurant" class="job-type-btn">ร้านอาหาร/คาเฟ่</label>
+
+            <input type="radio" id="type-moveout" name="jobType" value="ย้ายเข้า-ย้ายออก">
+            <label for="type-moveout" class="job-type-btn">ย้ายเข้า-ย้ายออก</label>
+
+            <input type="radio" id="type-other" name="jobType" value="อื่นๆ">
+            <label for="type-other" class="job-type-btn">อื่นๆ</label>
+          </div>
+
+          <label for="cf-size">ขนาดพื้นที่โดยประมาณ</label>
+          <input id="cf-size" name="size" type="text" placeholder="เช่น 120 ตร.ม. หรือ บ้าน 2 ชั้น">
+          <p class="form-hint">ไม่แน่ใจก็ระบุคร่าวๆ ได้ เช่น จำนวนห้อง/ชั้น</p>
+
+          <label for="cf-location">หมู่บ้าน / ตำแหน่งหน้างาน</label>
+          <input id="cf-location" name="location" type="text" placeholder="เช่น หมู่บ้านเอโทล ลาดกระบัง">
+          <p class="form-hint">พิมพ์ชื่อหมู่บ้าน/ซอย หรือวางลิงก์ Google Maps ก็ได้</p>
+
+          <label for="cf-photos">รูปพื้นที่หน้างาน (ไม่เกิน 3 รูป)</label>
+          <div class="photo-upload" id="photoUploadZone">
+            <input id="cf-photos" name="photos" type="file" accept="image/*" multiple>
+            <div class="icon">📷</div>
+            <div class="main">แตะเพื่อถ่าย/เลือกรูป</div>
+            <div class="sub">ช่วยให้ประเมินราคาแม่นขึ้น</div>
+          </div>
+          <div class="photo-preview" id="photoPreview"></div>
+
           <button type="submit" class="btn btn-gold">ส่งคำขอใบเสนอราคา</button>
           <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-          <p class="form-note">ข้อมูลของคุณเป็นความลับตามนโยบาย PDPA · หน้านี้เป็นเว็บไซต์ตัวอย่าง แบบฟอร์มไม่ได้ส่งข้อมูลจริง</p>
+          <p class="form-note">ข้อมูลของคุณเป็นความลับตามนโยบาย PDPA</p>
         </form>
       </div>
     </div>
@@ -1264,18 +1322,80 @@
     if(e.key === 'ArrowLeft'){ setWipe(current - 5); }
   });
 
-  // Contact form (demo only — no real submission)
+  // Contact form — submits real data (incl. photos) to n8n webhook
   var contactForm = document.getElementById('contactForm');
   var formStatus = document.getElementById('formStatus');
+  var N8N_WEBHOOK_URL = 'https://guns-printed-effort-midwest.trycloudflare.com/webhook/tawan-lead';
+  var MAX_PHOTOS = 3;
+
+  // Photo picker: click zone -> open file dialog, preview thumbnails, enforce max 3
+  var photoZone = document.getElementById('photoUploadZone');
+  var photoInput = document.getElementById('cf-photos');
+  var photoPreview = document.getElementById('photoPreview');
+
+  photoZone.addEventListener('click', function(){ photoInput.click(); });
+
+  photoInput.addEventListener('change', function(){
+    var files = Array.prototype.slice.call(photoInput.files);
+    if (files.length > MAX_PHOTOS) {
+      formStatus.textContent = 'เลือกรูปได้ไม่เกิน ' + MAX_PHOTOS + ' รูป กรุณาเลือกใหม่';
+      photoInput.value = '';
+      photoPreview.innerHTML = '';
+      return;
+    }
+    formStatus.textContent = '';
+    photoPreview.innerHTML = '';
+    files.forEach(function(file){
+      var url = URL.createObjectURL(file);
+      var img = document.createElement('img');
+      img.src = url;
+      img.alt = 'รูปตัวอย่างหน้างานที่เลือก';
+      photoPreview.appendChild(img);
+    });
+  });
+
   contactForm.addEventListener('submit', function(e){
     e.preventDefault();
-    formStatus.textContent = 'ได้รับคำขอของคุณแล้ว ทีมงานจะติดต่อกลับภายใน 15 นาทีในเวลาทำการ ขอบคุณที่ไว้วางใจตะวันคลีนนิ่งค่ะ';
-    contactForm.reset();
 
-    // Google Ads conversion tracking — fires when the booking form is submitted successfully
-    if (typeof gtag === 'function') {
-      gtag('event', 'conversion', {'send_to': 'AW-17951083001/vthSCKvI7M0cEPmT3-9C'});
-    }
+    var submitBtn = contactForm.querySelector('button[type="submit"]');
+    var originalBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'กำลังส่ง...';
+
+    var formData = new FormData();
+    formData.append('name', document.getElementById('cf-name').value);
+    formData.append('tel', document.getElementById('cf-tel').value);
+    formData.append('jobType', contactForm.querySelector('input[name="jobType"]:checked').value);
+    formData.append('size', document.getElementById('cf-size').value);
+    formData.append('location', document.getElementById('cf-location').value);
+    formData.append('source', 'tawan-cleaning-website');
+    formData.append('submitted_at', new Date().toISOString());
+    Array.prototype.slice.call(photoInput.files).forEach(function(file, i){
+      formData.append('photo' + (i + 1), file, file.name);
+    });
+
+    fetch(N8N_WEBHOOK_URL, {
+      method: 'POST',
+      body: formData // multipart/form-data — browser sets the correct Content-Type + boundary automatically
+    })
+    .then(function(res){
+      if(!res.ok) throw new Error('ส่งไม่สำเร็จ');
+      formStatus.textContent = 'ได้รับคำขอของคุณแล้ว ทีมงานจะติดต่อกลับภายใน 15 นาทีในเวลาทำการ ขอบคุณที่ไว้วางใจตะวันคลีนนิ่งค่ะ';
+      contactForm.reset();
+      photoPreview.innerHTML = '';
+
+      // Google Ads conversion tracking — fires only after successful submission
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {'send_to': 'AW-17951083001/vthSCKvI7M0cEPmT3-9C'});
+      }
+    })
+    .catch(function(){
+      formStatus.textContent = 'ขออภัย ส่งข้อมูลไม่สำเร็จ กรุณาโทร 090-223-6654 หรือลองใหม่อีกครั้งค่ะ';
+    })
+    .finally(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+    });
   });
 })();
 </script>
