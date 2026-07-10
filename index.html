@@ -307,21 +307,15 @@
   .fb-card{
     background:#fff; border-radius:16px; overflow:hidden; border:1px solid rgba(15,27,43,.08);
     box-shadow:0 4px 18px rgba(15,27,43,.06); transition:transform .35s var(--ease), box-shadow .35s var(--ease);
-    display:flex; flex-direction:column;
+    display:flex; flex-direction:column; cursor:pointer;
   }
   .fb-card:hover{transform:translateY(-6px); box-shadow:0 12px 30px rgba(15,27,43,.12);}
-  .fb-card-imgs{display:grid; gap:2px; aspect-ratio:4/3; overflow:hidden;}
-  .fb-card-imgs.n1{grid-template-columns:1fr;}
-  .fb-card-imgs.n2{grid-template-columns:1fr 1fr;}
-  .fb-card-imgs.n3{grid-template-columns:2fr 1fr; grid-template-rows:1fr 1fr;}
-  .fb-card-imgs.n3 img:first-child{grid-row:1/3;}
-  .fb-card-imgs.n4{grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;}
-  .fb-card-imgs img{width:100%; height:100%; object-fit:cover; transition:transform .5s var(--ease);}
-  .fb-card:hover .fb-card-imgs img{transform:scale(1.05);}
-  .fb-card-imgs .more-overlay{position:relative;}
-  .fb-card-imgs .more-overlay::after{
-    content:attr(data-more); position:absolute; inset:0; background:rgba(15,27,43,.6);
-    color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.3rem; font-weight:600;
+  .fb-card-cover{position:relative; aspect-ratio:4/3; overflow:hidden;}
+  .fb-card-cover img{width:100%; height:100%; object-fit:cover; transition:transform .5s var(--ease);}
+  .fb-card:hover .fb-card-cover img{transform:scale(1.05);}
+  .fb-img-count{
+    position:absolute; bottom:10px; right:10px; background:rgba(15,27,43,.78); color:#fff;
+    font-size:.78rem; font-weight:500; padding:5px 11px; border-radius:20px; backdrop-filter:blur(4px);
   }
   .fb-card-body{padding:18px 20px 22px; display:flex; flex-direction:column; gap:12px; flex:1;}
   .fb-card-msg{color:var(--text); font-size:.92rem; line-height:1.6; white-space:pre-line;
@@ -329,6 +323,30 @@
   .fb-card-date{font-size:.78rem; color:var(--text-soft); margin-top:auto;}
   @media(max-width:1024px){.fb-portfolio-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:600px){.fb-portfolio-grid{grid-template-columns:1fr;}}
+
+  /* Lightbox */
+  .fb-lightbox{
+    position:fixed; inset:0; z-index:1000; background:rgba(15,27,43,.92);
+    display:none; align-items:center; justify-content:center; padding:24px;
+  }
+  .fb-lightbox.open{display:flex;}
+  .fb-lightbox img{max-width:90vw; max-height:82vh; object-fit:contain; border-radius:8px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);}
+  .fb-lb-close{position:absolute; top:20px; right:26px; color:#fff; font-size:2.2rem; line-height:1;
+    background:none; border:none; cursor:pointer; opacity:.8; transition:opacity .2s;}
+  .fb-lb-close:hover{opacity:1;}
+  .fb-lb-nav{position:absolute; top:50%; transform:translateY(-50%); color:#fff; font-size:2.4rem;
+    background:rgba(255,255,255,.12); border:none; cursor:pointer; width:56px; height:56px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; transition:background .2s;}
+  .fb-lb-nav:hover{background:rgba(255,255,255,.25);}
+  .fb-lb-prev{left:24px;}
+  .fb-lb-next{right:24px;}
+  .fb-lb-counter{position:absolute; bottom:24px; left:50%; transform:translateX(-50%); color:#fff;
+    font-size:.9rem; background:rgba(15,27,43,.6); padding:6px 16px; border-radius:20px;}
+  @media(max-width:600px){
+    .fb-lb-nav{width:44px; height:44px; font-size:1.8rem;}
+    .fb-lb-prev{left:10px;} .fb-lb-next{right:10px;}
+  }
 
   /* ===== Process ===== */
   .process{padding:110px 0; background:var(--cream-alt);}
@@ -835,6 +853,15 @@
       </div>
     </div>
   </section>
+
+  <!-- FB Portfolio Lightbox -->
+  <div class="fb-lightbox" id="fbLightbox">
+    <button class="fb-lb-close" id="fbLbClose" aria-label="ปิด">&times;</button>
+    <button class="fb-lb-nav fb-lb-prev" id="fbLbPrev" aria-label="รูปก่อนหน้า">&#8249;</button>
+    <img id="fbLightboxImg" src="" alt="ผลงานทำความสะอาดของตะวันคลีนนิ่ง">
+    <button class="fb-lb-nav fb-lb-next" id="fbLbNext" aria-label="รูปถัดไป">&#8250;</button>
+    <span class="fb-lb-counter" id="fbLightboxCounter"></span>
+  </div>
 
   <!-- PROCESS -->
   <section class="process" id="process">
@@ -1464,31 +1491,29 @@
         return;
       }
       grid.innerHTML = '';
-      posts.forEach(function(post){
-        var imgs = (post.images || []).slice(0, 4);
+      posts.forEach(function(post, postIndex){
+        var allImgs = post.images || [];
+        // ตัดรูปแรก (มักเป็น QR code) ออก เฉพาะโพสต์ที่มีมากกว่า 1 รูป
+        var imgs = allImgs.length > 1 ? allImgs.slice(1) : allImgs;
         if (!imgs.length) return;
+
         var card = document.createElement('article');
         card.className = 'fb-card';
+        card.setAttribute('data-post', postIndex);
 
-        var imgWrap = document.createElement('div');
-        imgWrap.className = 'fb-card-imgs n' + imgs.length;
-        var totalImgs = (post.images || []).length;
-        imgs.forEach(function(url, i){
-          var img = document.createElement('img');
-          img.src = url;
-          img.loading = 'lazy';
-          img.alt = 'ผลงานทำความสะอาดของตะวันคลีนนิ่ง';
-          // overlay "+N" on last thumbnail if there are more images
-          if (i === imgs.length - 1 && totalImgs > imgs.length){
-            var wrap = document.createElement('div');
-            wrap.className = 'more-overlay';
-            wrap.setAttribute('data-more', '+' + (totalImgs - imgs.length));
-            wrap.appendChild(img);
-            imgWrap.appendChild(wrap);
-          } else {
-            imgWrap.appendChild(img);
-          }
-        });
+        var thumb = document.createElement('div');
+        thumb.className = 'fb-card-cover';
+        var cover = document.createElement('img');
+        cover.src = imgs[0];
+        cover.loading = 'lazy';
+        cover.alt = 'ผลงานทำความสะอาดของตะวันคลีนนิ่ง';
+        thumb.appendChild(cover);
+        if (imgs.length > 1){
+          var count = document.createElement('span');
+          count.className = 'fb-img-count';
+          count.textContent = '📷 ' + imgs.length + ' รูป';
+          thumb.appendChild(count);
+        }
 
         var body = document.createElement('div');
         body.className = 'fb-card-body';
@@ -1501,11 +1526,47 @@
         body.appendChild(msg);
         body.appendChild(date);
 
-        card.appendChild(imgWrap);
+        card.appendChild(thumb);
         card.appendChild(body);
+        card.addEventListener('click', function(){ openLightbox(imgs, 0); });
         grid.appendChild(card);
       });
     }
+
+    // ---- Lightbox ----
+    var lb = document.getElementById('fbLightbox');
+    var lbImg = document.getElementById('fbLightboxImg');
+    var lbCounter = document.getElementById('fbLightboxCounter');
+    var lbCurrent = [];
+    var lbIndex = 0;
+
+    function showLbImg(){
+      lbImg.src = lbCurrent[lbIndex];
+      lbCounter.textContent = (lbIndex + 1) + ' / ' + lbCurrent.length;
+    }
+    function openLightbox(imgs, start){
+      lbCurrent = imgs; lbIndex = start || 0;
+      showLbImg();
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function nextImg(){ lbIndex = (lbIndex + 1) % lbCurrent.length; showLbImg(); }
+    function prevImg(){ lbIndex = (lbIndex - 1 + lbCurrent.length) % lbCurrent.length; showLbImg(); }
+
+    document.getElementById('fbLbClose').addEventListener('click', closeLightbox);
+    document.getElementById('fbLbNext').addEventListener('click', function(e){ e.stopPropagation(); nextImg(); });
+    document.getElementById('fbLbPrev').addEventListener('click', function(e){ e.stopPropagation(); prevImg(); });
+    lb.addEventListener('click', function(e){ if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', function(e){
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImg();
+      if (e.key === 'ArrowLeft') prevImg();
+    });
 
     // manifest.js sets window.tawanGalleryData — fetch as text then parse safely
     fetch(MANIFEST_URL, {cache: 'no-cache'})
