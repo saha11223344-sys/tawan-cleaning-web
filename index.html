@@ -670,7 +670,7 @@
         <div class="hero-badge b2"><strong>ทีมงานตรวจประวัติ 100%</strong><span>ปลอดภัย ไว้ใจได้</span></div>
         <div class="hero-badge b3"><strong>ถ่ายภาพผลงานทุกงาน</strong><span>ก่อน-หลังชัดเจน</span></div>
         <div class="hero-card">
-          <img src="images/job/job-06.jpg" alt="ห้องนอนหลังทำ Big Cleaning ของตะวันคลีนนิ่ง สว่างสะอาด แสงแดดส่องเต็มห้อง" loading="eager">
+          <img id="heroImg" src="images/job/job-06.jpg" alt="ผลงานทำความสะอาด Big Cleaning ของตะวันคลีนนิ่ง" loading="eager">
         </div>
       </div>
     </div>
@@ -1568,6 +1568,24 @@
       if (e.key === 'ArrowLeft') prevImg();
     });
 
+    // สุ่มรูปผลงานจริงจาก manifest มาแสดงใน hero (ตัดรูปแรก=QR ออก)
+    function setHeroImage(posts){
+      var heroImg = document.getElementById('heroImg');
+      if (!heroImg || !posts || !posts.length) return;
+      var pool = [];
+      posts.forEach(function(p){
+        var all = p.images || [];
+        var imgs = all.length > 1 ? all.slice(1) : all; // ตัด QR
+        imgs.forEach(function(u){ pool.push(u); });
+      });
+      if (!pool.length) return;
+      var pick = pool[Math.floor(Math.random() * pool.length)];
+      // preload ก่อนค่อยสลับ กันภาพกระพริบ
+      var pre = new Image();
+      pre.onload = function(){ heroImg.src = pick; };
+      pre.src = pick;
+    }
+
     // manifest.js sets window.tawanGalleryData — fetch as text then parse safely
     fetch(MANIFEST_URL, {cache: 'no-cache'})
       .then(function(res){ if(!res.ok) throw new Error('load failed'); return res.text(); })
@@ -1575,6 +1593,7 @@
         var jsonStr = txt.replace(/^\s*window\.tawanGalleryData\s*=\s*/, '').replace(/;?\s*$/, '');
         var data = JSON.parse(jsonStr);
         render(data.posts);
+        setHeroImage(data.posts);
       })
       .catch(function(){
         grid.innerHTML = '<p class="fb-portfolio-loading">ไม่สามารถโหลดผลงานได้ในขณะนี้ ดูผลงานทั้งหมดได้ที่เพจ Facebook ของเรา</p>';
