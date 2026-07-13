@@ -106,8 +106,8 @@
     padding:12px 0; box-shadow:0 8px 24px -16px rgba(10,39,38,.3);
   }
   .nav-wrap{display:flex; align-items:center; justify-content:space-between; gap:20px;}
-  .logo{display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.25rem; color:var(--teal);}
-  .logo-mark{width:44px; height:44px; flex-shrink:0; border-radius:50%; object-fit:cover;}
+  .logo-mark{width:48px; height:48px; flex-shrink:0; border-radius:50%; object-fit:cover;}
+  .logo{display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.25rem; color:var(--teal); white-space:nowrap;}
   .logo span{color:var(--gold);}
   nav.main-nav{display:flex; align-items:center; gap:36px;}
   nav.main-nav a{font-size:.96rem; font-weight:500; color:var(--text); position:relative; padding:4px 0;}
@@ -147,6 +147,8 @@
   .hero .container{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;}
   .hero h1{font-size:clamp(2.3rem,4.6vw,3.6rem); line-height:1.2; letter-spacing:-.01em;}
   .hero h1 em{font-style:normal; color:var(--teal); background:linear-gradient(180deg, transparent 62%, var(--gold-light) 62%);}
+  .hero-subline{font-size:1.15rem; color:var(--teal-light); margin-top:10px; font-weight:500;}
+  .hero-subline em{font-style:normal; color:var(--gold); font-weight:600;}
   .hero p.lede{margin-top:22px; font-size:1.12rem; color:var(--text-soft); max-width:520px;}
   .hero-cta{display:flex; flex-wrap:wrap; gap:16px; margin-top:34px;}
   .hero-meta{display:flex; gap:28px; margin-top:44px; flex-wrap:wrap;}
@@ -279,11 +281,12 @@
   .portfolio-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:40px;}
   .portfolio-item{
     background:rgba(251,246,236,.05); border-radius:var(--radius-md); overflow:hidden;
-    border:1px solid rgba(251,246,236,.12); transition:transform .4s var(--ease), border-color .4s var(--ease);
+    border:1px solid rgba(251,246,236,.12); transition:transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+    box-shadow:0 10px 32px -12px rgba(0,0,0,.35);
   }
-  .portfolio-item:hover{transform:translateY(-6px); border-color:rgba(242,169,59,.5);}
+  .portfolio-item:hover{transform:translateY(-6px); border-color:rgba(242,169,59,.5); box-shadow:0 18px 42px -14px rgba(0,0,0,.45);}
   .portfolio-item .thumb{
-    aspect-ratio:4/3; background:rgba(251,246,236,.08); display:flex; align-items:center; justify-content:center;
+    aspect-ratio:5/4; background:rgba(251,246,236,.08); display:flex; align-items:center; justify-content:center;
     position:relative; overflow:hidden;
   }
   .portfolio-item .thumb svg{width:52%; stroke:var(--gold-light);}
@@ -293,9 +296,9 @@
     position:absolute; top:12px; left:12px; background:var(--gold); color:var(--teal-dark);
     font-size:.75rem; font-weight:700; padding:5px 12px; border-radius:999px;
   }
-  .portfolio-item .cap{padding:18px 20px;}
-  .portfolio-item .cap h4{font-size:.98rem; margin-bottom:4px; color:var(--cream);}
-  .portfolio-item .cap span{font-size:.82rem; color:rgba(251,246,236,.6);}
+  .portfolio-item .cap{padding:14px 18px;}
+  .portfolio-item .cap h4{font-size:.94rem; margin-bottom:2px; color:var(--cream);}
+  .portfolio-item .cap span{font-size:.78rem; color:rgba(251,246,236,.6);}
   @media(max-width:1024px){.portfolio-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:600px){.portfolio-grid{grid-template-columns:1fr;}}
 
@@ -306,10 +309,10 @@
   .fb-portfolio-loading{grid-column:1/-1; text-align:center; color:var(--text-soft); padding:40px 0;}
   .fb-card{
     background:#fff; border-radius:16px; overflow:hidden; border:1px solid rgba(15,27,43,.08);
-    box-shadow:0 4px 18px rgba(15,27,43,.06); transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+    box-shadow:0 10px 30px -10px rgba(15,27,43,.18); transition:transform .35s var(--ease), box-shadow .35s var(--ease);
     display:flex; flex-direction:column; cursor:pointer;
   }
-  .fb-card:hover{transform:translateY(-6px); box-shadow:0 12px 30px rgba(15,27,43,.12);}
+  .fb-card:hover{transform:translateY(-6px); box-shadow:0 20px 42px -12px rgba(15,27,43,.28);}
   .fb-card-cover{position:relative; aspect-ratio:3/4; overflow:hidden;}
   .fb-card-cover img{width:100%; height:100%; object-fit:cover; transition:transform .5s var(--ease);}
   .fb-card:hover .fb-card-cover img{transform:scale(1.05);}
@@ -589,6 +592,10 @@
     .foot-grid{grid-template-columns:1fr 1fr;}
     .hero{padding:150px 0 70px;}
     .hero-badge{display:none;}
+    .nav-actions .tel{display:none;}
+    .nav-actions .btn-primary.btn-sm{display:none;}
+    .logo{font-size:1.05rem; gap:8px;}
+    .logo-mark{width:40px; height:40px;}
   }
 </style>
 
@@ -650,16 +657,17 @@
     <div class="container">
       <div class="hero-copy reveal in">
         <span class="eyebrow">ผู้เชี่ยวชาญ Big Cleaning บ้าน · อาคาร · ออฟฟิศ · ร้านอาหาร · คาเฟ่</span>
-        <h1>Big Cleaning ครบทุกพื้นที่<br>สะอาดเหมือน<em>แสงแดดยามเช้า</em></h1>
+        <h1>Big Cleaning บ้านหลังรีโนเวท/ก่อสร้าง<br>พร้อมเข้าอยู่ได้ในวันเดียว</h1>
+        <p class="hero-subline">สะอาดเหมือน<em>แสงแดดยามเช้า</em></p>
         <p class="lede">ตะวันคลีนนิ่งเชี่ยวชาญด้านทำความสะอาดใหญ่ (Big Cleaning) โดยเฉพาะ ครอบคลุมบ้าน อาคาร ออฟฟิศ ร้านอาหาร คาเฟ่ และพื้นที่ที่เพิ่งจบงานก่อสร้าง รีโนเวท บิ้วอิน หรือต่อเติม ทีมงานผ่านการอบรมและตรวจประวัติทุกคน พร้อมถ่ายภาพผลงานให้ดูทุกครั้งหลังงานเสร็จ</p>
         <div class="hero-cta">
           <a href="#booking" class="btn btn-primary">จองประเมินหน้างานฟรี</a>
           <a href="https://lin.ee/iuLQ4Lbg" class="btn btn-ghost" target="_blank" rel="noopener">แชทผ่าน LINE</a>
         </div>
         <div class="hero-meta">
-          <div><strong>8 ปี</strong><span>ผู้เชี่ยวชาญ Big Cleaning</span></div>
-          <div><strong>12,000+</strong><span>งาน Big Cleaning ที่เสร็จสมบูรณ์</span></div>
-          <div><strong>100%</strong><span>ทีมงานตรวจประวัติแล้ว</span></div>
+          <div><strong>ประสบการณ์หลายปี</strong><span>ผู้เชี่ยวชาญ Big Cleaning</span></div>
+          <div><strong>ผลงานจำนวนมาก</strong><span>งาน Big Cleaning ทั่วกรุงเทพฯ</span></div>
+          <div><strong>คัดกรองทีมงาน</strong><span>ตรวจสอบก่อนเข้าปฏิบัติงานทุกคน</span></div>
         </div>
         <div class="hero-scroll"><span>เลื่อนลง</span><span class="line"></span></div>
       </div>
@@ -667,7 +675,7 @@
         <div class="sun-ray"></div>
         <span class="dust"></span><span class="dust"></span><span class="dust"></span><span class="dust"></span>
         <div class="hero-badge b1"><strong>Big Cleaning หลังก่อสร้าง</strong><span>ฝุ่นปูน คราบสี กาว</span></div>
-        <div class="hero-badge b2"><strong>ทีมงานตรวจประวัติ 100%</strong><span>ปลอดภัย ไว้ใจได้</span></div>
+        <div class="hero-badge b2"><strong>มีมาตรการคัดกรองทีมงาน</strong><span>ปลอดภัย ไว้ใจได้</span></div>
         <div class="hero-badge b3"><strong>ถ่ายภาพผลงานทุกงาน</strong><span>ก่อน-หลังชัดเจน</span></div>
         <div class="hero-card">
           <img id="heroImg" src="images/job/job-06.jpg" alt="ผลงานทำความสะอาด Big Cleaning ของตะวันคลีนนิ่ง" loading="eager">
@@ -679,10 +687,10 @@
   <!-- TRUST BAND -->
   <section class="trust reveal">
     <div class="container">
-      <div><strong>8 ปี</strong><span>ประสบการณ์ในธุรกิจทำความสะอาด</span></div>
-      <div class="div"><strong>12,000+</strong><span>ครั้งของงานที่ส่งมอบสำเร็จ</span></div>
-      <div class="div"><strong>50,000 ฿</strong><span>วงเงินประกันความเสียหายต่อครั้ง</span></div>
-      <div class="div"><strong>4.9/5</strong><span>คะแนนความพึงพอใจเฉลี่ย</span></div>
+      <div><strong>ประสบการณ์หลายปี</strong><span>ในธุรกิจทำความสะอาด</span></div>
+      <div class="div"><strong>ผลงานจำนวนมาก</strong><span>งานที่ส่งมอบสำเร็จ</span></div>
+      <div class="div"><strong>มีประกันความเสียหาย</strong><span>คุ้มครองทุกงานที่จอง</span></div>
+      <div class="div"><strong>ลูกค้าพึงพอใจสูง</strong><span>ได้รับความไว้วางใจต่อเนื่อง</span></div>
     </div>
   </section>
 
@@ -780,7 +788,7 @@
           <span data-p="100">หลังตะวันคลีนนิ่ง</span>
         </div>
         <ul class="wipe-stats">
-          <li><span class="dot"></span><div><strong>ฝุ่นและคราบสกปรกหมดไป 100%</strong>วัดผลด้วยภาพถ่ายก่อน-หลังทุกงาน</div></li>
+          <li><span class="dot"></span><div><strong>ฝุ่นและคราบสกปรกหมดจด</strong>วัดผลด้วยภาพถ่ายก่อน-หลังทุกงาน</div></li>
           <li><span class="dot"></span><div><strong>ใช้งานพื้นที่ต่อได้ทันที</strong>ไม่ต้องปิดพื้นที่พักหลังทำความสะอาด</div></li>
           <li><span class="dot"></span><div><strong>หัวหน้าทีมตรวจรับงานทุกครั้ง</strong>เช็กความเรียบร้อยร่วมกับลูกค้าก่อนจบงาน</div></li>
         </ul>
@@ -890,7 +898,7 @@
         <div class="step reveal">
           <div class="num">4</div>
           <h3>ตรวจรับงาน</h3>
-          <p>เช็กความเรียบร้อยร่วมกันก่อนชำระเงิน มั่นใจได้ทุกจุด 100%</p>
+          <p>เช็กความเรียบร้อยร่วมกันก่อนชำระเงิน มั่นใจได้ทุกจุด</p>
         </div>
       </div>
     </div>
@@ -933,7 +941,7 @@
         <div class="feature-copy">
           <span class="feature-num">03</span>
           <h3>ประกันความเสียหายทุกงาน อุ่นใจหายห่วง</h3>
-          <p>ทุกการจองมีประกันความเสียหายสูงสุด 50,000 บาทต่อครั้ง หากเกิดข้อผิดพลาดระหว่างทำงาน เรารับผิดชอบเต็มจำนวนตามเงื่อนไข</p>
+          <p>ทุกการจองมีประกันความเสียหายให้ลูกค้า หากเกิดข้อผิดพลาดระหว่างทำงาน เรารับผิดชอบเต็มจำนวนตามเงื่อนไข</p>
         </div>
       </div>
 
@@ -975,20 +983,17 @@
       <div class="team-grid">
         <article class="team-card reveal">
           <div class="avatar-photo"><svg viewBox="0 0 100 100" fill="none" stroke-width="3"><circle cx="50" cy="36" r="18"/><path d="M18 86c0-18 14-30 32-30s32 12 32 30"/></svg></div>
-          <h3>คุณตะวัน รุ่งเรือง</h3>
-          <div class="role">ผู้ก่อตั้ง · หัวหน้าทีม Big Cleaning</div>
-          <p class="exp">ประสบการณ์ 8 ปี ชำนาญด้าน Big Cleaning หลังก่อสร้างและรีโนเวทโดยเฉพาะ</p>
+          <h3>ผู้ก่อตั้ง &amp; หัวหน้าทีม Big Cleaning</h3>
+          <p class="exp">ประสบการณ์หลายปี ชำนาญด้าน Big Cleaning หลังก่อสร้างและรีโนเวทโดยเฉพาะ</p>
         </article>
         <article class="team-card reveal">
           <div class="avatar-photo"><svg viewBox="0 0 100 100" fill="none" stroke-width="3"><circle cx="50" cy="36" r="18"/><path d="M18 86c0-18 14-30 32-30s32 12 32 30"/></svg></div>
-          <h3>คุณสมชาย ใจดี</h3>
-          <div class="role">หัวหน้าทีมภาคสนาม</div>
-          <p class="exp">ประสบการณ์ 6 ปี ควบคุมคุณภาพงานหน้างานและถ่ายภาพผลงานทุกจุดก่อนส่งมอบ</p>
+          <h3>หัวหน้าทีมภาคสนาม</h3>
+          <p class="exp">ควบคุมคุณภาพงานหน้างานและถ่ายภาพผลงานทุกจุดก่อนส่งมอบ</p>
         </article>
         <article class="team-card reveal">
           <div class="avatar-photo"><svg viewBox="0 0 100 100" fill="none" stroke-width="3"><circle cx="50" cy="36" r="18"/><path d="M18 86c0-18 14-30 32-30s32 12 32 30"/></svg></div>
-          <h3>คุณวิภาวรรณ ศรีสุข</h3>
-          <div class="role">ผู้เชี่ยวชาญด้านน้ำยาและความปลอดภัย</div>
+          <h3>ผู้เชี่ยวชาญด้านน้ำยาและความปลอดภัย</h3>
           <p class="exp">คัดสรรน้ำยาทำความสะอาดที่ปลอดภัยต่อเด็กและสัตว์เลี้ยงทุกสูตรที่ทีมงานใช้หน้างาน</p>
         </article>
       </div>
@@ -1026,7 +1031,7 @@
             <li><span class="check-ico">✓</span>ทุกอย่างในระดับมาตรฐาน</li>
             <li><span class="check-ico">✓</span>ขัดท่อระบายอากาศและไอน้ำมันในครัว</li>
             <li><span class="check-ico">✓</span>ทำความสะอาดจุดที่งานประจำวันเข้าไม่ถึง</li>
-            <li><span class="check-ico">✓</span>ประกันความเสียหายสูงสุด 50,000฿</li>
+            <li><span class="check-ico">✓</span>มีประกันความเสียหายคุ้มครองงาน</li>
             <li><span class="check-ico">✓</span>รายงานผลพร้อมภาพถ่ายก่อน-หลัง</li>
           </ul>
           <a href="#booking" class="btn btn-primary" style="background:var(--teal-dark);color:var(--gold-light);">จองประเมินหน้างาน</a>
@@ -1485,6 +1490,12 @@
       } catch(e){ return ''; }
     }
 
+    // ล้างข้อความที่ดึงมาจากโพสต์ FB ที่บางทีมีตัวอักษรละตินเดี่ยวๆ แทรกกลางคำไทย (encoding เพี้ยนจากต้นทาง)
+    function cleanPostText(text){
+      if (!text) return '';
+      return text.replace(/([\u0E01-\u0E5B])[a-zA-Z]([\u0E01-\u0E5B])/g, '$1$2');
+    }
+
     function render(posts){
       if (!posts || !posts.length){
         grid.innerHTML = '<p class="fb-portfolio-loading">ยังไม่มีผลงานให้แสดงในขณะนี้</p>';
@@ -1519,7 +1530,7 @@
         body.className = 'fb-card-body';
         var msg = document.createElement('p');
         msg.className = 'fb-card-msg';
-        msg.textContent = post.message || '';
+        msg.textContent = cleanPostText(post.message || '');
         var date = document.createElement('span');
         date.className = 'fb-card-date';
         date.textContent = fmtDate(post.created_time);
