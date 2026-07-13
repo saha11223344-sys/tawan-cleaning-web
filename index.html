@@ -224,10 +224,13 @@
     transition:transform .4s var(--ease), box-shadow .4s var(--ease);
   }
   .bento .card:hover{transform:translateY(-6px); box-shadow:0 26px 46px -24px rgba(10,39,38,.3);}
-  .bento .card.big{grid-column:span 3; grid-row:span 2; background:var(--teal); color:var(--cream); display:flex; flex-direction:column; justify-content:space-between;}
+  .bento .card.big{grid-column:span 3; grid-row:span 2; background:var(--teal); color:var(--cream); position:relative; overflow:hidden;}
   .bento .card.big .icon{background:rgba(251,246,236,.12);}
   .bento .card.big h3{color:var(--gold-light);}
   .bento .card.big p{color:rgba(251,246,236,.8);}
+  .card-big-bg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; transition:opacity .6s var(--ease);}
+  .card-big-overlay{position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(11,42,41,.55) 0%, rgba(9,33,32,.88) 100%);}
+  .card-big-content{position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:space-between;}
   .bento .card:not(.big){grid-column:span 3;}
   @media(min-width:900px){
     .bento .card:not(.big){grid-column:span 3;}
@@ -735,12 +738,16 @@
       </div>
       <div class="bento">
         <article class="card big reveal">
-          <div>
-            <div class="icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21l6-6M15 3l6 6-9 9-6-6 9-9z"/><path stroke-linecap="round" d="M13 5l6 6"/></svg></div>
-            <h3>Big Cleaning หลังก่อสร้าง รีโนเวท บิ้วอิน ต่อเติม</h3>
-            <p>งานถนัดของเรา เก็บฝุ่นปูน คราบสี กาว และเศษวัสดุหลังการก่อสร้าง รีโนเวท บิ้วอิน หรือต่อเติม ให้พื้นที่พร้อมใช้งานจริงได้ในวันเดียว</p>
+          <img id="bentoImg" class="card-big-bg" src="images/job/job-06.jpg" alt="" aria-hidden="true" loading="lazy">
+          <div class="card-big-overlay"></div>
+          <div class="card-big-content">
+            <div>
+              <div class="icon"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21l6-6M15 3l6 6-9 9-6-6 9-9z"/><path stroke-linecap="round" d="M13 5l6 6"/></svg></div>
+              <h3>Big Cleaning หลังก่อสร้าง รีโนเวท บิ้วอิน ต่อเติม</h3>
+              <p>งานถนัดของเรา เก็บฝุ่นปูน คราบสี กาว และเศษวัสดุหลังการก่อสร้าง รีโนเวท บิ้วอิน หรือต่อเติม ให้พื้นที่พร้อมใช้งานจริงได้ในวันเดียว</p>
+            </div>
+            <span class="tag">ประเมินหน้างาน เริ่มต้น 3,500 บาท →</span>
           </div>
-          <span class="tag">ประเมินหน้างาน เริ่มต้น 3,500 บาท →</span>
         </article>
 
         <article class="card reveal">
@@ -1580,9 +1587,10 @@
     });
 
     // สุ่มรูปผลงานจริงจาก manifest มาแสดงใน hero (ตัดรูปแรก=QR ออก)
-    function setHeroImage(posts){
-      var heroImg = document.getElementById('heroImg');
-      if (!heroImg || !posts || !posts.length) return;
+    function setRandomPortfolioImages(posts){
+      var targets = ['heroImg', 'bentoImg'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
+      if (!targets.length || !posts || !posts.length) return;
+
       var pool = [];
       posts.forEach(function(p){
         var all = p.images || [];
@@ -1590,11 +1598,16 @@
         imgs.forEach(function(u){ pool.push(u); });
       });
       if (!pool.length) return;
-      var pick = pool[Math.floor(Math.random() * pool.length)];
-      // preload ก่อนค่อยสลับ กันภาพกระพริบ
-      var pre = new Image();
-      pre.onload = function(){ heroImg.src = pick; };
-      pre.src = pick;
+
+      // สับลำดับ pool แล้วแจกรูปไม่ซ้ำกันให้แต่ละจุด (ถ้ารูปในคลังไม่พอ ยอมให้ซ้ำได้)
+      var shuffled = pool.slice().sort(function(){ return Math.random() - 0.5; });
+      targets.forEach(function(el, i){
+        var pick = shuffled[i % shuffled.length];
+        // preload ก่อนค่อยสลับ กันภาพกระพริบ
+        var pre = new Image();
+        pre.onload = function(){ el.src = pick; };
+        pre.src = pick;
+      });
     }
 
     // manifest.js sets window.tawanGalleryData — fetch as text then parse safely
@@ -1604,7 +1617,7 @@
         var jsonStr = txt.replace(/^\s*window\.tawanGalleryData\s*=\s*/, '').replace(/;?\s*$/, '');
         var data = JSON.parse(jsonStr);
         render(data.posts);
-        setHeroImage(data.posts);
+        setRandomPortfolioImages(data.posts);
       })
       .catch(function(){
         grid.innerHTML = '<p class="fb-portfolio-loading">ไม่สามารถโหลดผลงานได้ในขณะนี้ ดูผลงานทั้งหมดได้ที่เพจ Facebook ของเรา</p>';
