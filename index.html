@@ -722,7 +722,7 @@
         </div>
       </div>
       <div class="philosophy-quote reveal">
-        <p class="big">"สะอาดหมดจด พร้อมเข้าอยู่ได้อย่างมั่นใจ"</p>
+        <p class="big">"สะอาดหมดจด ไม่ทำเกินจำเป็น"</p>
         <span>แนวทางที่ตะวันคลีนนิ่งยึดถือกับทุกหน้างาน ไม่ว่าจะเป็นบ้าน อาคาร ออฟฟิศ ร้านอาหาร คาเฟ่ หรือพื้นที่หลังก่อสร้าง</span>
       </div>
     </div>
@@ -747,7 +747,7 @@
               <h3>Big Cleaning หลังก่อสร้าง รีโนเวท บิ้วอิน ต่อเติม</h3>
               <p>งานถนัดของเรา เก็บฝุ่นปูน คราบสี กาว และเศษวัสดุหลังการก่อสร้าง รีโนเวท บิ้วอิน หรือต่อเติม ให้พื้นที่พร้อมใช้งานจริงได้ในวันเดียว</p>
             </div>
-            <span class="tag">ประเมินหน้างาน เริ่มต้น 39 บาท/ตรม →</span>
+            <span class="tag">ประเมินหน้างาน เริ่มต้น 3,500 บาท →</span>
           </div>
         </article>
 
@@ -756,7 +756,7 @@
           <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
           <h3>Big Cleaning บ้านและอาคารพักอาศัย</h3>
           <p>ทำความสะอาดใหญ่ทั้งหลัง ตั้งแต่ห้องนอน ห้องครัว ห้องน้ำ ไปจนถึงระเบียงและพื้นที่จอดรถ</p>
-          <span class="tag"> เริ่มต้น 39 บาท/ตรม</span>
+          <span class="tag">เริ่มต้น 2,900 บาท/ครั้ง</span>
         </article>
 
         <article class="card reveal">
@@ -970,9 +970,9 @@
       </div>
       <div class="pricing-grid reveal">
         <article class="price-card">
-          <h3>Big Clean คอนโด</h3>
+          <h3>Big Clean มาตรฐาน</h3>
           <p class="sub">เหมาะกับบ้าน คอนโด และอาคารพักอาศัยทั่วไป</p>
-          <div class="amount">3,500฿ <small>/ครั้ง เริ่มต้น</small></div>
+          <div class="amount">2,900฿ <small>/ครั้ง เริ่มต้น</small></div>
           <ul>
             <li><span class="check-ico">✓</span>ขัดพื้นและทำความสะอาดทุกห้อง</li>
             <li><span class="check-ico">✓</span>เช็ดกระจกและผนังทั่วพื้นที่</li>
@@ -1000,7 +1000,7 @@
         <article class="price-card">
           <h3>Big Clean ระดับก่อสร้าง</h3>
           <p class="sub">เหมาะกับพื้นที่หลังก่อสร้าง รีโนเวท บิ้วอิน หรือต่อเติม</p>
-          <div class="amount">40 บาท <small>/ตรม เริ่มต้น</small></div>
+          <div class="amount">3,500฿ <small>/ครั้ง เริ่มต้น</small></div>
           <ul>
             <li><span class="check-ico">✓</span>เก็บฝุ่นปูน คราบสี กาว และเศษวัสดุ</li>
             <li><span class="check-ico">✓</span>ขัดลึกทุกซอกมุมให้พร้อมใช้งานในวันเดียว</li>
@@ -1130,7 +1130,7 @@
         <form class="contact-form" id="contactForm">
           <h3>ขอใบเสนอราคา — ไม่มีค่าใช้จ่าย</h3>
           <label for="cf-name">ชื่อ–นามสกุล</label>
-          <input id="cf-name" name="name" type="text" placeholder="เช่น ชื่อผู้ติดต่อ" required>
+          <input id="cf-name" name="name" type="text" placeholder="เช่น สมชาย ใจดี" required>
 
           <label for="cf-tel">เบอร์โทร</label>
           <input id="cf-tel" name="tel" type="tel" placeholder="08X-XXX-XXXX" required>
@@ -1364,7 +1364,7 @@
   // Contact form — submits real data (incl. photos) to n8n webhook
   var contactForm = document.getElementById('contactForm');
   var formStatus = document.getElementById('formStatus');
-  var N8N_WEBHOOK_URL = 'https://n8n.45.32.122.37.nip.io/webhook/tawan-lead';
+  var N8N_WEBHOOK_URL = 'https://n8n.tawancleaning.com/webhook/tawan-lead';
   var MAX_PHOTOS = 3;
 
   // Photo picker: click zone -> open file dialog, preview thumbnails, enforce max 3
