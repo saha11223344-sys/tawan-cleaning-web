@@ -484,6 +484,13 @@
 
   /* ===== Contact & booking form ===== */
   .contact{background:var(--teal); color:var(--cream); padding:110px 0;}
+  .trust-badges{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:14px 28px;
+    margin-bottom:36px; padding-bottom:36px; border-bottom:1px solid rgba(251,246,236,.15);
+  }
+  .trust-badge{display:flex; align-items:center; gap:9px; font-size:.9rem; color:rgba(251,246,236,.85);}
+  .trust-badge svg{width:20px; height:20px; flex-shrink:0; color:var(--gold-light);}
+  @media(max-width:600px){.trust-badges{gap:12px 20px; justify-content:flex-start;} .trust-badge{font-size:.82rem;}}
   .contact .section-head h2, .contact .section-head p{color:var(--cream);}
   .contact .section-head p{color:rgba(251,246,236,.7);}
   .contact-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:56px;}
@@ -728,37 +735,6 @@
     </div>
   </section>
 
-  <!-- PHILOSOPHY -->
-  <section class="philosophy" id="philosophy">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">ปรัชญาการทำงานของเรา</span>
-        <h2>งานที่ดีที่สุด คือความสะอาดที่มองเห็นได้จริง</h2>
-      </div>
-      <div class="philosophy-grid">
-        <div class="philosophy-item reveal">
-          <div class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-          <h3>ประเมินหน้างานก่อนเสมอ</h3>
-          <p>ไม่มีการเดาราคาลอย ๆ ทีมงานสำรวจพื้นที่จริงก่อนเสนอราคาทุกครั้ง เพื่อวางแผนงานให้ตรงกับสภาพหน้างานจริง</p>
-        </div>
-        <div class="philosophy-item reveal">
-          <div class="icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <h3>ทีมงานเฉพาะทาง Big Cleaning</h3>
-          <p>ไม่ใช่แม่บ้านทั่วไป แต่ผ่านการฝึกอบรมงานทำความสะอาดใหญ่โดยเฉพาะ พร้อมอุปกรณ์และน้ำยาระดับมืออาชีพ</p>
-        </div>
-        <div class="philosophy-item reveal">
-          <div class="icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-          <h3>ไม่เสนองานเกินความจำเป็น</h3>
-          <p>ประเมินตรงไปตรงมาว่าจุดไหนต้องทำ จุดไหนยังไม่จำเป็น ไม่ยัดเยียดบริการเสริมที่ไม่ตอบโจทย์หน้างาน</p>
-        </div>
-      </div>
-      <div class="philosophy-quote reveal">
-        <p class="big">"สะอาดหมดจด ไม่ทำเกินจำเป็น"</p>
-        <span>แนวทางที่ตะวันคลีนนิ่งยึดถือกับทุกหน้างาน ไม่ว่าจะเป็นบ้าน อาคาร ออฟฟิศ ร้านอาหาร คาเฟ่ หรือพื้นที่หลังก่อสร้าง</span>
-      </div>
-    </div>
-  </section>
-
   <!-- SERVICES -->
   <section class="services" id="services">
     <div class="container">
@@ -844,50 +820,6 @@
       </div>
       </div>
 
-      <div class="portfolio-head reveal">
-        <span class="eyebrow" style="background:rgba(242,169,59,.15); color:var(--gold-light);">ผลงานจริงจากหน้างาน</span>
-        <h2 class="section-head">ทุกงานที่เราทำ มีภาพถ่ายยืนยันผลลัพธ์</h2>
-        <p>เราถ่ายภาพหน้างานก่อน-หลังทุกครั้งที่เข้าทำ Big Cleaning ไม่ว่าจะเป็นบ้าน อาคาร ออฟฟิศ ร้านอาหาร คาเฟ่ หรือพื้นที่หลังก่อสร้าง เพื่อให้ลูกค้าเห็นผลลัพธ์จริงและตรวจสอบย้อนหลังได้ทุกงาน</p>
-      </div>
-
-      <div class="portfolio-grid reveal">
-        <article class="portfolio-item">
-          <div class="thumb"><span class="badge">บ้านพักอาศัย</span>
-            <img src="images/job/job-01.jpg" alt="ห้องนอนพร้อมตู้บิ้วอินและวิวเมือง หลังทำ Big Cleaning" loading="lazy">
-          </div>
-          <div class="cap"><h4>ห้องนอนวิวเมือง ขัดกระจกจนใส</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
-        </article>
-        <article class="portfolio-item">
-          <div class="thumb"><span class="badge">ดีพคลีนห้องน้ำ</span>
-            <img src="images/job/job-07.jpg" alt="ห้องน้ำหรูกระเบื้องเขียว ขัดเงาก๊อกทองเหลืองหลังทำความสะอาด" loading="lazy">
-          </div>
-          <div class="cap"><h4>ห้องน้ำสไตล์หรู ขัดเงาทุกพื้นผิว</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
-        </article>
-        <article class="portfolio-item">
-          <div class="thumb"><span class="badge">หลังก่อสร้าง/รีโนเวท</span>
-            <img src="images/job/job-04.jpg" alt="ห้องนอนหลังก่อสร้างเสร็จใหม่ เก็บฝุ่นปูนจนสะอาดหมดจด" loading="lazy">
-          </div>
-          <div class="cap"><h4>ห้องหลังก่อสร้างเสร็จใหม่</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
-        </article>
-        <article class="portfolio-item">
-          <div class="thumb"><span class="badge">บ้านพักอาศัย</span>
-            <img src="images/job/job-05.jpg" alt="โถงบันไดบ้านสองชั้น เก็บฝุ่นละเอียดทุกซอกมุม" loading="lazy">
-          </div>
-          <div class="cap"><h4>โถงบันไดบ้าน 2 ชั้น</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
-        </article>
-        <article class="portfolio-item">
-          <div class="thumb"><span class="badge">ดีพคลีนห้องน้ำ</span>
-            <img src="images/job/job-03.jpg" alt="ห้องน้ำโทนฟ้า ขัดคราบสบู่และหินปูนออกจนเงางาม" loading="lazy">
-          </div>
-          <div class="cap"><h4>ขัดคราบสบู่-หินปูนจนเงางาม</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
-        </article>
-        <article class="portfolio-item">
-          <div class="thumb"><span class="badge">หลังบิ้วอิน/ต่อเติม</span>
-            <img src="images/job/job-08.jpg" alt="ตู้บิ้วอินติดตั้งใหม่ เช็ดฝุ่นก่อสร้างออกจนหมดจด" loading="lazy">
-          </div>
-          <div class="cap"><h4>ตู้บิ้วอินติดตั้งใหม่ เช็ดฝุ่นหมดจด</h4><span>ผลงานจริงจากทีมตะวันคลีนนิ่ง</span></div>
-        </article>
-      </div>
     </div>
   </section>
 
@@ -942,50 +874,6 @@
           <div class="num">4</div>
           <h3>ตรวจรับงาน</h3>
           <p>เช็กความเรียบร้อยร่วมกันก่อนชำระเงิน มั่นใจได้ทุกจุด</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY US -->
-  <section class="why" id="why">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">ทำไมต้องตะวันคลีนนิ่ง</span>
-        <h2>ความไว้ใจ สร้างจากรายละเอียดเล็ก ๆ ที่เราไม่มองข้าม</h2>
-      </div>
-
-      <div class="why-grid">
-        <div class="why-card reveal">
-          <div class="feature-visual">
-            <svg viewBox="0 0 100 100" fill="none" stroke-width="3"><path d="M50 8l10 20 22 3-16 15 4 22-20-11-20 11 4-22-16-15 22-3z"/></svg>
-          </div>
-          <h3>ทีมงานผ่านการอบรมและตรวจประวัติทุกคน</h3>
-          <p>ตรวจสอบประวัติก่อนเริ่มงาน สวมเครื่องแบบ พกบัตรประจำตัวตรวจสอบได้ทุกครั้ง</p>
-        </div>
-
-        <div class="why-card reveal">
-          <div class="feature-visual">
-            <svg viewBox="0 0 100 100" fill="none" stroke-width="3"><path d="M50 15c-15 0-27 12-27 27 0 20 27 40 27 40s27-20 27-40c0-15-12-27-27-27z"/><circle cx="50" cy="42" r="9"/></svg>
-          </div>
-          <h3>น้ำยาปลอดภัย ไม่ระคายผิว</h3>
-          <p>ไว้ใจได้แม้มีเด็กเล็กและสัตว์เลี้ยงในบ้าน ไม่ทิ้งกลิ่นฉุนรุนแรง</p>
-        </div>
-
-        <div class="why-card reveal">
-          <div class="feature-visual">
-            <svg viewBox="0 0 100 100" fill="none" stroke-width="3"><rect x="20" y="15" width="60" height="70" rx="8"/><path d="M35 45l10 10 20-20"/></svg>
-          </div>
-          <h3>มีประกันความเสียหายทุกงาน</h3>
-          <p>อุ่นใจหายห่วง หากเกิดข้อผิดพลาดระหว่างทำงาน เรารับผิดชอบเต็มจำนวนตามเงื่อนไข</p>
-        </div>
-
-        <div class="why-card reveal">
-          <div class="feature-visual">
-            <svg viewBox="0 0 100 100" fill="none" stroke-width="3"><circle cx="50" cy="50" r="32"/><path d="M50 32v18l12 12"/></svg>
-          </div>
-          <h3>จองง่าย ยืนยันไวผ่าน LINE</h3>
-          <p>แจ้งเตือนทีมงานล่วงหน้า ยืนยันนัดหมายภายใน 15 นาที ลดการรอคอยไม่มีกำหนด</p>
         </div>
       </div>
     </div>
@@ -1134,6 +1022,24 @@
   <!-- CONTACT & BOOKING FORM -->
   <section class="contact" id="booking">
     <div class="container">
+      <div class="trust-badges reveal">
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+          <span>ตรวจประวัติทีมงานทุกคน</span>
+        </div>
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c0-6-6-9-6-15a6 6 0 0112 0c0 6-6 9-6 15z"/></svg>
+          <span>น้ำยาปลอดภัย เด็ก/สัตว์เลี้ยง</span>
+        </div>
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 10l3 3 5-5"/></svg>
+          <span>มีประกันความเสียหาย</span>
+        </div>
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></svg>
+          <span>ยืนยันไวผ่าน LINE ใน 15 นาที</span>
+        </div>
+      </div>
       <div class="section-head center reveal">
         <span class="eyebrow" style="background:rgba(242,169,59,.15); color:var(--gold-light);">ติดต่อ & จองบริการ</span>
         <h2>ก้าวแรกของพื้นที่ที่สะอาดหมดจด เริ่มจากบทสนทนาเดียว</h2>
@@ -1237,7 +1143,7 @@
       <div>
         <h4>เกี่ยวกับเรา</h4>
         <ul>
-          <li><a href="#why">ทำไมต้องเรา</a></li>
+          <li><a href="#booking">ทำไมต้องเรา</a></li>
           <li><a href="#process">ขั้นตอนการจอง</a></li>
           <li><a href="#pricing">ราคา Big Cleaning</a></li>
           <li><a href="#testimonials">รีวิวลูกค้า</a></li>
