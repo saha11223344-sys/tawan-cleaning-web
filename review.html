@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>รีวิวการบริการ — ตะวัน คลีนนิ่ง แอนด์ เซอร์วิส</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1a56db;
+      --blue-dk: #0e3a99;
+      --blue-lt: #ebf3ff;
+      --gold:    #f59e0b;
+      --green:   #059669;
+      --red:     #dc2626;
+      --gray:    #6b7280;
+      --bg:      #f8fafc;
+      --card:    #ffffff;
+      --text:    #111827;
+    }
+
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 28px 16px 24px;
+    }
+    .brand { font-size: 13px; letter-spacing: 2px; opacity: .75; text-transform: uppercase; margin-bottom: 6px; }
+    header h1 { font-size: clamp(20px, 5vw, 26px); font-weight: 700; line-height: 1.3; }
+    header p  { margin-top: 6px; font-size: 14px; opacity: .85; }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+      max-width: 520px;
+      margin: 28px auto;
+      padding: 32px 28px;
+    }
+    @media (max-width: 560px) { .card { margin: 16px 12px; padding: 24px 18px; } }
+
+    /* ── SECTION TITLE ── */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 18px;
+    }
+
+    /* ── STAR RATING ── */
+    .star-wrap { text-align: center; margin-bottom: 28px; }
+    .star-wrap p { font-size: 15px; color: var(--gray); margin-bottom: 14px; }
+    .stars { display: flex; justify-content: center; gap: 8px; }
+    .stars input { display: none; }
+    .stars label {
+      font-size: 44px;
+      color: #d1d5db;
+      cursor: pointer;
+      transition: color .15s, transform .15s;
+      line-height: 1;
+    }
+    .stars label:hover,
+    .stars label:hover ~ label { color: #d1d5db; }
+    .stars:hover label { color: var(--gold); }
+    .stars label:hover ~ label { color: #d1d5db; }
+    /* checked state — CSS-only trick (reversed order) */
+    .stars input:checked ~ label { color: #d1d5db; }
+    .stars input:checked + label,
+    .stars input:checked ~ input:checked + label { color: var(--gold); }
+    /* hover override */
+    .stars label:hover,
+    .stars label:hover ~ label { color: #d1d5db; }
+    .stars:hover input:checked ~ label { color: #d1d5db; }
+
+    /* simpler JS-powered stars */
+    .star-btn {
+      background: none; border: none;
+      font-size: 46px;
+      color: #d1d5db;
+      cursor: pointer;
+      padding: 0 2px;
+      line-height: 1;
+      transition: transform .1s;
+    }
+    .star-btn:hover { transform: scale(1.15); }
+    .star-btn.active { color: var(--gold); }
+    #rating-text { font-size: 14px; color: var(--gray); margin-top: 10px; min-height: 20px; }
+
+    /* ── FORM ── */
+    .form-group { margin-bottom: 18px; }
+    label.field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #374151;
+    }
+    label.field-label span { color: var(--red); }
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      font-family: 'Prompt', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: #fafafa;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(26,86,219,.12);
+      background: #fff;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+
+    .hint { font-size: 12px; color: var(--gray); margin-top: 5px; }
+
+    /* ── SUBMIT ── */
+    .btn-submit {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dk) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Prompt', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .2s, transform .1s;
+      margin-top: 8px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-submit:hover { opacity: .92; }
+    .btn-submit:active { transform: scale(.98); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; }
+
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(255,255,255,.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── ERROR ── */
+    #error-msg {
+      display: none;
+      background: #fef2f2;
+      color: var(--red);
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+
+    /* ── THANK YOU ── */
+    #thank-you { display: none; text-align: center; }
+    .ty-icon { font-size: 64px; margin-bottom: 16px; }
+    #thank-you h2 { font-size: 22px; font-weight: 700; color: var(--green); margin-bottom: 10px; }
+    #thank-you p  { font-size: 15px; color: var(--gray); line-height: 1.7; }
+
+    .coupon-preview {
+      background: var(--blue-lt);
+      border: 2px dashed var(--blue);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 22px 0;
+    }
+    .coupon-preview .label { font-size: 12px; color: var(--gray); margin-bottom: 6px; }
+    .coupon-preview .code  { font-size: 28px; font-weight: 700; color: var(--blue); letter-spacing: 3px; }
+    .coupon-preview .disc  { font-size: 15px; color: var(--red); font-weight: 600; margin-top: 4px; }
+    .coupon-preview .exp   { font-size: 12px; color: var(--gray); margin-top: 4px; }
+
+    .btn-line {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #00b900;
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-family: 'Prompt', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 6px;
+      transition: opacity .2s;
+    }
+    .btn-line:hover { opacity: .88; }
+
+    .btn-google-review {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff;
+      color: #374151;
+      border: 1.5px solid #e5e7eb;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-family: 'Prompt', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      margin-top: 10px;
+      transition: border-color .2s;
+    }
+    .btn-google-review:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 20px 16px 32px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">Tawan Cleaning & Service</div>
+    <h1>รีวิวการบริการ</h1>
+    <p>ความคิดเห็นของคุณช่วยให้เราพัฒนาได้ดียิ่งขึ้น 🙏</p>
+  </header>
+
+  <!-- ── FORM CARD ── -->
+  <div class="card" id="form-card">
+    <!-- STAR RATING -->
+    <div class="star-wrap">
+      <p>ให้คะแนนความพึงพอใจ <span style="color:var(--red)">*</span></p>
+      <div class="stars" id="star-container">
+        <button type="button" class="star-btn" data-val="1">★</button>
+        <button type="button" class="star-btn" data-val="2">★</button>
+        <button type="button" class="star-btn" data-val="3">★</button>
+        <button type="button" class="star-btn" data-val="4">★</button>
+        <button type="button" class="star-btn" data-val="5">★</button>
+      </div>
+      <div id="rating-text"></div>
+    </div>
+
+    <!-- FIELDS -->
+    <p class="section-label">ข้อมูลของคุณ</p>
+
+    <div class="form-group">
+      <label class="field-label" for="f-name">ชื่อ–นามสกุล <span>*</span></label>
+      <input type="text" id="f-name" placeholder="เช่น สมชาย ใจดี" />
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="f-tel">เบอร์โทรศัพท์ <span>*</span></label>
+      <input type="tel" id="f-tel" placeholder="0xx-xxx-xxxx" />
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="f-email">อีเมล <span>*</span></label>
+      <input type="email" id="f-email" placeholder="example@email.com" />
+      <p class="hint">⚡ คูปองส่วนลด 10% จะส่งไปที่อีเมลนี้ทันทีหลังรีวิว</p>
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="f-comment">ความคิดเห็น / รีวิวการบริการ <span>*</span></label>
+      <textarea id="f-comment" placeholder="เล่าประสบการณ์การใช้บริการของคุณ... บ้านสะอาดขึ้นไหม ทีมงานเป็นยังไงบ้าง ประทับใจอะไร?"></textarea>
+    </div>
+
+    <button class="btn-submit" id="btn-submit" onclick="submitReview()">
+      <span class="spinner" id="spinner"></span>
+      <span id="btn-text">ส่งรีวิว &amp; รับคูปองส่วนลด 🎁</span>
+    </button>
+
+    <div id="error-msg"></div>
+  </div>
+
+  <!-- ── THANK YOU CARD ── -->
+  <div class="card" id="thank-you">
+    <div class="ty-icon">🎉</div>
+    <h2>ขอบคุณสำหรับรีวิวนะครับ!</h2>
+    <p>เราได้รับความคิดเห็นของคุณแล้ว<br>และจะนำไปพัฒนาการให้บริการต่อไป</p>
+
+    <div class="coupon-preview">
+      <div class="label">🎁 โค้ดส่วนลดพิเศษเฉพาะคุณ</div>
+      <div class="code" id="ty-code">TWN-XXXXXX</div>
+      <div class="disc">ลด 10% สำหรับการใช้บริการครั้งถัดไป</div>
+      <div class="exp" id="ty-exp"></div>
+    </div>
+
+    <p style="font-size:13px;color:var(--gray);margin-bottom:18px;">
+      เราได้ส่งโค้ดนี้ไปที่อีเมลของคุณแล้ว<br>
+      วิธีใช้: แจ้งโค้ดเมื่อจองบริการทาง LINE หรือโทรศัพท์
+    </p>
+
+    <a href="https://lin.ee/iuLQ4Lbg" class="btn-line" target="_blank">
+      💬 จองบริการครั้งถัดไป (LINE)
+    </a>
+
+    <!-- Google Review button — ใส่ link จริงทีหลัง -->
+    <br>
+    <a href="#" class="btn-google-review" id="google-review-btn" target="_blank" style="display:none">
+      ⭐ ให้ดาว Google Review ด้วยนะครับ
+    </a>
+
+    <p style="font-size:12px;color:#9ca3af;margin-top:20px;">
+      สอบถาม: 090-223-6654 | ทุกวัน 08:00–20:00 น.
+    </p>
+  </div>
+
+  <footer>
+    <a href="https://www.tawancleaning.com">tawancleaning.com</a> &nbsp;|&nbsp; ตะวัน คลีนนิ่ง แอนด์ เซอร์วิส
+  </footer>
+
+  <script>
+    // ─── STAR RATING ───────────────────────────────────────────────
+    let selectedRating = 0;
+    const ratingLabels = ['', 'ไม่พอใจมาก', 'พอใช้', 'ปานกลาง', 'พอใจมาก', 'ประทับใจมากที่สุด! 🌟'];
+    const starBtns = document.querySelectorAll('.star-btn');
+    const ratingText = document.getElementById('rating-text');
+
+    starBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedRating = parseInt(btn.dataset.val);
+        updateStars(selectedRating);
+        ratingText.textContent = ratingLabels[selectedRating];
+        ratingText.style.color = selectedRating === 5 ? '#059669' : '#6b7280';
+      });
+      btn.addEventListener('mouseenter', () => updateStars(parseInt(btn.dataset.val)));
+      btn.addEventListener('mouseleave', () => updateStars(selectedRating));
+    });
+
+    function updateStars(val) {
+      starBtns.forEach(b => {
+        b.classList.toggle('active', parseInt(b.dataset.val) <= val);
+      });
+    }
+
+    // ─── SUBMIT ────────────────────────────────────────────────────
+    const WEBHOOK_URL = 'https://n8n.tawancleaning.com/webhook/tawan-review';
+
+    async function submitReview() {
+      const name    = document.getElementById('f-name').value.trim();
+      const tel     = document.getElementById('f-tel').value.trim();
+      const email   = document.getElementById('f-email').value.trim();
+      const comment = document.getElementById('f-comment').value.trim();
+      const errEl   = document.getElementById('error-msg');
+
+      // Validate
+      if (!selectedRating)      return showError('กรุณาเลือกคะแนนความพึงพอใจ ⭐');
+      if (!name)                 return showError('กรุณากรอกชื่อ–นามสกุล');
+      if (!tel)                  return showError('กรุณากรอกเบอร์โทรศัพท์');
+      if (!validateEmail(email)) return showError('กรุณากรอกอีเมลให้ถูกต้อง');
+      if (!comment)              return showError('กรุณาเขียนความคิดเห็น');
+
+      errEl.style.display = 'none';
+      setLoading(true);
+
+      const payload = {
+        name, tel, email, rating: selectedRating, comment,
+        submitted_at: new Date().toISOString()
+      };
+
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const json = await res.json().catch(() => ({}));
+
+        if (res.ok && json.success !== false) {
+          showThankYou(json.coupon || '', json.expiry || '');
+        } else {
+          throw new Error(json.error || 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+        }
+      } catch (err) {
+        showError('ไม่สามารถส่งข้อมูลได้ขณะนี้ กรุณาลองใหม่ หรือโทร 090-223-6654');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    function showThankYou(code, expiry) {
+      document.getElementById('form-card').style.display = 'none';
+      const ty = document.getElementById('thank-you');
+      ty.style.display = 'block';
+      if (code) document.getElementById('ty-code').textContent = code;
+      if (expiry) document.getElementById('ty-exp').textContent = 'หมดอายุ: ' + expiry;
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('error-msg');
+      el.textContent = '⚠️ ' + msg;
+      el.style.display = 'block';
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function setLoading(on) {
+      document.getElementById('btn-submit').disabled = on;
+      document.getElementById('spinner').style.display = on ? 'block' : 'none';
+      document.getElementById('btn-text').textContent = on ? 'กำลังส่ง...' : 'ส่งรีวิว & รับคูปองส่วนลด 🎁';
+    }
+
+    function validateEmail(e) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+    }
+
+    // ─── Google Review link (ใส่ link จริงตรงนี้เมื่อได้จาก GBP) ──
+    const GOOGLE_REVIEW_LINK = ''; // TODO: วาง link จาก Google Business Profile ตรงนี้
+    if (GOOGLE_REVIEW_LINK) {
+      const btn = document.getElementById('google-review-btn');
+      btn.href = GOOGLE_REVIEW_LINK;
+      btn.style.display = 'inline-flex';
+    }
+  </script>
+</body>
+</html>
