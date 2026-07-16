@@ -61,43 +61,64 @@
     }
 
     /* ── STAR RATING ── */
-    .star-wrap { text-align: center; margin-bottom: 28px; }
-    .star-wrap p { font-size: 15px; color: var(--gray); margin-bottom: 14px; }
-    .stars { display: flex; justify-content: center; gap: 8px; }
-    .stars input { display: none; }
-    .stars label {
-      font-size: 44px;
-      color: #d1d5db;
-      cursor: pointer;
-      transition: color .15s, transform .15s;
-      line-height: 1;
+    .star-wrap {
+      text-align: center;
+      margin-bottom: 28px;
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      border: 2px solid #fde68a;
+      border-radius: 16px;
+      padding: 22px 16px 18px;
     }
-    .stars label:hover,
-    .stars label:hover ~ label { color: #d1d5db; }
-    .stars:hover label { color: var(--gold); }
-    .stars label:hover ~ label { color: #d1d5db; }
-    /* checked state — CSS-only trick (reversed order) */
-    .stars input:checked ~ label { color: #d1d5db; }
-    .stars input:checked + label,
-    .stars input:checked ~ input:checked + label { color: var(--gold); }
-    /* hover override */
-    .stars label:hover,
-    .stars label:hover ~ label { color: #d1d5db; }
-    .stars:hover input:checked ~ label { color: #d1d5db; }
+    .star-wrap .star-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #92400e;
+      margin-bottom: 6px;
+    }
+    .star-wrap .star-sub {
+      font-size: 13px;
+      color: #b45309;
+      margin-bottom: 16px;
+    }
+    .stars { display: flex; justify-content: center; gap: 4px; }
 
-    /* simpler JS-powered stars */
+    /* JS-powered stars */
     .star-btn {
       background: none; border: none;
-      font-size: 46px;
+      font-size: 56px;
       color: #d1d5db;
       cursor: pointer;
-      padding: 0 2px;
+      padding: 0 3px;
       line-height: 1;
-      transition: transform .1s;
+      transition: transform .15s, color .1s, filter .15s;
+      filter: drop-shadow(0 0 0px #f59e0b);
     }
-    .star-btn:hover { transform: scale(1.15); }
-    .star-btn.active { color: var(--gold); }
-    #rating-text { font-size: 14px; color: var(--gray); margin-top: 10px; min-height: 20px; }
+    .star-btn:hover { transform: scale(1.25); }
+    .star-btn.active {
+      color: var(--gold);
+      filter: drop-shadow(0 2px 6px rgba(245,158,11,.5));
+      animation: starPop .2s ease;
+    }
+    @keyframes starPop {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.35); }
+      100% { transform: scale(1); }
+    }
+    /* pulse on empty stars to draw attention */
+    @keyframes starPulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .45; }
+    }
+    .star-btn.pulse { animation: starPulse 1.2s ease-in-out infinite; }
+
+    #rating-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: #92400e;
+      margin-top: 12px;
+      min-height: 22px;
+      letter-spacing: .2px;
+    }
 
     /* ── FORM ── */
     .form-group { margin-bottom: 18px; }
@@ -240,21 +261,35 @@
     <div class="brand">Tawan Cleaning & Service</div>
     <h1>รีวิวการบริการ</h1>
     <p>ความคิดเห็นของคุณช่วยให้เราพัฒนาได้ดียิ่งขึ้น 🙏</p>
+    <div style="display:inline-block;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.4);border-radius:50px;padding:8px 20px;margin-top:14px;font-size:14px;font-weight:600;letter-spacing:.3px;">
+      🎁 รีวิวเสร็จ รับทันที! <span style="color:#fde68a">คูปองส่วนลด 10%</span> สำหรับครั้งหน้า
+    </div>
   </header>
 
   <!-- ── FORM CARD ── -->
   <div class="card" id="form-card">
+
+    <!-- INCENTIVE BANNER -->
+    <div style="background:linear-gradient(135deg,#ebf3ff,#dbeafe);border:1.5px solid #bfdbfe;border-radius:12px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;gap:14px;">
+      <div style="font-size:32px;line-height:1;">🎁</div>
+      <div>
+        <div style="font-weight:700;color:#1a56db;font-size:15px;">รับคูปองส่วนลด 10% ฟรี!</div>
+        <div style="font-size:13px;color:#374151;margin-top:3px;">กรอกรีวิวให้ครบ แล้วรับโค้ดส่วนลดทางอีเมลทันที<br>ใช้ได้กับทุกบริการ ภายใน 6 เดือน</div>
+      </div>
+    </div>
+
     <!-- STAR RATING -->
     <div class="star-wrap">
-      <p>ให้คะแนนความพึงพอใจ <span style="color:var(--red)">*</span></p>
+      <div class="star-title">⭐ ให้คะแนนความพึงพอใจ</div>
+      <div class="star-sub">กดเลือกดาวเลยครับ แล้วรับคูปองส่วนลดทันที!</div>
       <div class="stars" id="star-container">
-        <button type="button" class="star-btn" data-val="1">★</button>
-        <button type="button" class="star-btn" data-val="2">★</button>
-        <button type="button" class="star-btn" data-val="3">★</button>
-        <button type="button" class="star-btn" data-val="4">★</button>
-        <button type="button" class="star-btn" data-val="5">★</button>
+        <button type="button" class="star-btn pulse" data-val="1">★</button>
+        <button type="button" class="star-btn pulse" data-val="2">★</button>
+        <button type="button" class="star-btn pulse" data-val="3">★</button>
+        <button type="button" class="star-btn pulse" data-val="4">★</button>
+        <button type="button" class="star-btn pulse" data-val="5">★</button>
       </div>
-      <div id="rating-text"></div>
+      <div id="rating-text">👆 แตะดาวเพื่อให้คะแนน</div>
     </div>
 
     <!-- FIELDS -->
@@ -336,9 +371,12 @@
     starBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         selectedRating = parseInt(btn.dataset.val);
+        // stop pulse once rated
+        starBtns.forEach(b => b.classList.remove('pulse'));
         updateStars(selectedRating);
-        ratingText.textContent = ratingLabels[selectedRating];
-        ratingText.style.color = selectedRating === 5 ? '#059669' : '#6b7280';
+        const labels = ['', '😞 ไม่พอใจมาก', '😐 พอใช้', '🙂 ปานกลาง', '😊 พอใจมาก', '🌟 ประทับใจมากที่สุด!'];
+        ratingText.textContent = labels[selectedRating];
+        ratingText.style.color = selectedRating >= 4 ? '#059669' : '#92400e';
       });
       btn.addEventListener('mouseenter', () => updateStars(parseInt(btn.dataset.val)));
       btn.addEventListener('mouseleave', () => updateStars(selectedRating));
