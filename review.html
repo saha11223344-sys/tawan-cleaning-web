@@ -1,4 +1,451 @@
-เพิ่มข้อความ หรือ ปุ่ม เพื่อให้ไปรีวิว google review (ตรวจสอบก่อนว่าผิดกฏไหม)  } else {
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>รีวิวการบริการ — ตะวัน คลีนนิ่ง แอนด์ เซอร์วิส</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1a56db;
+      --blue-dk: #0e3a99;
+      --blue-lt: #ebf3ff;
+      --gold:    #f59e0b;
+      --green:   #059669;
+      --red:     #dc2626;
+      --gray:    #6b7280;
+      --bg:      #f8fafc;
+      --card:    #ffffff;
+      --text:    #111827;
+    }
+
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 28px 16px 24px;
+    }
+    .brand { font-size: 13px; letter-spacing: 2px; opacity: .75; text-transform: uppercase; margin-bottom: 6px; }
+    header h1 { font-size: clamp(20px, 5vw, 26px); font-weight: 700; line-height: 1.3; }
+    header p  { margin-top: 6px; font-size: 14px; opacity: .85; }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+      max-width: 520px;
+      margin: 28px auto;
+      padding: 32px 28px;
+    }
+    @media (max-width: 560px) { .card { margin: 16px 12px; padding: 24px 18px; } }
+
+    /* ── SECTION TITLE ── */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 18px;
+    }
+
+    /* ── STAR RATING ── */
+    .star-wrap {
+      text-align: center;
+      margin-bottom: 28px;
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      border: 2px solid #fde68a;
+      border-radius: 16px;
+      padding: 22px 16px 18px;
+    }
+    .star-wrap .star-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #92400e;
+      margin-bottom: 6px;
+    }
+    .star-wrap .star-sub {
+      font-size: 13px;
+      color: #b45309;
+      margin-bottom: 16px;
+    }
+    .stars { display: flex; justify-content: center; gap: 4px; }
+
+    /* JS-powered stars */
+    .star-btn {
+      background: none; border: none;
+      font-size: 56px;
+      color: #d1d5db;
+      cursor: pointer;
+      padding: 0 3px;
+      line-height: 1;
+      transition: transform .15s, color .1s, filter .15s;
+      filter: drop-shadow(0 0 0px #f59e0b);
+    }
+    .star-btn:hover { transform: scale(1.25); }
+    .star-btn.active {
+      color: var(--gold);
+      filter: drop-shadow(0 2px 6px rgba(245,158,11,.5));
+      animation: starPop .2s ease;
+    }
+    @keyframes starPop {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.35); }
+      100% { transform: scale(1); }
+    }
+    /* pulse on empty stars to draw attention */
+    @keyframes starPulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .45; }
+    }
+    .star-btn.pulse { animation: starPulse 1.2s ease-in-out infinite; }
+
+    #rating-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: #92400e;
+      margin-top: 12px;
+      min-height: 22px;
+      letter-spacing: .2px;
+    }
+
+    /* ── FORM ── */
+    .form-group { margin-bottom: 18px; }
+    label.field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #374151;
+    }
+    label.field-label span { color: var(--red); }
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      font-family: 'Prompt', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      background: #fafafa;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(26,86,219,.12);
+      background: #fff;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+
+    .hint { font-size: 12px; color: var(--gray); margin-top: 5px; }
+
+    /* ── SUBMIT ── */
+    .btn-submit {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dk) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Prompt', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .2s, transform .1s;
+      margin-top: 8px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-submit:hover { opacity: .92; }
+    .btn-submit:active { transform: scale(.98); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; }
+
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(255,255,255,.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── ERROR ── */
+    #error-msg {
+      display: none;
+      background: #fef2f2;
+      color: var(--red);
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+
+    /* ── THANK YOU ── */
+    #thank-you { display: none; text-align: center; }
+    .ty-icon { font-size: 64px; margin-bottom: 16px; }
+    #thank-you h2 { font-size: 22px; font-weight: 700; color: var(--green); margin-bottom: 10px; }
+    #thank-you p  { font-size: 15px; color: var(--gray); line-height: 1.7; }
+
+    .coupon-preview {
+      background: var(--blue-lt);
+      border: 2px dashed var(--blue);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 22px 0;
+    }
+    .coupon-preview .label { font-size: 12px; color: var(--gray); margin-bottom: 6px; }
+    .coupon-preview .code  { font-size: 28px; font-weight: 700; color: var(--blue); letter-spacing: 3px; }
+    .coupon-preview .disc  { font-size: 15px; color: var(--red); font-weight: 600; margin-top: 4px; }
+    .coupon-preview .exp   { font-size: 12px; color: var(--gray); margin-top: 4px; }
+
+    .btn-line {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #00b900;
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-family: 'Prompt', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 6px;
+      transition: opacity .2s;
+    }
+    .btn-line:hover { opacity: .88; }
+
+    .btn-google-review {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff;
+      color: #374151;
+      border: 1.5px solid #e5e7eb;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-family: 'Prompt', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      margin-top: 10px;
+      transition: border-color .2s;
+    }
+    .btn-google-review:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 20px 16px 32px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+    footer a { color: var(--blue); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://www.tawancleaning.com/images/logo/logo.jpg" alt="ตะวัน คลีนนิ่ง แอนด์ เซอร์วิส"
+         style="width:82px;height:82px;object-fit:cover;border-radius:50%;border:3px solid rgba(255,255,255,.6);box-shadow:0 4px 14px rgba(0,0,0,.2);margin-bottom:12px;" />
+    <div class="brand">Tawan Cleaning & Service</div>
+    <h1>รีวิวการบริการ</h1>
+    <p>ความคิดเห็นของคุณช่วยให้เราพัฒนาได้ดียิ่งขึ้น 🙏</p>
+    <div style="display:inline-block;background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.4);border-radius:50px;padding:8px 20px;margin-top:14px;font-size:14px;font-weight:600;letter-spacing:.3px;">
+      🎁 รีวิวเสร็จ รับทันที! <span style="color:#fde68a">คูปองส่วนลด ฿500</span> สำหรับครั้งหน้า
+    </div>
+  </header>
+
+  <!-- ── FORM CARD ── -->
+  <div class="card" id="form-card">
+
+    <!-- INCENTIVE BANNER -->
+    <div style="background:linear-gradient(135deg,#ebf3ff,#dbeafe);border:1.5px solid #bfdbfe;border-radius:12px;padding:14px 18px;margin-bottom:24px;display:flex;align-items:center;gap:14px;">
+      <div style="font-size:32px;line-height:1;">🎁</div>
+      <div>
+        <div style="font-weight:700;color:#1a56db;font-size:15px;">รับคูปองส่วนลด ฿500 ฟรี!</div>
+        <div style="font-size:13px;color:#374151;margin-top:3px;">กรอกรีวิวให้ครบ แล้วรับโค้ดส่วนลดทางอีเมลทันที<br>ใช้ได้กับทุกบริการ ภายใน 6 เดือน</div>
+      </div>
+    </div>
+
+    <!-- STAR RATING -->
+    <div class="star-wrap">
+      <div class="star-title">⭐ ให้คะแนนความพึงพอใจ</div>
+      <div class="star-sub">กดเลือกดาวเลยครับ แล้วรับคูปองส่วนลดทันที!</div>
+      <div class="stars" id="star-container">
+        <button type="button" class="star-btn pulse" data-val="1">★</button>
+        <button type="button" class="star-btn pulse" data-val="2">★</button>
+        <button type="button" class="star-btn pulse" data-val="3">★</button>
+        <button type="button" class="star-btn pulse" data-val="4">★</button>
+        <button type="button" class="star-btn pulse" data-val="5">★</button>
+      </div>
+      <div id="rating-text">👆 แตะดาวเพื่อให้คะแนน</div>
+    </div>
+
+    <!-- FIELDS -->
+    <p class="section-label">ข้อมูลของคุณ</p>
+
+    <div class="form-group">
+      <label class="field-label" for="f-name">ชื่อ–นามสกุล <span>*</span></label>
+      <input type="text" id="f-name" placeholder="เช่น สมชาย ใจดี" />
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="f-tel">เบอร์โทรศัพท์ <span>*</span></label>
+      <input type="tel" id="f-tel" placeholder="0xx-xxx-xxxx" />
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="f-email">อีเมล <span>*</span></label>
+      <input type="email" id="f-email" placeholder="example@email.com" />
+      <p class="hint">⚡ คูปองส่วนลด ฿500 จะส่งไปที่อีเมลนี้ทันทีหลังรีวิว</p>
+    </div>
+
+    <div class="form-group">
+      <label class="field-label" for="f-comment">ความคิดเห็น / รีวิวการบริการ <span>*</span></label>
+      <textarea id="f-comment" placeholder="เล่าประสบการณ์การใช้บริการของคุณ... บ้านสะอาดขึ้นไหม ทีมงานเป็นยังไงบ้าง ประทับใจอะไร?"></textarea>
+    </div>
+
+    <button class="btn-submit" id="btn-submit" onclick="submitReview()">
+      <span class="spinner" id="spinner"></span>
+      <span id="btn-text">ส่งรีวิว &amp; รับคูปองส่วนลด 🎁</span>
+    </button>
+
+    <div id="error-msg"></div>
+  </div>
+
+  <!-- ── THANK YOU CARD ── -->
+  <div class="card" id="thank-you">
+    <div class="ty-icon">🎉</div>
+    <h2>ขอบคุณสำหรับรีวิวนะครับ!</h2>
+    <p>เราได้รับความคิดเห็นของคุณแล้ว<br>และจะนำไปพัฒนาการให้บริการต่อไป</p>
+
+    <div class="coupon-preview">
+      <div class="label">🎁 โค้ดส่วนลดพิเศษเฉพาะคุณ</div>
+      <div class="code" id="ty-code">TWN-XXXXXX</div>
+      <div class="disc">ส่วนลด ฿500 สำหรับการใช้บริการครั้งถัดไป</div>
+      <div class="exp" id="ty-exp"></div>
+    </div>
+
+    <p style="font-size:13px;color:var(--gray);margin-bottom:18px;">
+      เราได้ส่งโค้ดนี้ไปที่อีเมลของคุณแล้ว<br>
+      วิธีใช้: แจ้งโค้ดเมื่อจองบริการทาง LINE หรือโทรศัพท์
+    </p>
+
+    <a href="https://lin.ee/iuLQ4Lbg" class="btn-line" target="_blank">
+      💬 จองบริการครั้งถัดไป (LINE)
+    </a>
+
+    <!-- ── OPTIONAL PUBLIC REVIEW (ไม่มีเงื่อนไข ไม่ผูกคูปอง) ── -->
+    <div style="border-top:1px solid #eef2f7;margin-top:24px;padding-top:22px;">
+      <p style="font-size:14px;color:#374151;font-weight:600;margin-bottom:4px;">
+        ถ้าคุณประทับใจบริการของเรา 💙
+      </p>
+      <p style="font-size:12.5px;color:var(--gray);margin-bottom:16px;line-height:1.6;">
+        รบกวนฝากรีวิวบนช่องทางสาธารณะให้ด้วยได้นะครับ<br>
+        เป็นกำลังใจให้ทีมงานมาก (ไม่มีเงื่อนไข ทำหรือไม่ทำก็ได้)
+      </p>
+
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:center;">
+        <!-- Facebook Recommendation -->
+        <a href="https://www.facebook.com/TawanCleaning/reviews" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;max-width:300px;background:#1877f2;color:#fff;padding:12px 20px;border-radius:10px;font-family:'Prompt',sans-serif;font-size:14px;font-weight:600;text-decoration:none;">
+          <span style="font-size:18px;">👍</span> รีวิวบน Facebook
+        </a>
+
+        <!-- Google Review — เปิดใช้เมื่อ GBP กลับมา (ใส่ link แล้วเอา style display:none ออก) -->
+        <a href="#" id="google-review-btn" target="_blank" rel="noopener"
+           style="display:none;align-items:center;justify-content:center;gap:9px;width:100%;max-width:300px;background:#fff;color:#374151;border:1.5px solid #e5e7eb;padding:12px 20px;border-radius:10px;font-family:'Prompt',sans-serif;font-size:14px;font-weight:600;text-decoration:none;">
+          <span style="font-size:18px;">⭐</span> รีวิวบน Google
+        </a>
+      </div>
+    </div>
+
+    <p style="font-size:12px;color:#9ca3af;margin-top:20px;">
+      สอบถาม: 090-223-6654 | ทุกวัน 08:00–20:00 น.
+    </p>
+  </div>
+
+  <footer>
+    <a href="https://www.tawancleaning.com">tawancleaning.com</a> &nbsp;|&nbsp; ตะวัน คลีนนิ่ง แอนด์ เซอร์วิส
+  </footer>
+
+  <script>
+    // ─── STAR RATING ───────────────────────────────────────────────
+    let selectedRating = 0;
+    const ratingLabels = ['', 'ไม่พอใจมาก', 'พอใช้', 'ปานกลาง', 'พอใจมาก', 'ประทับใจมากที่สุด! 🌟'];
+    const starBtns = document.querySelectorAll('.star-btn');
+    const ratingText = document.getElementById('rating-text');
+
+    starBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedRating = parseInt(btn.dataset.val);
+        // stop pulse once rated
+        starBtns.forEach(b => b.classList.remove('pulse'));
+        updateStars(selectedRating);
+        const labels = ['', '😞 ไม่พอใจมาก', '😐 พอใช้', '🙂 ปานกลาง', '😊 พอใจมาก', '🌟 ประทับใจมากที่สุด!'];
+        ratingText.textContent = labels[selectedRating];
+        ratingText.style.color = selectedRating >= 4 ? '#059669' : '#92400e';
+      });
+      btn.addEventListener('mouseenter', () => updateStars(parseInt(btn.dataset.val)));
+      btn.addEventListener('mouseleave', () => updateStars(selectedRating));
+    });
+
+    function updateStars(val) {
+      starBtns.forEach(b => {
+        b.classList.toggle('active', parseInt(b.dataset.val) <= val);
+      });
+    }
+
+    // ─── SUBMIT ────────────────────────────────────────────────────
+    const WEBHOOK_URL = 'https://n8n.tawancleaning.com/webhook/tawan-review';
+
+    async function submitReview() {
+      const name    = document.getElementById('f-name').value.trim();
+      const tel     = document.getElementById('f-tel').value.trim();
+      const email   = document.getElementById('f-email').value.trim();
+      const comment = document.getElementById('f-comment').value.trim();
+      const errEl   = document.getElementById('error-msg');
+
+      // Validate
+      if (!selectedRating)      return showError('กรุณาเลือกคะแนนความพึงพอใจ ⭐');
+      if (!name)                 return showError('กรุณากรอกชื่อ–นามสกุล');
+      if (!tel)                  return showError('กรุณากรอกเบอร์โทรศัพท์');
+      if (!validateEmail(email)) return showError('กรุณากรอกอีเมลให้ถูกต้อง');
+      if (!comment)              return showError('กรุณาเขียนความคิดเห็น');
+
+      errEl.style.display = 'none';
+      setLoading(true);
+
+      const payload = {
+        name, tel, email, rating: selectedRating, comment,
+        submitted_at: new Date().toISOString()
+      };
+
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const json = await res.json().catch(() => ({}));
+
+        if (res.ok && json.success !== false) {
+          showThankYou(json.coupon || '', json.expiry || '');
+        } else {
           throw new Error(json.error || 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
         }
       } catch (err) {
