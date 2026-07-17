@@ -984,19 +984,42 @@
   </section>
 
   <!-- FAQ --><!-- ── LIVE REVIEWS FROM SHEET ── -->
-<section class="testi" id="live-reviews" style="padding-top:0">
-  <div class="container">
-    <div class="section-head reveal" style="margin-bottom:32px">
-      <span class="eyebrow">รีวิวล่าสุด</span>
-      <h2>เสียงจริงจากลูกค้าที่เพิ่งใช้บริการ</h2>
-    </div>
-    <div class="testi-track reveal" id="live-review-track" tabindex="0" aria-label="รีวิวล่าสุด">
-      <div class="testi-card" style="min-width:260px;opacity:.5">
-        <p class="quote" style="font-size:14px;color:#9ca3af">กำลังโหลดรีวิวล่าสุด...</p>
-      </div>
-    </div>
-  </div>
-</section>
+<script>
+(function(){
+  var SHEET_ID = '1JLIjPBLuljaB6Lmue5XZB-PE8dXpOeZHM73v2KIWUUA';
+  var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
+    '/gviz/tq?tqx=out:json&sheet=%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B8%B9%E0%B8%81%E0%B8%84%E0%B9%89%E0%B8%B2';
+  fetch(url).then(function(r){return r.text();}).then(function(text){
+    var json = JSON.parse(text.replace(/^[^(]+\(/, '').replace(/\);?\s*$/, ''));
+    var rows = (json.table && json.table.rows) || [];
+    var good = rows.filter(function(r){
+      return r.c && r.c[4] && r.c[4].v >= 4 && r.c[5] && r.c[5].v
+        && r.c[10] && r.c[10].v === 'อนุมัติ';
+    }).slice(-6).reverse();
+    if (!good.length) return;
+    var track = document.querySelector('#testimonials .testi-track');
+    if (!track) return;
+    var html = good.map(function(r){
+      var name    = (r.c[1] && r.c[1].v) || 'ลูกค้า';
+      var rating  = (r.c[4] && r.c[4].v) || 5;
+      var comment = (r.c[5] && r.c[5].v) || '';
+      var date    = (r.c[0] && r.c[0].v) || '';
+      var stars   = '★'.repeat(rating);
+      var parts   = name.trim().split(' ');
+      var shortName = parts[0] + (parts[1] ? ' ' + parts[1].charAt(0) + '.' : '');
+      var initial = name.charAt(0);
+      return '<article class="testi-card">' +
+        '<div class="quote-mark">\u201c</div>' +
+        '<p class="quote">' + comment.replace(/</g,'&lt;') + '</p>' +
+        '<div class="stars">' + stars + '</div>' +
+        '<div class="who"><div class="avatar">' + initial + '</div>' +
+        '<div><strong>' + shortName + '</strong><span>ลูกค้าจริง · ' + date + '</span></div></div>' +
+      '</article>';
+    }).join('');
+    track.insertAdjacentHTML('afterbegin', html);
+  }).catch(function(){});
+})();
+</script>
 
 <script>
 (function(){
