@@ -1390,6 +1390,17 @@
 
   // Contact form — submits real data (incl. photos) to n8n webhook
   var contactForm = document.getElementById('contactForm');
+  // Track phone number clicks (GA4)
+  document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if (typeof gtag === 'function') {
+        gtag('event', 'phone_click', {
+          event_category: 'engagement',
+          link_text: a.textContent.trim() || 'phone_icon'
+        });
+      }
+    });
+  });
   var formStatus = document.getElementById('formStatus');
   var N8N_WEBHOOK_URL = 'https://n8n.tawancleaning.com/webhook/tawan-lead';
   var MAX_PHOTOS = 3;
@@ -1451,6 +1462,13 @@
       photoPreview.innerHTML = '';
 
       // Google Ads conversion tracking — fires only after successful submission
+      // GA4 custom event — lead form submitted successfully
+      if (typeof gtag === 'function') {
+        gtag('event', 'lead_form_success', {
+          event_category: 'contact_form',
+          job_type: formData.get('jobType')
+        });
+      }
       if (typeof gtag === 'function') {
         gtag('event', 'conversion', {'send_to': 'AW-17951083001/vthSCKvI7M0cEPmT3-9C'});
       }
