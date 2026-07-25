@@ -1632,5 +1632,90 @@
   })();
 })();
 </script>
+  <!-- ===== ระบบกันสแปมฟอร์มติดต่อ — ตะวันคลีนนิ่ง ===== -->
+<!-- วางบล็อกนี้ไว้ก่อนแท็ก </body> ในไฟล์ index.html -->
+<script>
+(function () {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+
+  var status = document.getElementById('formStatus');
+  var loadedAt = Date.now();
+
+  /* ---- 1) Honeypot: ช่องล่องหนที่คนจริงมองไม่เห็น แต่บอทจะกรอก ---- */
+  var hp = document.createElement('input');
+  hp.type = 'text';
+  hp.name = 'website_url';
+  hp.id = 'cf-website-url';
+  hp.tabIndex = -1;
+  hp.autocomplete = 'off';
+  hp.setAttribute('aria-hidden', 'true');
+  hp.style.cssText = 'position:absolute!important;left:-9999px!important;top:auto;width:1px;height:1px;opacity:0;pointer-events:none;';
+  form.appendChild(hp);
+
+  function reject(msg, focusEl) {
+    if (status) {
+      status.textContent = msg;
+      status.style.color = '#c0392b';
+    }
+    if (focusEl) { try { focusEl.focus(); } catch (e) {} }
+  }
+
+  function recentlySubmitted() {
+    try {
+      var last = parseInt(localStorage.getItem('tw_last_submit') || '0', 10);
+      return last > 0 && (Date.now() - last) < 60000; /* 60 วินาที */
+    } catch (e) { return false; }
+  }
+
+  /* ---- ดักที่ระดับ document (capture) เพื่อให้ทำงานก่อนโค้ดส่งฟอร์มเดิม ---- */
+  document.addEventListener('submit', function (e) {
+    if (e.target !== form) return;
+
+    function block(msg, focusEl) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      reject(msg, focusEl);
+      if (typeof gtag === 'function') {
+        gtag('event', 'spam_blocked', { event_category: 'contact_form' });
+      }
+    }
+
+    /* 1) honeypot ถูกกรอก = บอทแน่นอน */
+    if (hp.value.trim() !== '') {
+      return block('ไม่สามารถส่งคำขอได้ กรุณาลองใหม่อีกครั้ง');
+    }
+
+    /* 2) กรอกเสร็จเร็วกว่า 4 วินาที = บอท */
+    if (Date.now() - loadedAt < 4000) {
+      return block('กรุณาตรวจสอบข้อมูลอีกครั้งก่อนกดส่ง');
+    }
+
+    /* 3) เบอร์โทรต้องเป็นรูปแบบเบอร์ไทยจริง */
+    var telEl = form.querySelector('[name="tel"]');
+    var tel = (telEl && telEl.value ? telEl.value : '').replace(/[\s\-().]/g, '');
+    if (!/^(0\d{8,9}|\+66\d{8,9}|66\d{8,9})$/.test(tel)) {
+      return block('กรุณากรอกเบอร์โทรให้ถูกต้อง เช่น 0902236654', telEl);
+    }
+
+    /* 4) ชื่อต้องมีอย่างน้อย 2 ตัวอักษร และไม่ใช่ตัวเลขล้วน */
+    var nameEl = form.querySelector('[name="name"]');
+    var name = (nameEl && nameEl.value ? nameEl.value : '').trim();
+    if (name.length < 2 || /^[\d\s.\-]+$/.test(name)) {
+      return block('กรุณากรอกชื่อ–นามสกุลให้ครบถ้วน', nameEl);
+    }
+
+    /* 5) เบราว์เซอร์เดิมเพิ่งส่งไปไม่ถึง 1 นาที */
+    if (recentlySubmitted()) {
+      return block('คุณเพิ่งส่งคำขอไปแล้ว กรุณารอสักครู่ก่อนส่งใหม่');
+    }
+
+    /* ผ่านทุกด่าน — บันทึกเวลาส่งล่าสุด */
+    try { localStorage.setItem('tw_last_submit', String(Date.now())); } catch (err) {}
+  }, true);
+})();
+</script>
+<!-- ===== จบระบบกันสแปม ===== -->
+
 </body>
 </html>
