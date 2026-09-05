@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คำนวณราคาทำความสะอาดเบื้องต้น | ตะวันคลีนนิ่ง</title>
+<meta name="description" content="คำนวณราคา Big Cleaning เบื้องต้นด้วยตัวเอง เลือกห้องน้ำ ห้องนอน ที่จอดรถ ระบบคำนวณราคารวมพร้อมค่าเดินทางให้ทันที โดยตะวันคลีนนิ่ง">
+<meta property="og:title" content="คำนวณราคาทำความสะอาดเบื้องต้น | ตะวันคลีนนิ่ง">
+<meta property="og:description" content="เลือกรายการที่ต้องการ ดูราคาประเมินเบื้องต้นทันที ก่อนแชทสอบถามทีมงาน">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://www.tawancleaning.com/images/cover/cover.jpg">
+<link rel="canonical" href="https://www.tawancleaning.com/price-calculator">
+<link rel="icon" href="/images/logo/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EC; --cream-alt:#F3ECDC; --teal:#123A3B; --teal-dark:#0A2726; --teal-light:#1F5C58;
+    --gold:#F2A93B; --gold-light:#FBD897; --aqua:#D8ECE8; --text:#1B2624; --text-soft:#4C5A55;
+    --white:#FFFFFF; --radius-lg:28px; --radius-md:18px; --radius-sm:12px;
+    --ease:cubic-bezier(.16,.84,.44,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; font-family:'Prompt',sans-serif; background:var(--cream); color:var(--text); line-height:1.65;}
+  .container{max-width:520px; margin:0 auto; padding:0 20px;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  button{font-family:inherit; cursor:pointer;}
+
+  header{background:var(--cream); border-bottom:1px solid rgba(18,58,59,.08); padding:14px 0; position:sticky; top:0; z-index:50;}
+  .nav-wrap{display:flex; align-items:center; justify-content:space-between; gap:16px; max-width:1200px; margin:0 auto; padding:0 24px;}
+  .logo{display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.05rem; color:var(--teal); text-decoration:none; white-space:nowrap;}
+  .logo-mark{width:38px; height:38px; border-radius:50%; object-fit:cover;}
+  .tel-link{font-size:.88rem; color:var(--teal); text-decoration:none; display:none;}
+  @media(min-width:640px){.tel-link{display:block;}}
+
+  .breadcrumb{font-size:.82rem; color:var(--text-soft); padding:18px 0 0;}
+  .breadcrumb a{color:var(--teal-light); text-decoration:none;}
+
+  main{padding:22px 0 60px;}
+
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:.78rem; font-weight:600; letter-spacing:.05em; color:var(--teal-light); background:var(--aqua); padding:6px 14px; border-radius:999px; margin-bottom:16px;}
+  .eyebrow::before{content:''; width:6px; height:6px; border-radius:50%; background:var(--gold);}
+
+  h1{font-size:clamp(1.5rem,4vw,1.9rem); line-height:1.3; font-weight:800; color:var(--teal-dark); margin:0 0 10px;}
+  .lede{font-size:.95rem; color:var(--text-soft); margin:0 0 28px;}
+
+  .item-list{display:flex; flex-direction:column; gap:12px; margin-bottom:24px;}
+  .item-row{background:var(--white); border:1px solid rgba(18,58,59,.1); border-radius:var(--radius-md); padding:15px 16px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 10px 24px -18px rgba(10,39,38,.3); gap:10px;}
+  .item-left{display:flex; align-items:center; gap:13px; min-width:0;}
+  .item-icon{width:44px; height:44px; border-radius:12px; background:var(--aqua); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .item-text{display:flex; flex-direction:column; gap:2px; min-width:0;}
+  .item-text .label{font-weight:600; font-size:.96rem; color:var(--teal-dark);}
+  .item-text .sub{font-size:.78rem; color:var(--text-soft);}
+
+  .stepper{display:flex; align-items:center; gap:10px; flex-shrink:0;}
+  .step-btn{width:34px; height:34px; border-radius:50%; border:1.5px solid rgba(18,58,59,.22); background:#fff; display:flex; align-items:center; justify-content:center; padding:0;}
+  .step-btn.plus{border:none; background:var(--teal);}
+  .step-btn:disabled{opacity:.35; cursor:not-allowed;}
+  .step-count{min-width:18px; text-align:center; font-weight:700; font-size:1rem; color:var(--teal-dark);}
+
+  .summary{background:var(--gold); border-radius:24px; padding:24px 22px; box-shadow:0 24px 50px -24px rgba(10,39,38,.4);}
+  .summary .label{display:block; font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:rgba(10,39,38,.7); margin-bottom:6px;}
+  .summary .total{display:block; font-size:2.1rem; font-weight:800; color:var(--teal-dark); line-height:1.15;}
+  .summary-lines{margin-top:12px; display:flex; flex-direction:column; gap:5px;}
+  .summary-lines div{display:flex; justify-content:space-between; font-size:.82rem; color:rgba(10,39,38,.75);}
+  .min-note{margin:8px 0 0; font-size:.8rem; color:rgba(10,39,38,.65); line-height:1.5; display:none;}
+  .min-note.show{display:block;}
+  .breakdown{margin-top:16px; padding-top:16px; border-top:1px solid rgba(10,39,38,.15); display:none; flex-direction:column; gap:6px;}
+  .breakdown.show{display:flex;}
+  .breakdown div{display:flex; justify-content:space-between; font-size:.85rem; color:rgba(10,39,38,.85);}
+
+  .cta-btn{margin-top:20px; width:100%; padding:16px; border-radius:999px; background:var(--teal); color:var(--cream); font-weight:700; font-size:1rem; border:none; display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; transition:background .3s var(--ease), transform .3s var(--ease);}
+  .cta-btn:hover{background:var(--gold); color:var(--teal-dark); transform:translateY(-2px);}
+  .cta-sub{text-align:center; margin:10px 0 0; font-size:.78rem; color:var(--text-soft);}
+
+  .disclaimer{margin-top:28px; font-size:.8rem; color:var(--text-soft); text-align:center;}
+
+  footer{background:var(--teal-dark); color:rgba(251,246,236,.7); padding:40px 0; margin-top:60px; font-size:.88rem;}
+  footer a{color:var(--gold-light); text-decoration:none;}
+  .footer-links{display:flex; gap:20px; flex-wrap:wrap; margin-bottom:16px;}
+</style>
+
+<!-- Google tag (gtag.js) - GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XD1CQMHP28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XD1CQMHP28');
+  gtag('config', 'AW-17951083001');
+</script>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="/" class="logo"><img class="logo-mark" src="/images/logo/logo.jpg" alt="โลโก้ตะวันคลีนนิ่ง">ตะวัน<span style="color:var(--gold);">คลีนนิ่ง</span></a>
+    <a class="tel-link" href="tel:0902236654">090-223-6654</a>
+  </div>
+</header>
+
+<div class="container breadcrumb">
+  <a href="/">หน้าแรก</a> / คำนวณราคาเบื้องต้น
+</div>
+
+<main class="container">
+  <span class="eyebrow">คำนวณราคาออนไลน์</span>
+  <h1>ประเมินราคา Big Cleaning เบื้องต้น</h1>
+  <p class="lede">เลือกรายการที่ต้องการ ระบบคำนวณราคาให้ทันที — ราคานี้เป็นราคาประเมินเบื้องต้นเท่านั้น ทีมงานจะยืนยันราคาสุดท้ายอีกครั้งหลังดูภาพหรือหน้างานจริง</p>
+
+  <div class="item-list" id="item-list"></div>
+
+  <div class="summary">
+    <span class="label">ราคาประเมินเบื้องต้น</span>
+    <span class="total" id="total-text">3,900 บาท</span>
+    <div class="summary-lines">
+      <div><span>ค่าบริการทำความสะอาด</span><span id="service-text">2,900 บาท</span></div>
+      <div><span>ค่าเดินทาง</span><span id="travel-text">1,000 บาท</span></div>
+    </div>
+    <p class="min-note" id="min-note">* ค่าบริการยังไม่ถึงเกณฑ์ขั้นต่ำ ระบบคิดราคาขั้นต่ำที่ 2,900 บาท/งาน (ไม่รวมค่าเดินทาง)</p>
+    <div class="breakdown" id="breakdown"></div>
+  </div>
+
+  <a class="cta-btn" href="https://lin.ee/iuLQ4Lbg" target="_blank" rel="noopener">
+    แชทกับทีมงานเพื่อจองคิว
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FBF6EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+  <p class="cta-sub">ทีมงานติดต่อกลับภายใน 1 วันทำการ • ไม่มีค่าใช้จ่ายแอบแฝง</p>
+
+  <p class="disclaimer">ราคาที่คำนวณเป็นราคาประเมินเบื้องต้นสำหรับใช้ตัดสินใจเท่านั้น ไม่ใช่ราคาสุดท้าย ทีมงานจะยืนยันราคาที่แน่นอนอีกครั้งหลังตรวจสอบภาพหรือหน้างานจริง</p>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-links">
+      <a href="/">หน้าแรก</a>
+      <a href="/#services">บริการ</a>
+      <a href="/#pricing">ราคา</a>
+      <a href="/#booking">จองบริการ</a>
+      <a href="tel:0902236654">090-223-6654</a>
+    </div>
+    <p>&copy; 2026 ตะวันคลีนนิ่ง แอนด์ เซอร์วิส — บริการ Big Cleaning กรุงเทพฯ และปริมณฑล</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var MIN_ORDER = 2900;
+  var TRAVEL_FEE = 1000;
+
+  var items = [
+    {
+      key: 'bathroom', label: 'ห้องน้ำ', price: 500, count: 1,
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#123A3B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9a7 7 0 0 1 14 0"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="8" y1="13" x2="8" y2="15"/><line x1="12" y1="13" x2="12" y2="16"/><line x1="16" y1="13" x2="16" y2="15"/></svg>'
+    },
+    {
+      key: 'bedroom', label: 'ห้องนอน', price: 1000, count: 1,
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#123A3B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M3 18v2M21 18v2"/><path d="M3 12V7a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v3"/><path d="M13 10V7a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5"/></svg>'
+    },
+    {
+      key: 'parking', label: 'ที่จอดรถ', price: 1500, count: 0,
+      icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#123A3B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l1.5-5A2 2 0 0 1 7.4 9.5h9.2A2 2 0 0 1 18.5 11L20 16"/><path d="M3 16h18v2a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-.5H6V18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2z"/><circle cx="7.5" cy="16.5" r="1.3"/><circle cx="16.5" cy="16.5" r="1.3"/></svg>'
+    }
+  ];
+
+  var minusIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#123A3B" stroke-width="2.4" stroke-linecap="round"><line x1="4" y1="12" x2="20" y2="12"/></svg>';
+  var plusIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FBF6EC" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/></svg>';
+
+  function baht(n){ return n.toLocaleString('th-TH'); }
+
+  var listEl = document.getElementById('item-list');
+
+  function render(){
+    listEl.innerHTML = items.map(function(item){
+      return '' +
+        '<div class="item-row">' +
+          '<div class="item-left">' +
+            '<div class="item-icon">' + item.icon + '</div>' +
+            '<div class="item-text">' +
+              '<span class="label">' + item.label + '</span>' +
+              '<span class="sub">เริ่มต้น ' + baht(item.price) + ' บาท/รายการ</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="stepper">' +
+            '<button class="step-btn minus" data-key="' + item.key + '" data-action="dec" ' + (item.count === 0 ? 'disabled' : '') + '>' + minusIcon + '</button>' +
+            '<span class="step-count">' + item.count + '</span>' +
+            '<button class="step-btn plus" data-key="' + item.key + '" data-action="inc">' + plusIcon + '</button>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+
+    var subtotal = items.reduce(function(sum, i){ return sum + i.price * i.count; }, 0);
+    var service = Math.max(subtotal, MIN_ORDER);
+    var total = service + TRAVEL_FEE;
+    var belowMin = subtotal < MIN_ORDER && subtotal > 0;
+    var chosen = items.filter(function(i){ return i.count > 0; });
+
+    document.getElementById('total-text').textContent = baht(total) + ' บาท';
+    document.getElementById('service-text').textContent = baht(service) + ' บาท';
+    document.getElementById('travel-text').textContent = baht(TRAVEL_FEE) + ' บาท';
+
+    var minNote = document.getElementById('min-note');
+    minNote.classList.toggle('show', belowMin);
+
+    var breakdownEl = document.getElementById('breakdown');
+    breakdownEl.classList.toggle('show', chosen.length > 0);
+    breakdownEl.innerHTML = chosen.map(function(i){
+      return '<div><span>' + i.label + ' x' + i.count + '</span><span>' + baht(i.price * i.count) + ' บาท</span></div>';
+    }).join('');
+  }
+
+  listEl.addEventListener('click', function(e){
+    var btn = e.target.closest('.step-btn');
+    if (!btn || btn.disabled) return;
+    var key = btn.getAttribute('data-key');
+    var action = btn.getAttribute('data-action');
+    var item = items.find(function(i){ return i.key === key; });
+    if (!item) return;
+    if (action === 'inc') item.count = Math.min(item.count + 1, 20);
+    if (action === 'dec') item.count = Math.max(item.count - 1, 0);
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
