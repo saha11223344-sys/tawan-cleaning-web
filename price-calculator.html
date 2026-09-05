@@ -109,7 +109,7 @@
 <main class="container">
   <span class="eyebrow">คำนวณราคาออนไลน์</span>
   <h1>ประเมินราคา Big Cleaning เบื้องต้น</h1>
-  <p class="lede">เลือกรายการที่ต้องการ ระบบคำนวณราคาให้ทันที — ราคานี้เป็นราคาประเมินเบื้องต้นเท่านั้น ทีมงานจะยืนยันราคาสุดท้ายอีกครั้งหลังดูภาพหรือหน้างานจริง</p>
+  <p class="lede">ค่าบริการพื้นฐาน 1,000 บาท + ค่าเดินทาง 500 บาท เป็นค่าคงที่ทุกงาน จากนั้นเลือกรายการเพิ่มเติมที่ต้องการ ระบบคำนวณราคารวมให้ทันที — ราคานี้เป็นราคาประเมินเบื้องต้นเท่านั้น ทีมงานจะยืนยันราคาสุดท้ายอีกครั้งหลังดูภาพหรือหน้างานจริง</p>
 
   <div class="item-list" id="item-list"></div>
 
@@ -117,10 +117,9 @@
     <span class="label">ราคาประเมินเบื้องต้น</span>
     <span class="total" id="total-text">1,500 บาท</span>
     <div class="summary-lines">
-      <div><span>ค่าบริการทำความสะอาด</span><span id="service-text">1,000 บาท</span></div>
+      <div><span>ค่าบริการพื้นฐาน</span><span id="service-text">1,000 บาท</span></div>
       <div><span>ค่าเดินทาง</span><span id="travel-text">500 บาท</span></div>
     </div>
-    <p class="min-note" id="min-note">* ค่าบริการยังไม่ถึงเกณฑ์ขั้นต่ำ ระบบคิดราคาขั้นต่ำที่ 1,000 บาท/งาน (ไม่รวมค่าเดินทาง)</p>
     <div class="breakdown" id="breakdown"></div>
   </div>
 
@@ -148,16 +147,16 @@
 
 <script>
 (function(){
-  var MIN_ORDER = 1000;
+  var BASE_SERVICE = 1000;
   var TRAVEL_FEE = 500;
 
   var items = [
     {
-      key: 'bathroom', label: 'ห้องน้ำ', price: 500, count: 1,
+      key: 'bathroom', label: 'ห้องน้ำ', price: 500, count: 0,
       icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#123A3B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9a7 7 0 0 1 14 0"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="8" y1="13" x2="8" y2="15"/><line x1="12" y1="13" x2="12" y2="16"/><line x1="16" y1="13" x2="16" y2="15"/></svg>'
     },
     {
-      key: 'bedroom', label: 'ห้องนอน', price: 1000, count: 1,
+      key: 'bedroom', label: 'ห้องนอน', price: 1000, count: 0,
       icon: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#123A3B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6"/><path d="M3 18v2M21 18v2"/><path d="M3 12V7a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v3"/><path d="M13 10V7a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5"/></svg>'
     },
     {
@@ -181,7 +180,7 @@
             '<div class="item-icon">' + item.icon + '</div>' +
             '<div class="item-text">' +
               '<span class="label">' + item.label + '</span>' +
-              '<span class="sub">เริ่มต้น ' + baht(item.price) + ' บาท/รายการ</span>' +
+              '<span class="sub">+' + baht(item.price) + ' บาท/รายการ</span>' +
             '</div>' +
           '</div>' +
           '<div class="stepper">' +
@@ -193,17 +192,12 @@
     }).join('');
 
     var subtotal = items.reduce(function(sum, i){ return sum + i.price * i.count; }, 0);
-    var service = Math.max(subtotal, MIN_ORDER);
-    var total = service + TRAVEL_FEE;
-    var belowMin = subtotal < MIN_ORDER && subtotal > 0;
+    var total = BASE_SERVICE + TRAVEL_FEE + subtotal;
     var chosen = items.filter(function(i){ return i.count > 0; });
 
     document.getElementById('total-text').textContent = baht(total) + ' บาท';
-    document.getElementById('service-text').textContent = baht(service) + ' บาท';
+    document.getElementById('service-text').textContent = baht(BASE_SERVICE) + ' บาท';
     document.getElementById('travel-text').textContent = baht(TRAVEL_FEE) + ' บาท';
-
-    var minNote = document.getElementById('min-note');
-    minNote.classList.toggle('show', belowMin);
 
     var breakdownEl = document.getElementById('breakdown');
     breakdownEl.classList.toggle('show', chosen.length > 0);
