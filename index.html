@@ -20,6 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/job/job-06.jpg" fetchpriority="high">
 <style>
   :root{
     --cream:#FBF6EC;
@@ -649,21 +650,30 @@
   }
 </style>
 
-<!-- Google tag (gtag.js) - GA4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XD1CQMHP28"></script>
+<!-- Queue analytics immediately, but defer third-party downloads until the page is idle. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-XD1CQMHP28');
   gtag('config', 'AW-17951083001');
-</script>
-  <script type="text/javascript">
+  function loadDeferredAnalytics(){
+    var gtagScript = document.createElement('script');
+    gtagScript.async = true;
+    gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XD1CQMHP28';
+    document.head.appendChild(gtagScript);
+
     (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vi5jh6z3cu");
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments);};
+      t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, 'clarity', 'script', 'vi5jh6z3cu');
+  }
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(loadDeferredAnalytics, {timeout: 2500});
+  } else {
+    window.setTimeout(loadDeferredAnalytics, 1500);
+  }
 </script>
 <script type="application/ld+json">
 {
@@ -1663,9 +1673,9 @@
       if (e.key === 'ArrowLeft') prevImg();
     });
 
-    // สุ่มรูปผลงานจริงจาก manifest มาแสดงใน hero (ตัดรูปแรก=QR ออก)
+    // Keep the above-the-fold hero image stable; only rotate the lower-page showcase image.
     function setRandomPortfolioImages(posts){
-      var targets = ['heroImg', 'bentoImg'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
+      var targets = ['bentoImg'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
       if (!targets.length || !posts || !posts.length) return;
 
       var pool = [];
@@ -1687,18 +1697,34 @@
       });
     }
 
-    // manifest.js sets window.tawanGalleryData — fetch as text then parse safely
-    fetch(MANIFEST_URL, {cache: 'no-cache'})
-      .then(function(res){ if(!res.ok) throw new Error('load failed'); return res.text(); })
-      .then(function(txt){
-        var jsonStr = txt.replace(/^\s*window\.tawanGalleryData\s*=\s*/, '').replace(/;?\s*$/, '');
-        var data = JSON.parse(jsonStr);
-        render(data.posts);
-        setRandomPortfolioImages(data.posts);
-      })
-      .catch(function(){
-        grid.innerHTML = '<p class="fb-portfolio-loading">ไม่สามารถโหลดผลงานได้ในขณะนี้ ดูผลงานทั้งหมดได้ที่เพจ Facebook ของเรา</p>';
-      });
+    // Load the remote gallery only when it is close to entering the viewport.
+    var galleryLoaded = false;
+    function loadGallery(){
+      if (galleryLoaded) return;
+      galleryLoaded = true;
+      fetch(MANIFEST_URL, {cache: 'no-cache'})
+        .then(function(res){ if(!res.ok) throw new Error('load failed'); return res.text(); })
+        .then(function(txt){
+          var jsonStr = txt.replace(/^\s*window\.tawanGalleryData\s*=\s*/, '').replace(/;?\s*$/, '');
+          var data = JSON.parse(jsonStr);
+          render(data.posts);
+          setRandomPortfolioImages(data.posts);
+        })
+        .catch(function(){
+          grid.innerHTML = '<p class="fb-portfolio-loading">ไม่สามารถโหลดผลงานได้ในขณะนี้ ดูผลงานทั้งหมดได้ที่เพจ Facebook ของเรา</p>';
+        });
+    }
+    var portfolioSection = document.getElementById('fb-portfolio');
+    if ('IntersectionObserver' in window && portfolioSection){
+      var galleryObserver = new IntersectionObserver(function(entries){
+        if (!entries.some(function(entry){ return entry.isIntersecting; })) return;
+        galleryObserver.disconnect();
+        loadGallery();
+      }, {rootMargin: '600px 0px'});
+      galleryObserver.observe(portfolioSection);
+    } else {
+      loadGallery();
+    }
   })();
 })();
 </script>
