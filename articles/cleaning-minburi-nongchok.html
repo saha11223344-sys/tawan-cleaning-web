@@ -265,5 +265,24 @@
   </div>
 </footer>
 
+<script>
+/* Google Ads Conversion Tracking - phone & LINE clicks */
+document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
+  a.addEventListener('click', function(){
+    if (typeof gtag === 'function') {
+      gtag('event', 'phone_click', { event_category: 'engagement', link_text: a.textContent.trim() || 'phone_icon' });
+      gtag('event', 'conversion', { send_to: 'AW-17951083001/vthSCKvI7M0cEPmT3-9C' });
+    }
+  });
+});
+document.querySelectorAll('a[href*="lin.ee"], a[href*="line.me"]').forEach(function(a){
+  a.addEventListener('click', function(){
+    if (typeof gtag === 'function') {
+      gtag('event', 'line_click', { event_category: 'engagement', link_text: a.textContent.trim() || 'line_icon' });
+      gtag('event', 'conversion', { send_to: 'AW-17951083001/vthSCKvI7M0cEPmT3-9C' });
+    }
+  });
+});
+</script>
 </body>
 </html>

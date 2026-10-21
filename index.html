@@ -1396,7 +1396,7 @@
 
   // Contact form — submits real data (incl. photos) to n8n webhook
   var contactForm = document.getElementById('contactForm');
-  // Track phone number clicks (GA4)
+  // Track phone number clicks (GA4 + Google Ads conversion)
   document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
     a.addEventListener('click', function(){
       if (typeof gtag === 'function') {
@@ -1404,8 +1404,8 @@
           event_category: 'engagement',
           link_text: a.textContent.trim() || 'phone_icon'
         });
-                // Google Ads conversion — phone call click
-                        gtag('event', 'conversion', {'send_to': 'AW-17951083001/vthSCKvI7M0cEPmT3-9C'});
+        // Google Ads conversion — phone call click
+        gtag('event', 'conversion', {'send_to': 'AW-17951083001/vthSCKvI7M0cEPmT3-9C'});
       }
     });
   });
