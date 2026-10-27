@@ -1,6 +1,6 @@
 # ตะวันคลีนนิ่ง (Tawan Cleaning & Service)
 
-> บริการ Big Cleaning ทำความสะอาดครั้งใหญ่ในกรุงเทพฯ — บ้าน คอนโด สำนักงาน ร้านอาหาร และหลังก่อสร้าง
+> บริการ Big Cleaning ทำความสะอาดครั้งใหญ่ในกรุงเทพฯ และปริมณฑล — บ้าน คอนโด สำนักงาน ร้านอาหาร และหลังก่อสร้าง
 
 ## ข้อมูลธุรกิจ
 
@@ -10,10 +10,11 @@
 - LINE: https://lin.ee/iuLQ4Lbg
 - เว็บไซต์: https://www.tawancleaning.com
 - Facebook: https://www.facebook.com/TawanCleaning
+- Google Maps: https://g.co/kgs/tawancleaning
 - เปิดบริการ: ทุกวัน 08:00-20:00
-- พื้นที่หลัก: เขตลาดกระบัง กรุงเทพมหานคร
+- ฐานปฏิบัติการ: เขตลาดกระบัง กรุงเทพมหานคร
 
-## บริการและราคาเริ่มต้น
+## บริการและราคาเริ่มต้น (ปี 2569)
 
 ### Big Clean มาตรฐาน — บ้าน/คอนโด/อาคารพักอาศัย
 เริ่มต้น 39 บาท/ตร.ม. รวมขัดพื้น เช็ดกระจก-ผนัง ขัดลึกครัวและห้องน้ำ พร้อมถ่ายภาพผลงาน
@@ -27,39 +28,65 @@
 ทุกบริการรวม Deep Clean จุดอับ (คราบฝังแน่นในครัว ห้องน้ำ กระจก) โดยไม่มีค่าใช้จ่ายเพิ่ม
 ราคาข้างต้นเป็นราคาเริ่มต้น ทีมงานประเมินหน้างานจริงก่อนแจ้งราคาสุดท้ายทุกครั้ง ไม่มีค่าใช้จ่ายแอบแฝง
 
-## พื้นที่ให้บริการ
+## พื้นที่ให้บริการหลัก
 
-- ลาดกระบัง (Lat Krabang)
+- ลาดกระบัง (Lat Krabang) — พื้นที่หลัก/ฐานปฏิบัติการ
 - ศรีนครินทร์ (Srinakarin)
 - รามอินทรา (Ram Inthra)
 - รังสิต (Rangsit)
-- มีนบุรี (Min Buri)
+- มีนบุรี-หนองจอก (Min Buri - Nong Chok)
+- นนทบุรี (Nonthaburi) — พิจารณาเป็นกรณี
+- สมุทรปราการ (Samut Prakan) — พิจารณาเป็นกรณี
 - พื้นที่อื่น: สอบถามผ่าน LINE เพื่อยืนยันความเป็นไปได้
 
-## จุดเด่น
+## จุดเด่นของตะวันคลีนนิ่ง
 
-- พนักงานผ่านการตรวจสอบประวัติ
+- พนักงานผ่านการตรวจสอบประวัติทุกคน
 - น้ำยาปลอดภัยสำหรับเด็กและสัตว์เลี้ยง
 - มีประกันความเสียหายคุ้มครองงาน
 - ถ่ายภาพ Before/After รายงานผลงานทุกครั้ง
 - แจ้งแก้ไขงานได้ภายใน 24 ชม. โดยไม่มีค่าใช้จ่ายเพิ่ม
 - ยกเลิก/เลื่อนนัดฟรีหากแจ้งล่วงหน้า 12 ชม.
 - ไม่มีค่าใช้จ่ายแอบแฝง
+- ประเมินหน้างานก่อนแจ้งราคาสุดท้ายทุกครั้ง
+
+## คำถามที่พบบ่อย (FAQ)
+
+### Big Cleaning คืออะไร?
+Big Cleaning คือบริการทำความสะอาดครั้งใหญ่แบบเจาะลึกทุกซอกมุม ตั้งแต่พื้น ผนัง เพดาน ไปจนถึงจุดอับที่งานทำความสะอาดประจำวันเข้าไม่ถึง เหมาะกับบ้าน คอนโด ออฟฟิศ ร้านอาหาร หรือพื้นที่หลังก่อสร้าง/รีโนเวท
+
+### Big Cleaning ราคาเท่าไหร่?
+บ้าน/คอนโดเริ่มต้น 39 บาท/ตร.ม. หลังก่อสร้างเริ่มต้น 3,500 บาท/ครั้ง ราคาสุดท้ายขึ้นกับขนาดพื้นที่ สภาพความสกปรก และจำนวนพื้นผิวพิเศษ ทีมประเมินหน้างานก่อนแจ้งราคาทุกครั้ง
+
+### ตะวันคลีนนิ่งต่างจากบริษัทอื่นอย่างไร?
+ตะวันคลีนนิ่งรับเฉพาะงาน Big Cleaning เท่านั้น ไม่รับงานแม่บ้านประจำ จึงเชี่ยวชาญเรื่อง Deep Clean โดยเฉพาะ มีประกันความเสียหาย ถ่ายภาพก่อน-หลังทุกครั้ง และแก้ไขงานฟรีใน 24 ชม.
+
+### จองบริการอย่างไร?
+ส่งรายละเอียดพื้นที่ ขนาด และภาพหน้างานผ่าน LINE (@tawancleaning) หรือกรอกแบบฟอร์มบนเว็บไซต์ ทีมงานจะติดต่อกลับเพื่อยืนยันขอบเขตงานและราคา
 
 ## หน้าสำคัญ
 
 - [หน้าหลัก](https://www.tawancleaning.com/)
-- [Big Cleaning คืออะไร](https://www.tawancleaning.com/articles/what-is-big-cleaning)
+- [บทความทั้งหมด](https://www.tawancleaning.com/articles/)
 - [เช็คราคา Big Cleaning](https://www.tawancleaning.com/price-calculator)
-- [Big Cleaning ราคาเท่าไหร่](https://www.tawancleaning.com/articles/big-cleaning-price)
-- [ทำความสะอาดคอนโดราคาเท่าไหร่](https://www.tawancleaning.com/articles/condo-cleaning-price)
-- [ทำความสะอาดหลังก่อสร้างราคาเท่าไหร่](https://www.tawancleaning.com/articles/post-construction-cleaning-price)
-- [คู่มือทำความสะอาดหลังรีโนเวท](https://www.tawancleaning.com/articles/post-renovation-cleaning-guide)
-- [คู่มือทำความสะอาดก่อนย้ายเข้า](https://www.tawancleaning.com/articles/move-in-cleaning-guide)
-- [บริการทำความสะอาดลาดกระบัง](https://www.tawancleaning.com/articles/cleaning-lat-krabang)
+- [รีวิวลูกค้า](https://www.tawancleaning.com/review)
+- [เกี่ยวกับเรา](https://www.tawancleaning.com/about)
+
+## บทความและคู่มือ
+
+- [Big Cleaning คืออะไร ต่างจากทำความสะอาดทั่วไปยังไง](https://www.tawancleaning.com/articles/what-is-big-cleaning) — อธิบายว่า Big Cleaning คืออะไร ต่างจากงานแม่บ้านประจำอย่างไร เหมาะกับใคร
+- [Big Cleaning ราคาเท่าไหร่ 2569](https://www.tawancleaning.com/articles/big-cleaning-price) — เช็คราคาเริ่มต้นบ้าน คอนโด ออฟฟิศ และหลังก่อสร้าง พร้อมปัจจัยที่มีผลต่อราคา
+- [5 บริษัท Big Cleaning กรุงเทพ ที่ดีที่สุด 2569](https://www.tawancleaning.com/articles/best-big-cleaning-bangkok) — เปรียบเทียบ 5 บริษัท Big Cleaning ในกรุงเทพฯ ราคา จุดเด่น และพื้นที่ให้บริการ
+- [เลือกบริษัทรับทำความสะอาดยังไง ไม่ให้โดนหลอก](https://www.tawancleaning.com/articles/how-to-choose-cleaning-company) — 7 ข้อต้องเช็คก่อนจ้าง Big Cleaning ป้องกันโดนหลอก
+- [ทำความสะอาดคอนโดราคาเท่าไหร่ 2569](https://www.tawancleaning.com/articles/condo-cleaning-price) — ราคา Big Cleaning คอนโดสตูดิโอถึง 3 ห้องนอน
+- [ทำความสะอาดหลังก่อสร้างราคาเท่าไหร่ 2569](https://www.tawancleaning.com/articles/post-construction-cleaning-price) — ราคาเริ่ม 3,500 บาท ครอบคลุมฝุ่นปูน คราบสี กาว
+- [คู่มือทำความสะอาดหลังรีโนเวท](https://www.tawancleaning.com/articles/post-renovation-cleaning-guide) — ขั้นตอนเก็บฝุ่นปูน คราบสี กาว หลังรีโนเวทให้หมดจด
+- [คู่มือทำความสะอาดก่อนย้ายเข้าบ้านใหม่](https://www.tawancleaning.com/articles/move-in-cleaning-guide) — เช็คลิสต์ครบทุกจุดก่อนเข้าอยู่บ้านใหม่หรือคอนโดใหม่
+- [คู่มือทำความสะอาดบ้านปล่อยร้างนาน](https://www.tawancleaning.com/articles/abandoned-house-cleaning-guide) — ขั้นตอนเตรียมตัวและทำความสะอาดบ้านที่ปล่อยร้างหลายปี
+- [บริการทำความสะอาดลาดกระบัง](https://www.tawancleaning.com/articles/cleaning-lat-krabang) — Big Cleaning ในลาดกระบัง พื้นที่หลักฐานปฏิบัติการ
 - [บริการทำความสะอาดศรีนครินทร์](https://www.tawancleaning.com/articles/cleaning-srinakarin)
 - [บริการทำความสะอาดรามอินทรา](https://www.tawancleaning.com/articles/cleaning-ram-inthra)
 - [บริการทำความสะอาดรังสิต](https://www.tawancleaning.com/articles/cleaning-rangsit)
 - [บริการทำความสะอาดมีนบุรี-หนองจอก](https://www.tawancleaning.com/articles/cleaning-minburi-nongchok)
-- [รีวิวลูกค้า](https://www.tawancleaning.com/review)
-- [เกี่ยวกับเรา](https://www.tawancleaning.com/about)
+- [สอบถามงาน Big Cleaning นนทบุรี](https://www.tawancleaning.com/articles/cleaning-nonthaburi)
+- [สอบถามงาน Big Cleaning สมุทรปราการ](https://www.tawancleaning.com/articles/cleaning-samutprakan)
