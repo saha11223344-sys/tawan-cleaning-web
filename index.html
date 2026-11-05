@@ -858,9 +858,9 @@
             '</div>' +
           '</div>' +
           '<div class="cf-stepper">' +
-            '<button type="button" class="cf-step-btn minus" data-key="' + item.key + '" data-action="dec" ' + (item.count === 0 ? 'disabled' : '') + '>' + cfMinusIcon + '</button>' +
+            '<button type="button" class="cf-step-btn minus" aria-label="ลดจำนวน' + item.label + '" data-key="' + item.key + '" data-action="dec" ' + (item.count === 0 ? 'disabled' : '') + '>' + cfMinusIcon + '</button>' +
             '<span class="cf-step-count">' + item.count + '</span>' +
-            '<button type="button" class="cf-step-btn plus" data-key="' + item.key + '" data-action="inc">' + cfPlusIcon + '</button>' +
+            '<button type="button" class="cf-step-btn plus" aria-label="เพิ่มจำนวน' + item.label + '" data-key="' + item.key + '" data-action="inc">' + cfPlusIcon + '</button>' +
           '</div>' +
         '</div>';
     }).join('');
