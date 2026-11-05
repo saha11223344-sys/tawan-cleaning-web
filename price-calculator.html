@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -272,9 +273,9 @@
             '</div>' +
           '</div>' +
           '<div class="stepper">' +
-            '<button class="step-btn minus" data-key="' + item.key + '" data-action="dec" ' + (item.count === 0 ? 'disabled' : '') + '>' + minusIcon + '</button>' +
+            '<button class="step-btn minus" aria-label="ลดจำนวน' + item.label + '" data-key="' + item.key + '" data-action="dec" ' + (item.count === 0 ? 'disabled' : '') + '>' + minusIcon + '</button>' +
             '<span class="step-count">' + item.count + '</span>' +
-            '<button class="step-btn plus" data-key="' + item.key + '" data-action="inc">' + plusIcon + '</button>' +
+            '<button class="step-btn plus" aria-label="เพิ่มจำนวน' + item.label + '" data-key="' + item.key + '" data-action="inc">' + plusIcon + '</button>' +
           '</div>' +
         '</div>';
     }).join('');
