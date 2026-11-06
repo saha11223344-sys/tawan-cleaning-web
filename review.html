@@ -272,20 +272,12 @@
   "name": "ตะวันคลีนนิ่ง แอนด์ เซอร์วิส",
   "image": "https://www.tawancleaning.com/images/logo/logo.jpg",
   "url": "https://www.tawancleaning.com/",
-  "telephone": "+66-63-393-5566",
+  "telephone": "+66-90-223-6654",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "ลาดกระบัง",
     "addressRegion": "กรุงเทพมหานคร",
     "addressCountry": "TH"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "bestRating": "5",
-    "worstRating": "1",
-    "ratingCount": "47",
-    "reviewCount": "47"
   }
 }
 </script>
@@ -390,8 +382,8 @@
         ประทับใจบริการของเราไหม?
       </p>
       <p style="font-size:13.5px;color:#374151;margin-bottom:20px;line-height:1.65;">
-        ฝากรีวิว 1 คลิกเป็นกำลังใจให้ทีมงานหน่อยนะครับ 🙏<br>
-        <span style="font-size:12px;color:var(--gray);">(ไม่มีเงื่อนไข ทำหรือไม่ทำก็ได้)</span>
+        ฝากรีวิวตามประสบการณ์จริงเพื่อเป็นกำลังใจให้ทีมงานได้ครับ 🙏<br>
+        <span style="font-size:12px;color:var(--gray);">แบบประเมินภายในและคูปองไม่เกี่ยวกับการให้คะแนนบน Google หรือ Facebook — ทำหรือไม่ทำก็ได้</span>
       </p>
 
       <div style="display:flex;flex-direction:column;gap:12px;align-items:center;">
@@ -401,9 +393,9 @@
           <span style="font-size:22px;">👍</span> รีวิวบน Facebook
         </a>
 
-        <!-- Google Review — เปิดใช้เมื่อ GBP กลับมา (ใส่ link แล้วเอา style display:none ออก) -->
-        <a href="#" id="google-review-btn" target="_blank" rel="noopener"
-           style="display:none;align-items:center;justify-content:center;gap:10px;width:100%;max-width:320px;background:#fff;color:#1f2937;border:2px solid #dadce0;padding:16px 20px;border-radius:12px;font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;text-decoration:none;box-shadow:0 3px 12px rgba(0,0,0,.10);">
+        <!-- Google Review — รีวิวสาธารณะโดยสมัครใจ ไม่มีผลต่อคูปอง -->
+        <a href="https://search.google.com/local/writereview?placeid=ChIJAXTuRahnHTERkzDuMNAfvZk" id="google-review-btn" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:320px;background:#fff;color:#1f2937;border:2px solid #dadce0;padding:16px 20px;border-radius:12px;font-family:'Prompt',sans-serif;font-size:16px;font-weight:700;text-decoration:none;box-shadow:0 3px 12px rgba(0,0,0,.10);">
           <span style="font-size:22px;">⭐</span> รีวิวบน Google
         </a>
       </div>
@@ -520,13 +512,7 @@
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
     }
 
-    // ─── Google Review link (ใส่ link จริงตรงนี้เมื่อได้จาก GBP) ──
-    const GOOGLE_REVIEW_LINK = ''; // TODO: วาง link จาก Google Business Profile ตรงนี้
-    if (GOOGLE_REVIEW_LINK) {
-      const btn = document.getElementById('google-review-btn');
-      btn.href = GOOGLE_REVIEW_LINK;
-      btn.style.display = 'inline-flex';
-    }
+    // Google Review ใช้ลิงก์ตรงของสถานที่และเป็นตัวเลือกโดยสมัครใจ
   </script>
 </body>
 </html>
