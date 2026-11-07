@@ -356,8 +356,25 @@
       '✅ คัดลอกแล้ว! วางใน Chrome/Safari ได้เลย');
   }
 
-  // ── Facebook: ใช้ web.facebook.com ไม่ถูกแอป FB ดักเปิด ──
-  // ไม่ต้องมี JS เพิ่ม เพราะ web.facebook.com เปิดใน browser โดยตรง
+  // ── Facebook: bypass แอป FB ดักเปิดบน Android ──
+  (function() {
+    var btnFB = document.getElementById('btnFacebook');
+    if (!btnFB || !isMobile()) return;
+
+    btnFB.addEventListener('click', function(e) {
+      e.preventDefault();
+      // เปิด tab เปล่าก่อน แล้วค่อย redirect
+      // Android จะไม่ trigger app link เพราะเป็น navigation ภายใน browser tab ที่เปิดอยู่แล้ว
+      var w = window.open('about:blank', '_blank');
+      if (w) {
+        w.location.href = FB_REVIEW_URL;
+      } else {
+        // popup ถูก block → fallback คัดลอกลิงก์
+        doCopy(FB_REVIEW_URL, btnFB.querySelector('.card-text p'),
+          '📋 คัดลอกแล้ว! เปิด Chrome วางลิงก์ได้เลย');
+      }
+    });
+  })();
 
   // ── In-app browser: แสดงคำแนะนำ + copy button สำหรับ Google ──
   if (isInAppBrowser()) {
