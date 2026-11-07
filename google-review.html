@@ -273,12 +273,12 @@
   <div class="divider">หรือช่องทางอื่น</div>
 
   <!-- ── FACEBOOK ── -->
-  <a href="https://www.facebook.com/TawanCleaning" class="review-card" id="btnFacebook" target="_blank" rel="noopener">
+  <a href="https://www.facebook.com/TawanCleaning/reviews" class="review-card" id="btnFacebook" target="_blank" rel="noopener">
     <div class="card-inner">
       <div class="card-icon facebook">👍</div>
       <div class="card-text">
         <h3>แนะนำบน Facebook</h3>
-        <p>เปิดหน้าเพจ · กดแท็บ "รีวิว" · แนะนำ</p>
+        <p>เปิดในแอป FB · กดแนะนำ + เขียนความเห็น</p>
       </div>
       <div class="card-arrow">›</div>
     </div>
@@ -306,44 +306,77 @@
 
 <script>
   var REVIEW_URL = 'https://g.page/r/CZMw7jDQH72ZEBI/review';
+  var FB_REVIEW_URL = 'https://www.facebook.com/TawanCleaning/reviews';
 
   function isInAppBrowser() {
     var ua = navigator.userAgent || '';
     return /FBAN|FBAV|FB_IAB|FBIOS|Instagram|Line\/|LIFF|TikTok|Snapchat|MicroMessenger/i.test(ua);
   }
 
+  function isMobile() {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+  }
+
   function isIOS() {
     return /iPhone|iPad|iPod/i.test(navigator.userAgent || '');
   }
 
-  function copyLink() {
-    var btn = document.getElementById('btnCopy');
+  function isAndroid() {
+    return /Android/i.test(navigator.userAgent || '');
+  }
+
+  function doCopy(url, btn, msgDone) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(REVIEW_URL).then(function() {
-        btn.innerHTML = '✅ คัดลอกแล้ว! วางใน Chrome/Safari ได้เลย';
+      navigator.clipboard.writeText(url).then(function() {
+        btn.innerHTML = msgDone;
         btn.classList.add('copied');
-      }).catch(fallbackCopy);
+      }).catch(function() { fallbackCopy(url, btn, msgDone); });
     } else {
-      fallbackCopy();
+      fallbackCopy(url, btn, msgDone);
     }
   }
 
-  function fallbackCopy() {
+  function fallbackCopy(url, btn, msgDone) {
     var ta = document.createElement('textarea');
-    ta.value = REVIEW_URL;
+    ta.value = url;
     ta.style.position = 'fixed';
     ta.style.left = '-9999px';
     document.body.appendChild(ta);
     ta.select();
     try {
       document.execCommand('copy');
-      var btn = document.getElementById('btnCopy');
-      btn.innerHTML = '✅ คัดลอกแล้ว! วางใน Chrome/Safari ได้เลย';
+      btn.innerHTML = msgDone;
       btn.classList.add('copied');
-    } catch (e) { /* fallback failed silently */ }
+    } catch (e) { /* silent */ }
     document.body.removeChild(ta);
   }
 
+  function copyLink() {
+    doCopy(REVIEW_URL, document.getElementById('btnCopy'),
+      '✅ คัดลอกแล้ว! วางใน Chrome/Safari ได้เลย');
+  }
+
+  // ── Facebook: บนมือถือให้เปิดใน Chrome/Safari แทนแอป FB ──
+  (function() {
+    var btnFB = document.getElementById('btnFacebook');
+    if (!btnFB || !isMobile()) return;
+
+    btnFB.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      if (isAndroid()) {
+        // intent:// เปิดใน Chrome โดยตรง ข้าม FB app
+        window.location.href = 'intent://' +
+          FB_REVIEW_URL.replace(/^https?:\/\//, '') +
+          '#Intent;scheme=https;package=com.android.chrome;end';
+      } else {
+        // iOS: เปิดใน Safari ผ่าน window.open
+        window.open(FB_REVIEW_URL, '_blank');
+      }
+    });
+  })();
+
+  // ── In-app browser: แสดงคำแนะนำ + copy button สำหรับ Google ──
   if (isInAppBrowser()) {
     document.getElementById('inappGuide').classList.add('show');
     document.getElementById('btnCopy').classList.add('show');
@@ -355,7 +388,7 @@
 
     // Android: intent ให้เปิดใน Chrome โดยตรง
     var btnGoogle = document.getElementById('btnGoogle');
-    if (/android/i.test(navigator.userAgent)) {
+    if (isAndroid()) {
       btnGoogle.href = 'intent://' + REVIEW_URL.replace(/^https?:\/\//, '') +
         '#Intent;scheme=https;package=com.android.chrome;end';
     }
