@@ -273,12 +273,12 @@
   <div class="divider">หรือช่องทางอื่น</div>
 
   <!-- ── FACEBOOK ── -->
-  <a href="/go/fb-review" class="review-card" id="btnFacebook" target="_blank" rel="noopener">
+  <a href="https://www.facebook.com/TawanCleaning" class="review-card" id="btnFacebook" target="_blank" rel="noopener">
     <div class="card-inner">
       <div class="card-icon facebook">👍</div>
       <div class="card-text">
         <h3>แนะนำบน Facebook</h3>
-        <p>เปิดในแอป FB · กดแนะนำ + เขียนความเห็น</p>
+        <p>เปิดเพจ FB · กดแท็บ "รีวิว" แล้วกดแนะนำ</p>
       </div>
       <div class="card-arrow">›</div>
     </div>
@@ -306,7 +306,7 @@
 
 <script>
   var REVIEW_URL = 'https://g.page/r/CZMw7jDQH72ZEBI/review';
-  var FB_REVIEW_URL = '/go/fb-review';
+  var FB_REVIEW_URL = 'https://www.facebook.com/TawanCleaning';
 
   function isInAppBrowser() {
     var ua = navigator.userAgent || '';
@@ -356,9 +356,8 @@
       '✅ คัดลอกแล้ว! วางใน Chrome/Safari ได้เลย');
   }
 
-  // Facebook: ลิงก์ชี้ไป /go/fb-review บนโดเมนเรา
-  // Vercel ทำ server-side 307 redirect ไป facebook.com
-  // browser redirect ภายใน → ไม่ trigger Android app link
+  // Facebook: ลิงก์ชี้ไปหน้าเพจหลัก facebook.com/TawanCleaning
+  // Android จะเปิดในแอป FB เห็นหน้าเพจถูกต้อง ลูกค้ากดแท็บรีวิวแล้วแนะนำได้
 
   // ── In-app browser: แสดงคำแนะนำ + copy button สำหรับ Google ──
   if (isInAppBrowser()) {
