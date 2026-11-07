@@ -273,7 +273,7 @@
   <div class="divider">หรือช่องทางอื่น</div>
 
   <!-- ── FACEBOOK ── -->
-  <a href="https://www.facebook.com/TawanCleaning/reviews" class="review-card" id="btnFacebook" target="_blank" rel="noopener">
+  <a href="https://web.facebook.com/TawanCleaning/reviews" class="review-card" id="btnFacebook" target="_blank" rel="noopener">
     <div class="card-inner">
       <div class="card-icon facebook">👍</div>
       <div class="card-text">
@@ -306,7 +306,7 @@
 
 <script>
   var REVIEW_URL = 'https://g.page/r/CZMw7jDQH72ZEBI/review';
-  var FB_REVIEW_URL = 'https://www.facebook.com/TawanCleaning/reviews';
+  var FB_REVIEW_URL = 'https://web.facebook.com/TawanCleaning/reviews';
 
   function isInAppBrowser() {
     var ua = navigator.userAgent || '';
@@ -356,25 +356,8 @@
       '✅ คัดลอกแล้ว! วางใน Chrome/Safari ได้เลย');
   }
 
-  // ── Facebook: บนมือถือให้เปิดใน Chrome/Safari แทนแอป FB ──
-  (function() {
-    var btnFB = document.getElementById('btnFacebook');
-    if (!btnFB || !isMobile()) return;
-
-    btnFB.addEventListener('click', function(e) {
-      e.preventDefault();
-
-      if (isAndroid()) {
-        // intent:// เปิดใน Chrome โดยตรง ข้าม FB app
-        window.location.href = 'intent://' +
-          FB_REVIEW_URL.replace(/^https?:\/\//, '') +
-          '#Intent;scheme=https;package=com.android.chrome;end';
-      } else {
-        // iOS: เปิดใน Safari ผ่าน window.open
-        window.open(FB_REVIEW_URL, '_blank');
-      }
-    });
-  })();
+  // ── Facebook: ใช้ web.facebook.com ไม่ถูกแอป FB ดักเปิด ──
+  // ไม่ต้องมี JS เพิ่ม เพราะ web.facebook.com เปิดใน browser โดยตรง
 
   // ── In-app browser: แสดงคำแนะนำ + copy button สำหรับ Google ──
   if (isInAppBrowser()) {
