@@ -194,22 +194,6 @@
     }
     .footer-note a { color: #6b7280; }
 
-    /* ── COUPON ── */
-    .coupon {
-      background: linear-gradient(135deg, #fef3c7, #fffbeb);
-      border: 2px dashed #f59e0b;
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .coupon-emoji { font-size: 28px; }
-    .coupon p {
-      font-size: 14px; color: #92400e; font-weight: 600;
-      margin-top: 4px; line-height: 1.5;
-    }
-    .coupon .small { font-size: 12px; font-weight: 400; color: #b45309; }
-
     @keyframes fadeSlide {
       from { opacity: 0; transform: translateY(-8px); }
       to { opacity: 1; transform: translateY(0); }
@@ -245,13 +229,6 @@
     </div>
   </div>
 
-  <!-- COUPON -->
-  <div class="coupon">
-    <div class="coupon-emoji">🎁</div>
-    <p>รีวิวเสร็จ รับคูปองส่วนลดครั้งถัดไป!</p>
-    <span class="small">แคปรีวิวส่งมาทาง LINE ได้เลยค่ะ</span>
-  </div>
-
   <!-- ── GOOGLE ── -->
   <div class="badge-top">⭐ ช่วยเรามากที่สุด</div>
   <a href="https://g.page/r/CZMw7jDQH72ZEBI/review" class="review-card" id="btnGoogle" target="_blank" rel="noopener">
@@ -259,7 +236,7 @@
       <div class="card-icon google">⭐</div>
       <div class="card-text">
         <h3>รีวิวบน Google</h3>
-        <p>ต้องมี Gmail · ให้ดาว + เขียนรีวิว</p>
+        <p>เข้าสู่ระบบบัญชี Google · ให้ดาว + เขียนรีวิว</p>
       </div>
       <div class="card-arrow">›</div>
     </div>
@@ -273,12 +250,12 @@
   <div class="divider">หรือช่องทางอื่น</div>
 
   <!-- ── FACEBOOK ── -->
-  <a href="https://www.facebook.com/TawanCleaning" class="review-card" id="btnFacebook" target="_blank" rel="noopener">
+  <a href="https://www.facebook.com/TawanCleaning/reviews" class="review-card" id="btnFacebook" target="_blank" rel="noopener">
     <div class="card-inner">
       <div class="card-icon facebook">👍</div>
       <div class="card-text">
         <h3>แนะนำบน Facebook</h3>
-        <p>เปิดเพจ FB · กดแท็บ "รีวิว" แล้วกดแนะนำ</p>
+        <p>เปิดเพจ FB · กดแนะนำได้เลย</p>
       </div>
       <div class="card-arrow">›</div>
     </div>
@@ -306,7 +283,7 @@
 
 <script>
   var REVIEW_URL = 'https://g.page/r/CZMw7jDQH72ZEBI/review';
-  var FB_REVIEW_URL = 'https://www.facebook.com/TawanCleaning';
+  var FB_REVIEW_URL = 'https://www.facebook.com/TawanCleaning/reviews';
 
   function isInAppBrowser() {
     var ua = navigator.userAgent || '';
