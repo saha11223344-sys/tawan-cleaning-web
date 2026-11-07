@@ -250,12 +250,12 @@
   <div class="divider">หรือช่องทางอื่น</div>
 
   <!-- ── FACEBOOK ── -->
-  <a href="https://www.facebook.com/TawanCleaning" class="review-card" id="btnFacebook" target="_blank" rel="noopener">
+  <a href="https://www.facebook.com/TawanCleaning/reviews" class="review-card" id="btnFacebook" target="_blank" rel="noopener">
     <div class="card-inner">
       <div class="card-icon facebook">👍</div>
       <div class="card-text">
         <h3>แนะนำบน Facebook</h3>
-        <p>เปิดเพจ FB · กดแท็บ "รีวิว" แล้วกดแนะนำ</p>
+        <p id="fbDesc">เปิดเพจ FB · กดแนะนำได้เลย</p>
       </div>
       <div class="card-arrow">›</div>
     </div>
@@ -283,7 +283,8 @@
 
 <script>
   var REVIEW_URL = 'https://g.page/r/CZMw7jDQH72ZEBI/review';
-  var FB_REVIEW_URL = 'https://www.facebook.com/TawanCleaning';
+  var FB_REVIEW_URL = 'https://www.facebook.com/TawanCleaning/reviews';
+  var FB_MENTIONS_URL = 'https://www.facebook.com/TawanCleaning/mentions';
 
   function isInAppBrowser() {
     var ua = navigator.userAgent || '';
@@ -333,8 +334,13 @@
       '✅ คัดลอกแล้ว! วางใน Chrome/Safari ได้เลย');
   }
 
-  // Facebook: ลิงก์ชี้ไปหน้าเพจหลัก facebook.com/TawanCleaning
-  // Android จะเปิดในแอป FB เห็นหน้าเพจถูกต้อง ลูกค้ากดแท็บรีวิวแล้วแนะนำได้
+  // ── Facebook: PC → /reviews, มือถือ → หน้าเพจหลัก (แท็บ "การกล่าวถึง") ──
+  var btnFB = document.getElementById('btnFacebook');
+  var fbDesc = document.getElementById('fbDesc');
+  if (isMobile()) {
+    btnFB.href = 'https://www.facebook.com/TawanCleaning';
+    fbDesc.textContent = 'เปิดเพจ FB · กดแท็บ "การกล่าวถึง" แล้วเขียนข้อความ';
+  }
 
   // ── In-app browser: แสดงคำแนะนำ + copy button สำหรับ Google ──
   if (isInAppBrowser()) {
