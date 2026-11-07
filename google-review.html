@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>รีวิว Google — ตะวัน คลีนนิ่ง แอนด์ เซอร์วิส</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: #f0f4ff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.1);
+      max-width: 420px;
+      width: 100%;
+      padding: 36px 28px;
+      text-align: center;
+    }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 22px; color: #1a1a1a; margin-bottom: 8px; font-weight: 700; }
+    .subtitle { color: #555; font-size: 15px; margin-bottom: 24px; line-height: 1.6; }
+    .thank-you { color: #059669; font-weight: 600; font-size: 16px; margin-bottom: 20px; }
+
+    /* ปุ่มรีวิว Google — สำหรับ browser ปกติ */
+    .btn-google {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; max-width: 320px;
+      background: #4285f4; color: #fff;
+      padding: 16px 20px; border-radius: 14px;
+      font-family: 'Prompt', sans-serif; font-size: 17px; font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(66,133,244,.35);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn-google:active { transform: scale(.97); }
+    .btn-google img {
+      width: 24px; height: 24px;
+    }
+
+    /* คำแนะนำสำหรับ in-app browser */
+    .inapp-guide {
+      display: none;
+      background: #fffbeb;
+      border: 2px solid #f59e0b;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .inapp-guide.show { display: block; }
+    .inapp-guide h2 {
+      font-size: 16px; color: #b45309; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .inapp-guide ol {
+      color: #78350f; font-size: 14px; line-height: 1.8;
+      padding-left: 20px;
+    }
+    .inapp-guide ol li { margin-bottom: 4px; }
+    .inapp-guide .highlight {
+      background: #fef3c7; padding: 2px 6px; border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* ปุ่มคัดลอกลิงก์ */
+    .btn-copy {
+      display: none; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; max-width: 320px;
+      background: #fff; color: #1f2937;
+      border: 2px solid #d1d5db;
+      padding: 14px 20px; border-radius: 14px;
+      font-family: 'Prompt', sans-serif; font-size: 15px; font-weight: 600;
+      cursor: pointer; margin: 12px auto 0;
+      transition: all .15s;
+    }
+    .btn-copy:active { background: #f3f4f6; }
+    .btn-copy.show { display: inline-flex; }
+    .btn-copy.copied {
+      background: #ecfdf5; border-color: #059669; color: #059669;
+    }
+
+    .alt-links {
+      margin-top: 24px; padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+    }
+    .alt-links p { font-size: 13px; color: #888; margin-bottom: 12px; }
+    .alt-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: #1a56db; text-decoration: none; font-size: 14px; font-weight: 600;
+      padding: 10px 16px; border-radius: 10px;
+      background: #f0f4ff;
+      transition: background .15s;
+    }
+    .alt-link:active { background: #dbeafe; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo">⭐</div>
+  <h1>รีวิวตะวันคลีนนิ่งบน Google</h1>
+  <p class="thank-you">🙏 ขอบคุณที่ไว้วางใจให้ดูแลความสะอาดค่ะ</p>
+  <p class="subtitle">รีวิวของคุณช่วยให้คนอื่นๆ รู้จักเรามากขึ้น<br>ใช้เวลาไม่ถึงนาทีค่ะ 💙</p>
+
+  <!-- คำแนะนำ — จะแสดงเฉพาะเมื่อเปิดใน in-app browser -->
+  <div class="inapp-guide" id="inappGuide">
+    <h2>📱 เปิดลิงก์ใน Chrome / Safari ก่อนนะคะ</h2>
+    <div id="guideAndroid">
+      <ol>
+        <li>กดปุ่ม <span class="highlight">⋮</span> (จุดสามจุด) มุมขวาบน</li>
+        <li>เลือก <span class="highlight">"เปิดใน Chrome"</span></li>
+        <li>แล้วกดรีวิวได้เลยค่ะ ⭐</li>
+      </ol>
+    </div>
+    <div id="guideIOS" style="display:none;">
+      <ol>
+        <li>กดปุ่ม <span class="highlight">Safari / เปิดใน Safari</span> ด้านล่าง</li>
+        <li>หรือกดปุ่ม <span class="highlight">⋯</span> แล้วเลือก "เปิดใน Safari"</li>
+        <li>แล้วกดรีวิวได้เลยค่ะ ⭐</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ปุ่มหลัก -->
+  <a href="https://g.page/r/CZMw7jDQH72ZEBI/review" class="btn-google" id="btnGoogle">
+    <span style="font-size:22px;">⭐</span> รีวิวบน Google
+  </a>
+
+  <!-- ปุ่มคัดลอกลิงก์ — แสดงเฉพาะ in-app browser -->
+  <button class="btn-copy" id="btnCopy" onclick="copyLink()">
+    📋 คัดลอกลิงก์ แล้วไปเปิดเอง
+  </button>
+
+  <!-- ทางเลือกอื่น -->
+  <div class="alt-links">
+    <p>ไม่มี Gmail? รีวิวช่องทางอื่นได้เลยค่ะ</p>
+    <a href="https://www.tawancleaning.com/review" class="alt-link">
+      📝 รีวิวบนเว็บเรา (ไม่ต้องล็อกอิน)
+    </a>
+  </div>
+</div>
+
+<script>
+  var REVIEW_URL = 'https://g.page/r/CZMw7jDQH72ZEBI/review';
+
+  function isInAppBrowser() {
+    var ua = navigator.userAgent || '';
+    // ตรวจจับ in-app browser จาก LINE, Facebook, Messenger, Instagram, TikTok
+    return /FBAN|FBAV|FB_IAB|FBIOS|Instagram|Line\/|LIFF|TikTok|Snapchat|MicroMessenger/i.test(ua);
+  }
+
+  function isIOS() {
+    return /iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+  }
+
+  function copyLink() {
+    var btn = document.getElementById('btnCopy');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(REVIEW_URL).then(function() {
+        btn.innerHTML = '✅ คัดลอกแล้ว! เปิด Chrome/Safari แล้ววางลิงก์ได้เลย';
+        btn.classList.add('copied');
+      }).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+  }
+
+  function fallbackCopy() {
+    var ta = document.createElement('textarea');
+    ta.value = REVIEW_URL;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      var btn = document.getElementById('btnCopy');
+      btn.innerHTML = '✅ คัดลอกแล้ว! เปิด Chrome/Safari แล้ววางลิงก์ได้เลย';
+      btn.classList.add('copied');
+    } catch(e) {}
+    document.body.removeChild(ta);
+  }
+
+  // ตรวจจับ in-app browser
+  if (isInAppBrowser()) {
+    document.getElementById('inappGuide').classList.add('show');
+    document.getElementById('btnCopy').classList.add('show');
+
+    // แสดงคำแนะนำตาม OS
+    if (isIOS()) {
+      document.getElementById('guideAndroid').style.display = 'none';
+      document.getElementById('guideIOS').style.display = 'block';
+    }
+
+    // Android: ลองเปิดใน Chrome ผ่าน intent
+    var btnGoogle = document.getElementById('btnGoogle');
+    if (/android/i.test(navigator.userAgent)) {
+      btnGoogle.href = 'intent://' + REVIEW_URL.replace(/^https?:\/\//, '') +
+        '#Intent;scheme=https;package=com.android.chrome;end';
+    }
+  }
+</script>
+
+</body>
+</html>
