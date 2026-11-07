@@ -1,4 +1,11 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/go/fb-review",
+      "destination": "https://www.facebook.com/TawanCleaning/reviews",
+      "statusCode": 307
+    }
+  ]
 }
