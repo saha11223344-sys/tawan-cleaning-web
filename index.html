@@ -23,18 +23,26 @@
 <link rel="preload" as="image" href="images/job/job-06.jpg" fetchpriority="high">
 <link rel="stylesheet" href="css/style.css">
 
-<!-- Queue analytics immediately, but defer third-party downloads until the page is idle. -->
+<!-- Analytics — loads only after cookie consent -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XD1CQMHP28');
-  gtag('config', 'AW-17951083001');
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
   function loadDeferredAnalytics(){
+    if (window.__twAnalyticsLoaded) return;
+    window.__twAnalyticsLoaded = true;
     var gtagScript = document.createElement('script');
     gtagScript.async = true;
     gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XD1CQMHP28';
     document.head.appendChild(gtagScript);
+    gtag('config', 'G-XD1CQMHP28');
+    gtag('config', 'AW-17951083001');
 
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments);};
@@ -42,11 +50,30 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, 'clarity', 'script', 'vi5jh6z3cu');
   }
-  if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(loadDeferredAnalytics, {timeout: 2500});
-  } else {
-    window.setTimeout(loadDeferredAnalytics, 1500);
+  function twAcceptCookies(){
+    gtag('consent', 'update', {
+      analytics_storage: 'granted',
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted'
+    });
+    try { localStorage.setItem('tw_cookie_consent','granted'); } catch(e){}
+    loadDeferredAnalytics();
+    var banner = document.getElementById('cookieBanner');
+    if (banner) banner.style.display = 'none';
   }
+  function twDeclineCookies(){
+    try { localStorage.setItem('tw_cookie_consent','denied'); } catch(e){}
+    var banner = document.getElementById('cookieBanner');
+    if (banner) banner.style.display = 'none';
+  }
+  /* Auto-grant if previously accepted */
+  (function(){
+    try {
+      var prev = localStorage.getItem('tw_cookie_consent');
+      if (prev === 'granted') { twAcceptCookies(); }
+    } catch(e){}
+  })();
 </script>
 <script type="application/ld+json">
 {
@@ -458,40 +485,61 @@
     </div>
   </section>
 
-  <!-- FAQ --><!-- ── LIVE REVIEWS FROM SHEET ── -->
+  <!-- FAQ --><!-- LIVE REVIEWS FROM API (no XSS — uses textContent) -->
 <script>
 (function(){
-  var SHEET_ID = '1JLIjPBLuljaB6Lmue5XZB-PE8dXpOeZHM73v2KIWUUA';
-  var url = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
-    '/gviz/tq?tqx=out:json&sheet=%E0%B8%A3%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%A7%E0%B8%A5%E0%B8%B9%E0%B8%81%E0%B8%84%E0%B9%89%E0%B8%B2';
-  fetch(url).then(function(r){return r.text();}).then(function(text){
-    var json = JSON.parse(text.replace(/^[^(]+\(/, '').replace(/\);?\s*$/, ''));
-    var rows = (json.table && json.table.rows) || [];
-    var good = rows.filter(function(r){
-      return r.c && r.c[4] && r.c[4].v >= 4 && r.c[5] && r.c[5].v
-        && r.c[10] && r.c[10].v === 'อนุมัติ';
-    }).slice(-6).reverse();
-    if (!good.length) return;
+  fetch('/api/reviews').then(function(r){return r.json();}).then(function(data){
+    var reviews = data.reviews || [];
+    if (!reviews.length) return;
     var track = document.querySelector('#testimonials .testi-track');
     if (!track) return;
-    var html = good.map(function(r){
-      var name    = (r.c[1] && r.c[1].v) || 'ลูกค้า';
-      var rating  = (r.c[4] && r.c[4].v) || 5;
-      var comment = (r.c[5] && r.c[5].v) || '';
-      var date    = (r.c[0] && r.c[0].v) || '';
-      var stars   = '★'.repeat(rating);
-      var parts   = name.trim().split(' ');
+    var frag = document.createDocumentFragment();
+    reviews.forEach(function(rv){
+      var parts = rv.name.trim().split(' ');
       var shortName = parts[0] + (parts[1] ? ' ' + parts[1].charAt(0) + '.' : '');
-      var initial = name.charAt(0);
-      return '<article class="testi-card">' +
-        '<div class="quote-mark">\u201c</div>' +
-        '<p class="quote">' + comment.replace(/</g,'&lt;') + '</p>' +
-        '<div class="stars">' + stars + '</div>' +
-        '<div class="who"><div class="avatar">' + initial + '</div>' +
-        '<div><strong>' + shortName + '</strong><span>ลูกค้าจริง · ' + date + '</span></div></div>' +
-      '</article>';
-    }).join('');
-    track.insertAdjacentHTML('afterbegin', html);
+      var initial = rv.name.charAt(0);
+      var stars = '★'.repeat(rv.rating);
+
+      var article = document.createElement('article');
+      article.className = 'testi-card';
+
+      var qm = document.createElement('div');
+      qm.className = 'quote-mark';
+      qm.textContent = '“';
+
+      var quote = document.createElement('p');
+      quote.className = 'quote';
+      quote.textContent = rv.comment;
+
+      var starsDiv = document.createElement('div');
+      starsDiv.className = 'stars';
+      starsDiv.textContent = stars;
+
+      var who = document.createElement('div');
+      who.className = 'who';
+
+      var avatarDiv = document.createElement('div');
+      avatarDiv.className = 'avatar';
+      avatarDiv.textContent = initial;
+
+      var infoDiv = document.createElement('div');
+      var strong = document.createElement('strong');
+      strong.textContent = shortName;
+      var span = document.createElement('span');
+      span.textContent = 'ลูกค้าจริง · ' + rv.date;
+      infoDiv.appendChild(strong);
+      infoDiv.appendChild(span);
+
+      who.appendChild(avatarDiv);
+      who.appendChild(infoDiv);
+
+      article.appendChild(qm);
+      article.appendChild(quote);
+      article.appendChild(starsDiv);
+      article.appendChild(who);
+      frag.appendChild(article);
+    });
+    track.insertBefore(frag, track.firstChild);
   }).catch(function(){});
 })();
 </script>
@@ -712,7 +760,7 @@
     </div>
     <div class="foot-bottom">
       <span>© 2569 ตะวันคลีนนิ่ง (Tawan Cleaning). สงวนลิขสิทธิ์ทุกประการ</span>
-      <span style="max-width:640px;">Privacy Notice: This website uses Google Analytics and Microsoft Clarity to understand how visitors use our site (pages viewed, buttons clicked, session recordings) so we can improve our services. We do not collect payment details through these tools. By using this site, you consent to this data collection in accordance with Thailand's Personal Data Protection Act (PDPA).</span>
+      <a href="/privacy" style="color:inherit;text-decoration:underline;">นโยบายความเป็นส่วนตัว (PDPA)</a>
     </div>
   </div>
 </footer>
@@ -837,6 +885,17 @@
   // Price estimator inside the booking form (same room-item picker as /price-calculator)
   var CF_BASE_SERVICE = 3000;
   var CF_TRAVEL_FEE = 500;
+
+  // Which calculator items to show per job type
+  var cfItemVisibility = {
+    'บ้านพักอาศัย/คอนโด': ['bathroom','bedroom','parking'],
+    'อาคารสำนักงาน/ออฟฟิศ': ['bathroom','parking'],
+    'หลังก่อสร้าง/รีโนเวท/บิ้วอิน': ['bathroom','bedroom','parking'],
+    'ร้านอาหาร/คาเฟ่': ['bathroom'],
+    'ย้ายเข้า-ย้ายออก': ['bathroom','bedroom','parking'],
+    'อื่นๆ': ['bathroom','bedroom','parking']
+  };
+
   var cfItems = [
     {
       key: 'bathroom', label: 'ห้องน้ำ', price: 500, count: 0,
@@ -857,8 +916,16 @@
 
   var cfListEl = document.getElementById('cfItemList');
 
+  function getVisibleCfItems(){
+    var selected = document.querySelector('input[name="jobType"]:checked');
+    var jobType = selected ? selected.value : 'บ้านพักอาศัย/คอนโด';
+    var visible = cfItemVisibility[jobType] || ['bathroom','bedroom','parking'];
+    return cfItems.filter(function(item){ return visible.indexOf(item.key) !== -1; });
+  }
+
   function renderCfItems(){
-    cfListEl.innerHTML = cfItems.map(function(item){
+    var visibleItems = getVisibleCfItems();
+    cfListEl.innerHTML = visibleItems.map(function(item){
       return '' +
         '<div class="cf-item-row">' +
           '<div class="cf-item-left">' +
@@ -876,9 +943,9 @@
         '</div>';
     }).join('');
 
-    var subtotal = cfItems.reduce(function(sum, i){ return sum + i.price * i.count; }, 0);
+    var subtotal = visibleItems.reduce(function(sum, i){ return sum + i.price * i.count; }, 0);
     var total = CF_BASE_SERVICE + CF_TRAVEL_FEE + subtotal;
-    var chosen = cfItems.filter(function(i){ return i.count > 0; });
+    var chosen = visibleItems.filter(function(i){ return i.count > 0; });
 
     document.getElementById('cfTotalText').textContent = cfBaht(total) + ' บาท';
     document.getElementById('cfServiceText').textContent = cfBaht(CF_BASE_SERVICE) + ' บาท';
@@ -911,6 +978,16 @@
   });
 
   renderCfItems();
+
+  // Re-render calculator items when job type changes (conditional fields)
+  var jobTypeRadios = document.querySelectorAll('input[name="jobType"]');
+  jobTypeRadios.forEach(function(radio){
+    radio.addEventListener('change', function(){
+      // Reset counts for hidden items
+      cfItems.forEach(function(item){ item.count = 0; });
+      renderCfItems();
+    });
+  });
 
   contactForm.addEventListener('submit', function(e){
     e.preventDefault();
@@ -1209,6 +1286,31 @@
 })();
 </script>
 <!-- ===== จบระบบกันสแปม ===== -->
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#1e293b;color:#f1f5f9;padding:16px 20px;font-size:.875rem;line-height:1.5;">
+  <div style="max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;">
+    <p style="flex:1 1 300px;margin:0;">เว็บไซต์นี้ใช้คุกกี้เพื่อวิเคราะห์การใช้งาน (Google Analytics, Microsoft Clarity) และวัดผลโฆษณา (Google Ads) ข้อมูลจะไม่ถูกใช้ระบุตัวตนเป็นรายบุคคล อ่านรายละเอียดได้ที่ <a href="/privacy" style="color:#93c5fd;text-decoration:underline;">นโยบายความเป็นส่วนตัว</a></p>
+    <div style="display:flex;gap:8px;flex-shrink:0;">
+      <button onclick="twAcceptCookies()" style="background:#2563eb;color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:.875rem;">ยอมรับ</button>
+      <button onclick="twDeclineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #475569;padding:8px 20px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:.875rem;">ปฏิเสธ</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    var prev = localStorage.getItem('tw_cookie_consent');
+    if (!prev) {
+      var b = document.getElementById('cookieBanner');
+      if (b) b.style.display = 'block';
+    }
+  } catch(e){
+    var b2 = document.getElementById('cookieBanner');
+    if (b2) b2.style.display = 'block';
+  }
+})();
+</script>
 
 </body>
 </html>
